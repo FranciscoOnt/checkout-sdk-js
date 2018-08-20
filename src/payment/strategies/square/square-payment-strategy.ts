@@ -116,6 +116,8 @@ export default class SquarePaymentStrategy extends PaymentStrategy {
             ...paymentMethod.initializationData,
             callbacks: {
                 paymentFormLoaded: () => {
+                    console.log('form loaded');
+
                     deferred.resolve();
                     const state = this._store.getState();
                     const billingAddress = state.billingAddress.getBillingAddress();
@@ -160,6 +162,7 @@ export default class SquarePaymentStrategy extends PaymentStrategy {
                  * Triggered when: a digital wallet payment button is clicked.
                 */
                 createPaymentRequest: () => {
+                    console.log('payreq');
                     const state = this._store.getState();
                     const checkout = state.checkout.getCheckout();
                     const storeConfig = state.config.getStoreConfig();

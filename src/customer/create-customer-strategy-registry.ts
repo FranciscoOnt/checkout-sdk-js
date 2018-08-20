@@ -10,6 +10,7 @@ import { PaymentMethodActionCreator } from '../payment';
 import { AmazonPayScriptLoader } from '../payment/strategies/amazon-pay';
 import { createBraintreeVisaCheckoutPaymentProcessor, VisaCheckoutScriptLoader } from '../payment/strategies/braintree';
 import { ChasePayScriptLoader } from '../payment/strategies/chasepay';
+import { SquareScriptLoader } from '../payment/strategies/square';
 import { RemoteCheckoutActionCreator, RemoteCheckoutRequestSender } from '../remote-checkout';
 
 import { CustomerRequestSender, CustomerStrategyActionCreator } from '.';
@@ -21,6 +22,8 @@ import {
     CustomerStrategy,
     DefaultCustomerStrategy,
 } from './strategies';
+import PaymentStrategyActionCreator from "../payment/payment-strategy-action-creator";
+import SquareCustomerStrategy from "./strategies/square-customer-strategy";
 
 export default function createCustomerStrategyRegistry(
     store: CheckoutStore,
@@ -64,6 +67,19 @@ export default function createCustomerStrategyRegistry(
             new PaymentMethodActionCreator(client),
             new RemoteCheckoutActionCreator(remoteCheckoutRequestSender),
             new ChasePayScriptLoader(getScriptLoader()),
+            requestSender,
+            createFormPoster()
+        )
+    );
+
+    registry.register('squarev2', () =>
+        new SquareCustomerStrategy(
+            store,
+            checkoutActionCreator,
+            new PaymentMethodActionCreator(client),
+            new CustomerStrategyActionCreator(registry),
+            new RemoteCheckoutActionCreator(remoteCheckoutRequestSender),
+            new SquareScriptLoader(getScriptLoader()),
             requestSender,
             createFormPoster()
         )
