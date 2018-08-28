@@ -1,6 +1,6 @@
 import { RequestOptions } from '../common/http-request';
 
-import { AmazonPayCustomerInitializeOptions, BraintreeVisaCheckoutCustomerInitializeOptions, ChasePayCustomerInitializeOptions } from './strategies';
+import { AmazonPayCustomerInitializeOptions, BraintreeVisaCheckoutCustomerInitializeOptions, ChasePayCustomerInitializeOptions, StripeCustomerInitializeOptions } from './strategies';
 
 /**
  * A set of options for configuring any requests related to the customer step of
@@ -36,4 +36,5 @@ export interface CustomerInitializeOptions extends CustomerRequestOptions {
      */
     braintreevisacheckout?: BraintreeVisaCheckoutCustomerInitializeOptions;
     chasepay?: ChasePayCustomerInitializeOptions;
+    stripe?: StripeCustomerInitializeOptions;
 }

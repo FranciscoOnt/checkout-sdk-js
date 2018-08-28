@@ -9,6 +9,7 @@ import { PaymentMethodActionCreator, PaymentMethodRequestSender } from '../payme
 import { AmazonPayScriptLoader } from '../payment/strategies/amazon-pay';
 import { createBraintreeVisaCheckoutPaymentProcessor, VisaCheckoutScriptLoader } from '../payment/strategies/braintree';
 import { ChasePayScriptLoader } from '../payment/strategies/chasepay';
+import { StripeScriptLoader } from '../payment/strategies/stripe';
 import { RemoteCheckoutActionCreator, RemoteCheckoutRequestSender } from '../remote-checkout';
 
 import CustomerActionCreator from './customer-action-creator';
@@ -20,6 +21,7 @@ import {
     ChasePayCustomerStrategy,
     CustomerStrategy,
     DefaultCustomerStrategy,
+    StripeCustomerStrategy,
 } from './strategies';
 
 export default function createCustomerStrategyRegistry(store: CheckoutStore): Registry<CustomerStrategy> {
@@ -63,6 +65,15 @@ export default function createCustomerStrategyRegistry(store: CheckoutStore): Re
             new ChasePayScriptLoader(getScriptLoader()),
             requestSender,
             createFormPoster()
+        )
+    );
+
+    registry.register('stripe', () =>
+        new StripeCustomerStrategy(
+            store,
+            paymentMethodActionCreator,
+            remoteCheckoutActionCreator,
+            new StripeScriptLoader(getScriptLoader())
         )
     );
 

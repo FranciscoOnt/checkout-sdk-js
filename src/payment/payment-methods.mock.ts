@@ -226,6 +226,29 @@ export function getChasePay(): PaymentMethod {
     };
 }
 
+export function getStripe(): PaymentMethod {
+    return {
+        id: 'stripe',
+        logoUrl: '',
+        method: 'stripe',
+        supportedCards: [
+            'VISA',
+            'MC',
+            'AMEX',
+        ],
+        config: {
+            displayName: 'Credit Card',
+            testMode: false,
+        },
+        type: 'PAYMENT_TYPE_API',
+        initializationData: {
+            masterpassEnabled: true,
+            checkoutId: 'checkoutId',
+            allowedCardTypes: ['visa', 'amex', 'mastercard'],
+        },
+    };
+}
+
 export function getWepay(): PaymentMethod {
     return {
         id: 'wepay',
