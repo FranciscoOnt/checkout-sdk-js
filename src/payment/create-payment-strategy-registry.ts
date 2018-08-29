@@ -30,6 +30,7 @@ import {
     PaypalProPaymentStrategy,
     SagePayPaymentStrategy,
     SquarePaymentStrategy,
+    StripePaymentStrategy,
     WepayPaymentStrategy,
 } from './strategies';
 import { AfterpayScriptLoader } from './strategies/afterpay';
@@ -236,6 +237,14 @@ export default function createPaymentStrategyRegistry(
             orderActionCreator,
             paymentActionCreator,
             new WepayRiskClient(scriptLoader)
+        )
+    );
+
+    registry.register('stripe', () =>
+        new StripePaymentStrategy(
+            store,
+            orderActionCreator,
+            paymentActionCreator,
         )
     );
 
