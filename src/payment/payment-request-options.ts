@@ -5,8 +5,8 @@ import {
     BraintreePaymentInitializeOptions,
     BraintreeVisaCheckoutPaymentInitializeOptions,
     KlarnaPaymentInitializeOptions,
+    MasterpassPaymentInitializeOptions,
     SquarePaymentInitializeOptions,
-    StripePaymentInitializeOptions,
 } from './strategies';
 
 /**
@@ -58,10 +58,10 @@ export interface PaymentInitializeOptions extends PaymentRequestOptions {
     klarna?: KlarnaPaymentInitializeOptions;
 
     /**
-     * The options that are required to initialize the Stripe payment method.
-     * They can be omitted unless you need to support Stripe.
+     * The options that are required to initialize the Masterpass payment method.
+     * They can be omitted unless you need to support Masterpass.
      */
-    stripe?: StripePaymentInitializeOptions;
+    masterpass?: MasterpassPaymentInitializeOptions;
 
     /**
      * The options that are required to initialize the Square payment method.
