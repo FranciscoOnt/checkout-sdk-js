@@ -30,16 +30,19 @@ import {
     PaypalProPaymentStrategy,
     SagePayPaymentStrategy,
     SquarePaymentStrategy,
-    StripePaymentStrategy,
     WepayPaymentStrategy,
 } from './strategies';
 import { AfterpayScriptLoader } from './strategies/afterpay';
 import { AmazonPayScriptLoader } from './strategies/amazon-pay';
-import { createBraintreePaymentProcessor, createBraintreeVisaCheckoutPaymentProcessor, VisaCheckoutScriptLoader } from './strategies/braintree';
+import {
+    createBraintreePaymentProcessor,
+    createBraintreeVisaCheckoutPaymentProcessor,
+    VisaCheckoutScriptLoader
+} from './strategies/braintree';
 import { KlarnaScriptLoader } from './strategies/klarna';
 import { PaypalScriptLoader } from './strategies/paypal';
+import { MasterpassPaymentStrategy, MasterpassScriptLoader } from './strategies/masterpass';
 import { SquareScriptLoader } from './strategies/square';
-import { StripeScriptLoader } from './strategies/stripe';
 import { WepayRiskClient } from './strategies/wepay';
 
 export default function createPaymentStrategyRegistry(
@@ -241,13 +244,11 @@ export default function createPaymentStrategyRegistry(
         )
     );
 
-    registry.register('stripe', () =>
-        new StripePaymentStrategy(
+    registry.register('masterpass', () =>
+        new MasterpassPaymentStrategy(
             store,
-            orderActionCreator,
-            paymentActionCreator,
             paymentMethodActionCreator,
-            new StripeScriptLoader(scriptLoader)
+            new MasterpassScriptLoader(scriptLoader)
         )
     );
 
