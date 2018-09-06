@@ -12,5 +12,5 @@ export { BraintreeCreditCardPaymentStrategy, BraintreePaymentInitializeOptions, 
 export { KlarnaPaymentStrategy, KlarnaPaymentInitializeOptions } from './klarna';
 export { PaypalExpressPaymentStrategy, PaypalProPaymentStrategy } from './paypal';
 export { SquarePaymentStrategy, SquarePaymentInitializeOptions } from './square';
-export { StripePaymentStrategy, StripePaymentInitializeOptions } from './stripe';
+export { MasterpassPaymentStrategy, MasterpassPaymentInitializeOptions } from './masterpass';
 export { WepayPaymentStrategy } from './wepay';

@@ -18,3 +18,5 @@ export interface MasterpassCheckoutOptions {
 export interface MasterpassHostWindow extends Window {
     masterpass?: Masterpass;
 }
+
+export type MasterpassCheckoutCallback = () => void;
