@@ -2,10 +2,6 @@ export interface Masterpass {
     checkout(options: MasterpassCheckoutOptions): void;
 }
 
-export interface MasterpassPaymentInitializeOptions {
-    buttonId: string;
-}
-
 export interface MasterpassCheckoutOptions {
     checkoutId: string;
     allowedCardTypes: string[];
