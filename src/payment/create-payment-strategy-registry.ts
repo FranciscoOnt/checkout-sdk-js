@@ -3,7 +3,7 @@ import { RequestSender } from '@bigcommerce/request-sender';
 import { getScriptLoader } from '@bigcommerce/script-loader';
 
 import { BillingAddressActionCreator, BillingAddressRequestSender } from '../billing';
-import { CheckoutActionCreator, CheckoutClient, CheckoutRequestSender, CheckoutStore, CheckoutValidator } from '../checkout';
+import { CheckoutActionCreator, CheckoutRequestSender, CheckoutStore, CheckoutValidator } from '../checkout';
 import { ConfigActionCreator, ConfigRequestSender } from '../config';
 import { OrderActionCreator, OrderRequestSender } from '../order';
 import { RemoteCheckoutActionCreator, RemoteCheckoutRequestSender } from '../remote-checkout';
@@ -40,8 +40,8 @@ import {
     VisaCheckoutScriptLoader
 } from './strategies/braintree';
 import { KlarnaScriptLoader } from './strategies/klarna';
-import { PaypalScriptLoader } from './strategies/paypal';
 import { MasterpassPaymentStrategy, MasterpassScriptLoader } from './strategies/masterpass';
+import { PaypalScriptLoader } from './strategies/paypal';
 import { SquareScriptLoader } from './strategies/square';
 import { WepayRiskClient } from './strategies/wepay';
 
