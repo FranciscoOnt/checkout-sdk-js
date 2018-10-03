@@ -14,8 +14,12 @@ import {
     GooglePayAddress,
     GooglePayBraintreeSDK,
     GooglePayPaymentDataRequestV1,
-    GooglePaySDK, GooglePayClient, GooglePayPaymentOptions
+    GooglePaySDK, GooglePayClient, GooglePayPaymentOptions, TokenizePayload
 } from './googlepay';
+
+const mockSDK = {
+    isReadyToPay: jest.fn(),
+};
 
 export function getGooglePaySDKMock(): GooglePaySDK {
     return {
@@ -105,13 +109,79 @@ export function getGooglePaymentDataMock(): GooglePaymentData {
             cardDetails: 'cardDetails',
             cardImageUri: 'cardImageUri',
             cardNetwork: 'cardNetwork',
-            billingAddress: {} as GooglePayAddress,
+            billingAddress: {
+                name: 'name',
+            } as GooglePayAddress,
         },
         paymentMethodToken: {
             token: 'token',
             tokenizationType: 'tokenizationType',
         },
-        shippingAddress: {} as GooglePayAddress,
+        shippingAddress: {
+            name: 'name',
+        } as GooglePayAddress,
         email: 'email',
+    };
+}
+
+export function getGooglePaymentDataDequestV1Mock(): GooglePayPaymentDataRequestV1 {
+    return {
+        allowedPaymentMethods: ['a', 'b', 'c'],
+        apiVersion: 1,
+        cardRequirements: {
+            allowedCardNetworks: ['a', 'b', 'c'],
+            billingAddressFormat: 'format',
+            billingAddressRequired: true,
+        },
+        enviroment: 'test',
+        i: {
+            googleTransactionId: 'transactionId',
+            startTimeMs: 1000,
+        },
+        merchantInfo: {
+            merchantId: 'merchantId',
+        },
+        paymentMethodTokenizationParameters: {
+            parameters: {
+                'braintree:apiVersion': '1',
+                'braintree:authorizationFingerprint': 'a',
+                'braintree:merchantId': 'merchantId',
+                'braintree:metadata': 'a',
+                'braintree:sdkVersion': '1',
+                gateway: 'test',
+            },
+            tokenizationType: 'a',
+        },
+        shippingAddressRequired: true,
+        transactionInfo: {
+            currencyCode: 'US',
+            totalPrice: '123.44',
+            totalPriceStatus: 'a',
+        },
+    };
+}
+
+
+export function getTokenizedPayload(): TokenizePayload {
+    return {
+        nonce: 'nonce',
+        details: {
+            cardType: 'debit',
+            lastFour: '1234',
+            lastTwo: '34',
+        },
+        description: 'description',
+        type: 'AndroidPayCard',
+        binData: {
+            commercial: 'a',
+            countryOfIssuance: '',
+            debit: '',
+            durbinRegulated: '',
+            healthcare: '',
+            issuingBank: '',
+            payroll: '',
+            prepaid: '',
+            productId: '',
+        },
     };
 }
