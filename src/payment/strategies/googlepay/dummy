@@ -1,0 +1,6 @@
+.then(() => {
+                return this._store.dispatch(this._checkoutActionCreator.loadCurrentCheckout())
+                    .then(() => {
+                        return this._store.dispatch(this._paymentMethodActionCreator.loadPaymentMethod(methodId));
+                    });
+            });
