@@ -45,7 +45,7 @@ import { PaypalExpressPaymentStrategy, PaypalProPaymentStrategy, PaypalScriptLoa
 import { SagePayPaymentStrategy } from './strategies/sage-pay';
 import { SquarePaymentStrategy, SquareScriptLoader } from './strategies/square';
 import { WepayPaymentStrategy, WepayRiskClient } from './strategies/wepay';
-import { ZipPaymentStrategy } from './strategies/zip';
+import { ZipPaymentStrategy, ZipScriptLoader } from './strategies/zip';
 
 export default function createPaymentStrategyRegistry(
     store: CheckoutStore,
@@ -295,9 +295,12 @@ export default function createPaymentStrategyRegistry(
     registry.register(PaymentStrategyType.ZIP, () =>
         new ZipPaymentStrategy(
             store,
+            checkoutValidator,
             orderActionCreator,
             paymentActionCreator,
-            paymentMethodActionCreator
+            paymentMethodActionCreator,
+            remoteCheckoutActionCreator,
+            new ZipScriptLoader(scriptLoader)
         )
     );
 

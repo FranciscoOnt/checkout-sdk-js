@@ -1,6 +1,21 @@
+/**
+ * A set of options that are required to initialize the GooglePay payment method
+ *
+ * If the customer chooses to pay with Zip, they will be asked to
+ * enter their payment details via a modal. You can hook into events emitted by
+ * the modal by providing the callbacks listed below.
+ */
 export default interface ZipInitializeOptions {
     /**
-     * Dummy
+     * A callback that gets called when Zip fails to initialize or
+     * selects a payment option.
+     *
+     * @param error - The error object describing the failure.
      */
-    none?: string;
+    onError(error: Error): void;
+
+    /**
+     * A callback that gets called when the customer selects a payment option.
+     */
+    onComplete(): void;
 }

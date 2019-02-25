@@ -8,7 +8,7 @@ export interface Zip {
 
 export interface ZipCheckout {
     attachButton(buttonId: string, params: ZipPayload): void;
-    init(args?: any): void;
+    init(payload: ZipPayload): void;
 }
 
 export interface ZipPayload {
