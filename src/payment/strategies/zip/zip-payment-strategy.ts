@@ -120,15 +120,15 @@ export default class ZipPaymentStrategy implements PaymentStrategy {
     }
 
     @bind
-    private _handleResponse(response: ZipResponse): Promise<InternalCheckoutSelectors> {
+    private _handleResponse(response: ZipResponse): void {
         if (response.state === ZipModalEvent.CancelCheckout) {
             this._lightboxEvents$.next({ type: ZipModalEvent.CancelCheckout });
 
-            return Promise.reject(new PaymentMethodCancelledError());
+            return;
         }
         const { state, checkoutId } = response;
 
-        return this._requestSender.post('checkout.php', {
+        this._requestSender.post('checkout.php', {
             headers: {
                 Accept: 'text/html',
                 'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8',
