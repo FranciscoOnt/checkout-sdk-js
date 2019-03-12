@@ -67,14 +67,14 @@ export default class ZipPaymentStrategy implements PaymentStrategy {
             throw new MissingDataError(MissingDataErrorType.MissingPaymentMethod);
         }
 
-        return this._displayWallet();
+        return this._displayZip();
     }
 
     finalize(options?: PaymentRequestOptions): Promise<InternalCheckoutSelectors> {
         return Promise.reject(new OrderFinalizationNotRequiredError());
     }
 
-    private _displayWallet(): Promise<InternalCheckoutSelectors> {
+    private _displayZip(): Promise<InternalCheckoutSelectors> {
         return this._store.dispatch(this._paymentStrategyActionCreator.widgetInteraction(() => {
             this._store.dispatch(this._paymentMethodActionCreator.loadPaymentMethod(this._methodId))
                 .then(state => {
