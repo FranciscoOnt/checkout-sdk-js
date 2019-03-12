@@ -13,23 +13,13 @@ export interface ZipCheckout {
 
 export interface ZipPayload {
     /**
-     * Uri used by Zip lightbox make an AJAX POST to retrieve checkout information.
-     */
-    checkoutUri?: string;
-    /**
-     * Uri used by Zip lightbox to redirect when the checkout is completed, checkoutId is provided to this uri as a
-     * query param to be handled.
-     * If this parameter is not provided, onComplete must be provided.
-     */
-    redirectUri?: string;
-    /**
      * Callback function that is called when the lightbox flow is completed.
-     * If this parameter is provided, redirectUri is ignored and this function must handle the checkoutId submission.
+     * This function must handle the checkoutId submission.
      */
     onComplete?(response: ZipResponse): void;
     /**
      * Callback function that is called before the lightbox flow is started.
-     * If this parameter is provided, checkoutUri is ignored and this function must handle the post to get a checkoutId.
+     * This function must handle the post to get a checkoutId.
      */
     onCheckout?(resolve: (response: ZipPostResponse) => void): void;
 }
