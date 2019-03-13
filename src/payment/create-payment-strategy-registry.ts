@@ -295,9 +295,10 @@ export default function createPaymentStrategyRegistry(
     registry.register(PaymentStrategyType.ZIP, () =>
         new ZipPaymentStrategy(
             store,
+            orderActionCreator,
+            paymentActionCreator,
             paymentMethodActionCreator,
             paymentStrategyActionCreator,
-            requestSender,
             new ZipScriptLoader(scriptLoader)
         )
     );

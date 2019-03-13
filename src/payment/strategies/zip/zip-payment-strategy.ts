@@ -1,4 +1,3 @@
-import { RequestSender } from '@bigcommerce/request-sender';
 import { Subject } from 'rxjs';
 import { take } from 'rxjs/operators';
 
@@ -9,11 +8,13 @@ import {
     NotInitializedError,
     NotInitializedErrorType,
 } from '../../../common/error/errors';
-import { toFormUrlEncoded } from '../../../common/http-request';
 import { bindDecorator as bind } from '../../../common/utility';
-import { OrderRequestBody } from '../../../order';
+import { OrderActionCreator, OrderRequestBody } from '../../../order';
 import { OrderFinalizationNotRequiredError } from '../../../order/errors';
 import { PaymentMethodCancelledError } from '../../errors';
+import PaymentMethodInvalidError from '../../errors/payment-method-invalid-error';
+import { NonceInstrument } from '../../payment';
+import PaymentActionCreator from '../../payment-action-creator';
 import PaymentMethod from '../../payment-method';
 import PaymentMethodActionCreator from '../../payment-method-action-creator';
 import { PaymentInitializeOptions, PaymentRequestOptions } from '../../payment-request-options';
@@ -27,12 +28,14 @@ export default class ZipPaymentStrategy implements PaymentStrategy {
     private _methodId!: string;
     private _paymentMethod?: PaymentMethod;
     private _zipClient?: Zip;
+    private _zipLightboxResponse?: ZipResponse;
 
     constructor(
         private _store: CheckoutStore,
+        private _orderActionCreator: OrderActionCreator,
+        private _paymentActionCreator: PaymentActionCreator,
         private _paymentMethodActionCreator: PaymentMethodActionCreator,
         private _paymentStrategyActionCreator: PaymentStrategyActionCreator,
-        private _requestSender: RequestSender,
         private _zipScriptLoader: ZipScriptLoader
     ) {
         this._lightboxEvents$ = new Subject();
@@ -67,14 +70,14 @@ export default class ZipPaymentStrategy implements PaymentStrategy {
             throw new MissingDataError(MissingDataErrorType.MissingPaymentMethod);
         }
 
-        return this._displayZip();
+        return this._displayZip(payload);
     }
 
     finalize(options?: PaymentRequestOptions): Promise<InternalCheckoutSelectors> {
         return Promise.reject(new OrderFinalizationNotRequiredError());
     }
 
-    private _displayZip(): Promise<InternalCheckoutSelectors> {
+    private _displayZip(payload: OrderRequestBody, options?: PaymentRequestOptions): Promise<InternalCheckoutSelectors> {
         return this._store.dispatch(this._paymentStrategyActionCreator.widgetInteraction(() => {
             this._store.dispatch(this._paymentMethodActionCreator.loadPaymentMethod(this._methodId))
                 .then(state => {
@@ -93,6 +96,9 @@ export default class ZipPaymentStrategy implements PaymentStrategy {
                         if (event.type === ZipModalEvent.CancelCheckout) {
                             reject(new PaymentMethodCancelledError());
                         }
+                        if (event.type === ZipModalEvent.CheckoutApproved) {
+                            resolve(this._submitOrder(payload, options));
+                        }
                     });
             });
         }, { methodId: this._methodId }), { queueId: 'widgetInteraction' });
@@ -103,6 +109,22 @@ export default class ZipPaymentStrategy implements PaymentStrategy {
             onComplete: this._handleResponse,
             onCheckout: this._fetchPayload,
         };
+    }
+
+    private _submitOrder(payload: OrderRequestBody, options?: PaymentRequestOptions): Promise<InternalCheckoutSelectors> {
+        const order = { useStoreCredit: payload.useStoreCredit };
+
+        if (!this._zipLightboxResponse) {
+            throw new MissingDataError(MissingDataErrorType.MissingPaymentMethod);
+        }
+
+        const paymentPayload = {
+            methodId: this._methodId,
+            paymentData: { nonce: this._zipLightboxResponse.checkoutId } as NonceInstrument,
+        };
+
+        return this._store.dispatch(this._orderActionCreator.submitOrder(order, options))
+            .then(() => this._store.dispatch(this._paymentActionCreator.submitPayment(paymentPayload)));
     }
 
     @bind
@@ -125,21 +147,13 @@ export default class ZipPaymentStrategy implements PaymentStrategy {
             this._lightboxEvents$.next({ type: ZipModalEvent.CancelCheckout });
 
             return;
-        }
-        const { state, checkoutId } = response;
+        } else if (response.state === ZipModalEvent.CheckoutApproved) {
+            this._zipLightboxResponse = response;
+            this._lightboxEvents$.next({ type: ZipModalEvent.CheckoutApproved });
 
-        this._requestSender.post('checkout.php', {
-            headers: {
-                Accept: 'text/html',
-                'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8',
-            },
-            body: toFormUrlEncoded({
-                action: 'set_external_checkout',
-                provider: this._methodId,
-                state,
-                checkoutId,
-            }),
-        })
-            .then(() => this._store.getState());
+            return;
+        } else {
+            throw new PaymentMethodInvalidError();
+        }
     }
 }
