@@ -32,16 +32,7 @@ export default class ZipPaymentStrategy implements PaymentStrategy {
     ) { }
 
     initialize(options: PaymentInitializeOptions): Promise<InternalCheckoutSelectors> {
-        return this._store.dispatch(this._paymentMethodActionCreator.loadPaymentMethod(options.methodId))
-            .then(state => {
-                this._paymentMethod = state.paymentMethods.getPaymentMethod(options.methodId);
-
-                if (!this._paymentMethod || !this._paymentMethod.clientToken) {
-                    throw new MissingDataError(MissingDataErrorType.MissingPaymentMethod);
-                }
-
-                return this._zipScriptLoader.load();
-            })
+        return this._zipScriptLoader.load()
             .then(zip => {
                 this._zipClient = zip;
 
@@ -68,35 +59,45 @@ export default class ZipPaymentStrategy implements PaymentStrategy {
             throw new NotInitializedError(NotInitializedErrorType.PaymentNotInitialized);
         }
 
-        return this._store.dispatch(this._orderActionCreator.submitOrder(order, options))
-            .then(() => new Promise<string>((resolve, reject) => {
-                zipClient.Checkout.init({
-                    onComplete: ({ checkoutId, state }) => {
-                        if (state === ZipModalEvent.CancelCheckout) {
-                            return reject(new PaymentMethodCancelledError());
-                        }
+        return this._store.dispatch(this._paymentMethodActionCreator.loadPaymentMethod(payment.methodId))
+            .then(state => {
+                this._paymentMethod = state.paymentMethods.getPaymentMethod(payment.methodId);
 
-                        if (state === ZipModalEvent.CheckoutApproved && checkoutId) {
-                            return resolve(checkoutId);
-                        }
-
-                        reject(new PaymentMethodInvalidError());
-                    },
-                    onCheckout: openModal => {
-                        if (!this._paymentMethod || !this._paymentMethod.clientToken) {
-                            throw new MissingDataError(MissingDataErrorType.MissingPaymentMethod);
-                        }
-
-                        openModal(JSON.parse(this._paymentMethod.clientToken));
-                    },
-                });
+                if (!this._paymentMethod || !this._paymentMethod.clientToken) {
+                    throw new MissingDataError(MissingDataErrorType.MissingPaymentMethod);
+                }
             })
-            .then(nonce =>
-                this._store.dispatch(this._paymentActionCreator.submitPayment({
-                    methodId: payment.methodId,
-                    paymentData: { nonce },
-                }))
-            ));
+            .then(()  => {
+                return this._store.dispatch(this._orderActionCreator.submitOrder(order, options))
+                    .then(() => new Promise<string>((resolve, reject) => {
+                        zipClient.Checkout.init({
+                            onComplete: ({ checkoutId, state }) => {
+                                if (state === ZipModalEvent.CancelCheckout) {
+                                    return reject(new PaymentMethodCancelledError());
+                                }
+
+                                if (state === ZipModalEvent.CheckoutApproved && checkoutId) {
+                                    return resolve(checkoutId);
+                                }
+
+                                reject(new PaymentMethodInvalidError());
+                            },
+                            onCheckout: openModal => {
+                                if (!this._paymentMethod || !this._paymentMethod.clientToken) {
+                                    throw new MissingDataError(MissingDataErrorType.MissingPaymentMethod);
+                                }
+
+                                openModal(JSON.parse(this._paymentMethod.clientToken));
+                            },
+                        });
+                    })
+                    .then(nonce =>
+                        this._store.dispatch(this._paymentActionCreator.submitPayment({
+                            methodId: payment.methodId,
+                            paymentData: { nonce },
+                        }))
+                    ));
+            });
     }
 
     finalize(options?: PaymentRequestOptions): Promise<InternalCheckoutSelectors> {

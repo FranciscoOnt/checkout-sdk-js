@@ -7,7 +7,7 @@ import { of, Observable } from 'rxjs';
 import { getCartState } from '../../../cart/carts.mock';
 import { createCheckoutStore, CheckoutRequestSender, CheckoutStore, CheckoutValidator } from '../../../checkout';
 import { getCheckoutState } from '../../../checkout/checkouts.mock';
-import { MissingDataError, NotInitializedError } from '../../../common/error/errors';
+import { NotInitializedError } from '../../../common/error/errors';
 import { getConfigState } from '../../../config/configs.mock';
 import { getCustomerState } from '../../../customer/customers.mock';
 import { OrderActionCreator, OrderActionType, OrderRequestBody } from '../../../order';
@@ -102,35 +102,7 @@ describe('ZipPaymentStrategy', () => {
         it('initializes the strategy successfully', async () => {
             await strategy.initialize(zipOptions);
 
-            expect(paymentMethodActionCreator.loadPaymentMethod).toHaveBeenCalledWith(zipOptions.methodId);
             expect(zipScriptLoader.load).toHaveBeenCalled();
-        });
-
-        it('does not initialize the strategy if payment method is not provided', async () => {
-            jest.spyOn(store.getState().paymentMethods, 'getPaymentMethod')
-                .mockReturnValueOnce(undefined);
-
-            try {
-                await strategy.initialize(zipOptions);
-            } catch (error) {
-                expect(error).toBeInstanceOf(MissingDataError);
-                expect(zipScriptLoader.load).not.toHaveBeenCalled();
-            }
-        });
-
-        it('does not initialize the strategy if client token is not provided', async () => {
-            jest.spyOn(store.getState().paymentMethods, 'getPaymentMethod')
-                .mockReturnValue({
-                    ...paymentMethodMock,
-                    clientToken: null,
-                });
-
-            try {
-                await strategy.initialize(zipOptions);
-            } catch (error) {
-                expect(error).toBeInstanceOf(MissingDataError);
-                expect(zipScriptLoader.load).not.toHaveBeenCalled();
-            }
         });
     });
 
