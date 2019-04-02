@@ -112,13 +112,14 @@ export default class OrderActionCreator {
     }
 
     private _mapToOrderRequestBody(payload: OrderRequestBody, customerMessage: string, externalSource?: string): InternalOrderRequestBody {
-        const { payment, ...order } = payload;
+        const { payment, externalId, ...order } = payload;
 
         if (!payment) {
             return {
                 ...order,
                 customerMessage,
                 externalSource,
+                externalId,
             };
         }
 
@@ -126,6 +127,7 @@ export default class OrderActionCreator {
             ...order,
             customerMessage,
             externalSource,
+            externalId,
             payment: {
                 paymentData: payment.paymentData,
                 name: payment.methodId,

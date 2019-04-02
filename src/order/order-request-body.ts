@@ -18,6 +18,11 @@ export default interface OrderRequestBody {
      * works if the customer has previously signed in.
      */
     useStoreCredit?: boolean;
+
+    /**
+     *  Dummy
+     */
+    externalId?: string;
 }
 
 /**

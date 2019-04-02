@@ -130,13 +130,17 @@ describe('ZipPaymentStrategy', () => {
                     nonce: 'checkoutId',
                 },
             };
+            const expectedOrder = {
+                    ...order,
+                externalId: 'checkout_id',
+            };
             const zipInitPayload = {
                 onComplete: expect.any(Function),
                 onCheckout: expect.any(Function),
             };
             await strategy.execute(orderRequestBody, zipOptions);
 
-            expect(orderActionCreator.submitOrder).toHaveBeenCalledWith(order, zipOptions);
+            expect(orderActionCreator.submitOrder).toHaveBeenCalledWith(expectedOrder, zipOptions);
             expect(paymentActionCreator.submitPayment).toHaveBeenCalledWith(expectedPayment);
             expect(store.dispatch).toHaveBeenCalledWith(submitOrderAction);
             expect(store.dispatch).toHaveBeenCalledWith(submitPaymentAction);

@@ -50,6 +50,7 @@ export default class ZipPaymentStrategy implements PaymentStrategy {
     execute(payload: OrderRequestBody, options?: PaymentRequestOptions): Promise<InternalCheckoutSelectors> {
         const { payment, ...order } = payload;
         const { _zipClient: zipClient } = this;
+        let orderWithExternalId: OrderRequestBody;
 
         if (!payment) {
             throw new InvalidArgumentError('Unable to submit payment because "payload.payment.methodId" argument is not provided.');
@@ -66,9 +67,15 @@ export default class ZipPaymentStrategy implements PaymentStrategy {
                 if (!this._paymentMethod || !this._paymentMethod.clientToken) {
                     throw new MissingDataError(MissingDataErrorType.MissingPaymentMethod);
                 }
+
+                const { id } = JSON.parse(this._paymentMethod.clientToken);
+                orderWithExternalId = {
+                    ...order,
+                    externalId: id,
+                };
             })
             .then(()  => {
-                return this._store.dispatch(this._orderActionCreator.submitOrder(order, options))
+                return this._store.dispatch(this._orderActionCreator.submitOrder(orderWithExternalId, options))
                     .then(() => new Promise<string>((resolve, reject) => {
                         zipClient.Checkout.init({
                             onComplete: ({ checkoutId, state }) => {
