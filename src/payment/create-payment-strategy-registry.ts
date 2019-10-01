@@ -51,6 +51,7 @@ import {
 import { KlarnaPaymentStrategy, KlarnaScriptLoader } from './strategies/klarna';
 import { LegacyPaymentStrategy } from './strategies/legacy';
 import { MasterpassPaymentStrategy, MasterpassScriptLoader } from './strategies/masterpass';
+import { ModalPaymentStrategy } from './strategies/modal';
 import { NoPaymentDataRequiredPaymentStrategy } from './strategies/no-payment';
 import { OfflinePaymentStrategy } from './strategies/offline';
 import { OffsitePaymentStrategy } from './strategies/offsite';
@@ -381,6 +382,14 @@ export default function createPaymentStrategyRegistry(
             paymentActionCreator,
             orderActionCreator,
             new StripeScriptLoader(scriptLoader)
+        )
+    );
+
+    registry.register(PaymentStrategyType.BARCLAYCARD, () =>
+        new ModalPaymentStrategy(
+            store,
+            orderActionCreator,
+            paymentActionCreator
         )
     );
 
