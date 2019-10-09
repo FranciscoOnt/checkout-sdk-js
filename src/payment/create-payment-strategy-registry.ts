@@ -5,6 +5,7 @@ import { getScriptLoader } from '@bigcommerce/script-loader';
 import { BillingAddressActionCreator, BillingAddressRequestSender } from '../billing';
 import { CheckoutActionCreator, CheckoutRequestSender, CheckoutStore, CheckoutValidator } from '../checkout';
 import { ConfigActionCreator, ConfigRequestSender } from '../config';
+import LoadingIndicator from '../embedded-checkout/loading-indicator';
 import { OrderActionCreator, OrderRequestSender } from '../order';
 import { SpamProtectionActionCreator } from '../order/spam-protection';
 import GoogleRecaptcha from '../order/spam-protection/google-recaptcha';
@@ -23,6 +24,7 @@ import { AdyenV2PaymentStrategy, AdyenV2ScriptLoader } from './strategies/adyenv
 import { AffirmPaymentStrategy, AffirmScriptLoader } from './strategies/affirm';
 import { AfterpayPaymentStrategy, AfterpayScriptLoader } from './strategies/afterpay';
 import { AmazonPayPaymentStrategy, AmazonPayScriptLoader } from './strategies/amazon-pay';
+import { BarclaycardPaymentStrategy } from './strategies/barclaycard';
 import {
     createBraintreePaymentProcessor,
     createBraintreeVisaCheckoutPaymentProcessor,
@@ -51,7 +53,6 @@ import {
 import { KlarnaPaymentStrategy, KlarnaScriptLoader } from './strategies/klarna';
 import { LegacyPaymentStrategy } from './strategies/legacy';
 import { MasterpassPaymentStrategy, MasterpassScriptLoader } from './strategies/masterpass';
-import { ModalPaymentStrategy } from './strategies/modal';
 import { NoPaymentDataRequiredPaymentStrategy } from './strategies/no-payment';
 import { OfflinePaymentStrategy } from './strategies/offline';
 import { OffsitePaymentStrategy } from './strategies/offsite';
@@ -386,9 +387,10 @@ export default function createPaymentStrategyRegistry(
     );
 
     registry.register(PaymentStrategyType.BARCLAYCARD, () =>
-        new ModalPaymentStrategy(
+        new BarclaycardPaymentStrategy(
             store,
             orderActionCreator,
+            new LoadingIndicator(),
             paymentActionCreator
         )
     );
