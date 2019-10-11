@@ -99,7 +99,11 @@ export default class BarclaycardPaymentStrategy implements PaymentStrategy {
             if (!frameContainer) {
                 return reject(new Error('Need a container to insert the iframe'));
             }
+            if (!this._initializationOptions) {
+                return reject();
+            }
 
+            const { closureEventName, setModalLoadingStatus, setModalStatus } = this._initializationOptions;
             const iframe = document.createElement('iframe');
 
             iframe.style.border = 'none';
@@ -109,10 +113,18 @@ export default class BarclaycardPaymentStrategy implements PaymentStrategy {
             this._iframe = iframe;
             frameContainer.appendChild(this._iframe);
 
-            this._iframe.onload = () => {
+            this._iframe.addEventListener('onload', () => {
                 this._iframe.style.display = 'block';
                 this._loadingIndicator.hide();
-            };
+
+                setModalLoadingStatus(false);
+            });
+
+            this._iframe.addEventListener(closureEventName, () => {
+                setModalStatus(false);
+
+                reject();
+            });
 
             return resolve();
         });
