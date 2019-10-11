@@ -42,7 +42,7 @@ export default class BarclaycardPaymentStrategy implements PaymentStrategy {
         if (!this._initializationOptions) {
             throw new InvalidArgumentError('Unable to initialize payment because "options.modal" argument is not provided.');
         }
-        const { iframeContainerId, setModalStatus } = this._initializationOptions;
+        const { closureEventName, iframeContainerId, setModalStatus } = this._initializationOptions;
 
 
 
@@ -58,11 +58,16 @@ export default class BarclaycardPaymentStrategy implements PaymentStrategy {
 
         return this._createPaymentIframe(iframeContainerId)
         .then(() => {
+
             if (!payment) {
                 throw new PaymentArgumentInvalidError([this._methodId]);
             }
 
-            return new Promise<InternalCheckoutSelectors>((_resolve, _reject) => {
+            return new Promise<InternalCheckoutSelectors>((_resolve, reject) => {
+                window.addEventListener(closureEventName, () => {
+                    setModalStatus(false);
+                    reject();
+                });
 
                 this._store.dispatch(this._orderActionCreator.submitOrder(orderPayload, options))
                 .then(() =>
@@ -103,7 +108,7 @@ export default class BarclaycardPaymentStrategy implements PaymentStrategy {
                 return reject();
             }
 
-            const { closureEventName, setModalLoadingStatus, setModalStatus } = this._initializationOptions;
+            const { setModalLoadingStatus } = this._initializationOptions;
             const iframe = document.createElement('iframe');
 
             iframe.style.border = 'none';
@@ -113,17 +118,11 @@ export default class BarclaycardPaymentStrategy implements PaymentStrategy {
             this._iframe = iframe;
             frameContainer.appendChild(this._iframe);
 
-            this._iframe.addEventListener('onload', () => {
+            this._iframe.addEventListener('load', () => {
                 this._iframe.style.display = 'block';
                 this._loadingIndicator.hide();
 
                 setModalLoadingStatus(false);
-            });
-
-            this._iframe.addEventListener(closureEventName, () => {
-                setModalStatus(false);
-
-                reject();
             });
 
             return resolve();
