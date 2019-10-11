@@ -208,6 +208,22 @@ declare interface Banner {
     text: string;
 }
 
+declare interface BarclaycardPaymentInitializeOptions {
+    /**
+     * If of the element that will contain the Iframe, it should be inside a modal dialog.
+     */
+    iframeContainerId: string;
+    closureEventName: string;
+    /**
+     * A function that sets the modal status
+     */
+    setModalStatus(isOpen: boolean, callback?: void): void;
+    /**
+     * A function that sets the modal loading status
+     */
+    setModalLoadingStatus(isLoading: boolean): void;
+}
+
 declare interface BaseProps extends Properties {
     ':hover'?: Properties;
     ':focus'?: Properties;
@@ -3115,6 +3131,11 @@ declare interface PaymentInitializeOptions extends PaymentRequestOptions {
      * They can be omitted unless you need to support StripeV3.
      */
     stripev3?: StripeV3PaymentInitializeOptions;
+    /**
+     * The options that are required to initialize the Barclaycard payment method.
+     * They can be omitted unless you need to support Barclaycard.
+     */
+    barclaycard?: BarclaycardPaymentInitializeOptions;
 }
 
 declare interface PaymentMethod {
