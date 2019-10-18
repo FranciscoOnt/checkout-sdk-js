@@ -34,13 +34,15 @@ export default class BarclaycardPaymentStrategy implements PaymentStrategy {
     }
 
     execute(payload: OrderRequestBody, options?: PaymentRequestOptions): Promise<InternalCheckoutSelectors> {
-        const { payment} = payload;
+        const { payment } = payload;
+
         const iframeContainerId = `${this._methodId}${containerSuffix}`;
 
         if (!payment) {
             throw new PaymentArgumentInvalidError([this._methodId]);
         }
 
+        payment.gatewayId = 'barclaycard';
         this._loadingIndicator.show(iframeContainerId);
 
         return this._createPaymentIframe(iframeContainerId)
@@ -61,7 +63,7 @@ export default class BarclaycardPaymentStrategy implements PaymentStrategy {
 
                 this._store.dispatch(this._orderActionCreator.submitOrder(payload, options))
                 .then(() =>
-                    this._store.dispatch(this._paymentActionCreator.initializeOffsitePayment(payment.methodId, 'barclaycard', `${this._methodId}${iframeSuffix}`))
+                    this._store.dispatch(this._paymentActionCreator.initializeOffsitePayment(payment.methodId, payment.gatewayId, `${this._methodId}${iframeSuffix}`))
                 );
             });
         });
