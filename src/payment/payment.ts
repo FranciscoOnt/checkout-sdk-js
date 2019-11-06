@@ -1,10 +1,12 @@
+import { BrowserInfoRequest as BarclaycarBrowserInfoRequest } from './strategies/barclaycard';
+
 export default interface Payment {
     methodId: string;
     gatewayId?: string;
     paymentData?: PaymentInstrument & PaymentInstrumentMeta;
 }
 
-export type PaymentInstrument = CreditCardInstrument | NonceInstrument | VaultedInstrument | CryptogramInstrument | HostedInstrument | ThreeDSVaultedInstrument | FormattedPayload<PaypalInstrument>;
+export type PaymentInstrument = CreditCardInstrument | NonceInstrument | VaultedInstrument | CryptogramInstrument | HostedInstrument | ThreeDSVaultedInstrument | FormattedPayload<PaypalInstrument | BarclaycarBrowserInfoRequest>;
 
 export interface PaymentInstrumentMeta {
     deviceSessionId?: string;
