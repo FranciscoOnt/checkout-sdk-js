@@ -85,10 +85,12 @@ describe('BarclaycardPaymentStrategy', () => {
     it('initializes offsite payment flow', async () => {
         const expectedPayload = {
             formattedPayload: {
-                device_os: expect.any(String),
-                language: expect.any(String),
-                screen_resolution: expect.any(String),
-                time_zone: expect.any(String),
+                browser_info: {
+                    device_os: expect.any(String),
+                    language: expect.any(String),
+                    screen_resolution: expect.any(String),
+                    time_zone: expect.any(String),
+                },
             },
         };
         await strategy.execute(omit(payload, 'payment.paymentData'), options);

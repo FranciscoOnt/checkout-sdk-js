@@ -33,7 +33,7 @@ export default class BarclaycardPaymentStrategy implements PaymentStrategy {
             {
                 ...paymentData,
                 formattedPayload: {
-                    ...this._getBrowserInfo(),
+                    browser_info: this._getBrowserInfo(),
                 },
             }));
     }
