@@ -29,6 +29,13 @@ ___
 **GOOGLEPAY_BRAINTREE**:  = "googlepaybraintree"
 
 ___
+<a id="googlepay_checkoutcom"></a>
+
+###  GOOGLEPAY_CHECKOUTCOM
+
+**GOOGLEPAY_CHECKOUTCOM**:  = "googlepaycheckoutcom"
+
+___
 <a id="googlepay_stripe"></a>
 
 ###  GOOGLEPAY_STRIPE

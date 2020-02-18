@@ -25,6 +25,10 @@ const supportedInstruments: SupportedInstruments = {
         provider: 'authorizenet',
         method: 'credit_card',
     },
+    checkoutcom: {
+        provider: 'checkoutcom',
+        method: 'credit_card',
+    },
     stripe: {
         provider: 'stripe',
         method: 'credit_card',

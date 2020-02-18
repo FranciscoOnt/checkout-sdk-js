@@ -404,6 +404,25 @@ export function getStripeV3(): PaymentMethod {
     };
 }
 
+export function getCheckoutcom(): PaymentMethod {
+    return {
+        id: 'checkoutcom',
+        logoUrl: '',
+        method: 'checkoutcom',
+        supportedCards: [],
+        config: {
+            displayName: 'Checkout.com',
+            merchantId: '',
+            testMode: true,
+        },
+        initializationData: {
+            checkoutcomkey: 'key',
+        },
+        type: 'PAYMENT_TYPE_API',
+        clientToken: 'clientToken',
+    };
+}
+
 export function getAdyenV2(): PaymentMethod {
     return {
         id: 'adyenv2',
@@ -439,6 +458,7 @@ export function getPaymentMethods(): PaymentMethod[] {
         getBraintreePaypal(),
         getBraintreePaypalCredit(),
         getBraintreeVisaCheckout(),
+        getCheckoutcom(),
         getGooglePay(),
         getKlarna(),
         getPaypalExpress(),
