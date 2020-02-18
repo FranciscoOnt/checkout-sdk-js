@@ -23,6 +23,7 @@ Some payment methods have specific requirements for setting the customer details
 * [braintreevisacheckout](customerinitializeoptions.md#braintreevisacheckout)
 * [chasepay](customerinitializeoptions.md#chasepay)
 * [googlepaybraintree](customerinitializeoptions.md#googlepaybraintree)
+* [googlepaycheckoutcom](customerinitializeoptions.md#googlepaycheckoutcom)
 * [googlepaystripe](customerinitializeoptions.md#googlepaystripe)
 * [masterpass](customerinitializeoptions.md#masterpass)
 * [methodId](customerinitializeoptions.md#methodid)
@@ -65,6 +66,15 @@ ___
 ### `<Optional>` googlepaybraintree
 
 **● googlepaybraintree**: *[GooglePayCustomerInitializeOptions](googlepaycustomerinitializeoptions.md)*
+
+The options that are required to initialize the GooglePay payment method. They can be omitted unless you need to support GooglePay.
+
+___
+<a id="googlepaycheckoutcom"></a>
+
+### `<Optional>` googlepaycheckoutcom
+
+**● googlepaycheckoutcom**: *[GooglePayCustomerInitializeOptions](googlepaycustomerinitializeoptions.md)*
 
 The options that are required to initialize the GooglePay payment method. They can be omitted unless you need to support GooglePay.
 

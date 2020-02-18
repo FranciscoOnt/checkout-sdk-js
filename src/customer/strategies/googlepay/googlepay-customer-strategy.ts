@@ -84,6 +84,10 @@ export default class GooglePayCustomerStrategy implements CustomerStrategy {
             return options.googlepaybraintree;
         }
 
+        if (options.methodId === 'googlepaycheckoutcom' && options.googlepaycheckoutcom) {
+            return options.googlepaycheckoutcom;
+        }
+
         if (options.methodId === 'googlepaystripe' && options.googlepaystripe) {
             return options.googlepaystripe;
         }

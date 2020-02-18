@@ -25,6 +25,7 @@ A set of options that are required to initialize the payment step of the current
 * [creditCard](paymentinitializeoptions.md#creditcard)
 * [gatewayId](paymentinitializeoptions.md#gatewayid)
 * [googlepaybraintree](paymentinitializeoptions.md#googlepaybraintree)
+* [googlepaycheckoutcom](paymentinitializeoptions.md#googlepaycheckoutcom)
 * [googlepaystripe](paymentinitializeoptions.md#googlepaystripe)
 * [klarna](paymentinitializeoptions.md#klarna)
 * [masterpass](paymentinitializeoptions.md#masterpass)
@@ -110,6 +111,15 @@ ___
 **● googlepaybraintree**: *[GooglePayPaymentInitializeOptions](googlepaypaymentinitializeoptions.md)*
 
 The options that are required to initialize the GooglePay Braintree payment method. They can be omitted unless you need to support GooglePay.
+
+___
+<a id="googlepaycheckoutcom"></a>
+
+### `<Optional>` googlepaycheckoutcom
+
+**● googlepaycheckoutcom**: *[GooglePayPaymentInitializeOptions](googlepaypaymentinitializeoptions.md)*
+
+The options that are required to initialize the GooglePay Checkout.com payment method. They can be omitted unless you need to support GooglePay.
 
 ___
 <a id="googlepaystripe"></a>
