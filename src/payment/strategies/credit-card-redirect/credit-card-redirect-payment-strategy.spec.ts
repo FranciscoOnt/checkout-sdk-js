@@ -1,7 +1,7 @@
 import { createClient as createPaymentClient } from '@bigcommerce/bigpay-client';
 import { createAction, createErrorAction } from '@bigcommerce/data-store';
 import { createFormPoster, FormPoster } from '@bigcommerce/form-poster';
-import { createRequestSender } from '@bigcommerce/request-sender';
+import { createRequestSender, RequestSender } from '@bigcommerce/request-sender';
 import { omit } from 'lodash';
 import { of, Observable } from 'rxjs';
 
@@ -27,6 +27,7 @@ describe('CreditCardRedirectPaymentStrategy', () => {
     let formPoster: FormPoster;
     let orderActionCreator: OrderActionCreator;
     let paymentActionCreator: PaymentActionCreator;
+    let requestSender: RequestSender;
     let store: CheckoutStore;
     let orderRequestSender: OrderRequestSender;
     let strategy: CreditCardRedirectPaymentStrategy;
@@ -34,10 +35,11 @@ describe('CreditCardRedirectPaymentStrategy', () => {
     let submitPaymentAction: Observable<SubmitPaymentAction>;
 
     beforeEach(() => {
-        orderRequestSender = new OrderRequestSender(createRequestSender());
+        requestSender = createRequestSender();
+        orderRequestSender = new OrderRequestSender(requestSender);
         orderActionCreator = new OrderActionCreator(
             orderRequestSender,
-            new CheckoutValidator(new CheckoutRequestSender(createRequestSender()))
+            new CheckoutValidator(new CheckoutRequestSender(requestSender))
         );
 
         paymentActionCreator = new PaymentActionCreator(
@@ -136,12 +138,8 @@ describe('CreditCardRedirectPaymentStrategy', () => {
         jest.spyOn(paymentActionCreator, 'submitPayment')
             .mockReturnValue(of(createErrorAction(PaymentActionType.SubmitPaymentFailed, response)));
 
-        try {
-            await strategy.execute(getOrderRequestBody());
-        } catch (error) {
-            expect(error).toBeInstanceOf(RequestError);
-            expect(formPoster.postForm).not.toHaveBeenCalled();
-        }
+        await expect(strategy.execute(getOrderRequestBody())).rejects.toThrow(RequestError);
+        expect(formPoster.postForm).not.toHaveBeenCalled();
     });
 
     it('finalizes order if order is created and payment is finalized', async () => {
@@ -165,13 +163,9 @@ describe('CreditCardRedirectPaymentStrategy', () => {
         jest.spyOn(state.order, 'getOrder')
             .mockReturnValue(null);
 
-        try {
-            await strategy.finalize();
-        } catch (error) {
-            expect(orderActionCreator.finalizeOrder).not.toHaveBeenCalled();
-            expect(store.dispatch).not.toHaveBeenCalledWith(finalizeOrderAction);
-            expect(error).toBeInstanceOf(OrderFinalizationNotRequiredError);
-        }
+        await expect(strategy.finalize()).rejects.toThrow(OrderFinalizationNotRequiredError);
+        expect(orderActionCreator.finalizeOrder).not.toHaveBeenCalled();
+        expect(store.dispatch).not.toHaveBeenCalledWith(finalizeOrderAction);
     });
 
     it('does not finalize order if order is not finalized', async () => {
@@ -180,13 +174,9 @@ describe('CreditCardRedirectPaymentStrategy', () => {
         jest.spyOn(state.payment, 'getPaymentStatus')
             .mockReturnValue(paymentStatusTypes.INITIALIZE);
 
-        try {
-            await strategy.finalize();
-        } catch (error) {
-            expect(orderActionCreator.finalizeOrder).not.toHaveBeenCalled();
-            expect(store.dispatch).not.toHaveBeenCalledWith(finalizeOrderAction);
-            expect(error).toBeInstanceOf(OrderFinalizationNotRequiredError);
-        }
+        await expect(strategy.finalize()).rejects.toThrow(OrderFinalizationNotRequiredError);
+        expect(orderActionCreator.finalizeOrder).not.toHaveBeenCalled();
+        expect(store.dispatch).not.toHaveBeenCalledWith(finalizeOrderAction);
     });
 
     it('throws error if order is missing', async () => {
@@ -195,10 +185,6 @@ describe('CreditCardRedirectPaymentStrategy', () => {
         jest.spyOn(state.order, 'getOrder')
             .mockReturnValue(null);
 
-        try {
-            await strategy.finalize();
-        } catch (error) {
-            expect(error).toBeInstanceOf(OrderFinalizationNotRequiredError);
-        }
+        await expect(strategy.finalize()).rejects.toThrow(OrderFinalizationNotRequiredError);
     });
 });
