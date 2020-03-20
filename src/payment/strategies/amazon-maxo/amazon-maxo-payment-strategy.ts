@@ -15,6 +15,7 @@ export default class AmazonMaxoPaymentStrategy implements PaymentStrategy {
 
     private _methodId?: string;
     private _walletButton?: HTMLElement;
+    private _signInCustomer?: () => Promise<void>;
     // private _window: AmazonMaxoHostWindow;
     // private _isPaymentMethodSelected: boolean;
 
@@ -36,14 +37,11 @@ export default class AmazonMaxoPaymentStrategy implements PaymentStrategy {
             throw new MissingDataError(MissingDataErrorType.MissingPaymentMethod);
         }
 
-        if (!amazonmaxo.walletButton) {
-            throw new InvalidArgumentError('Unable to initialize payment because "options.amazonmaxo" argument is not provided.');
-        }
-
         this._methodId = methodId;
+        this._signInCustomer = amazonmaxo.signInCustomer;
 
         return this._amazonMaxoPaymentProcessor.initialize(methodId)
-            .then(() => { this._walletButton = this._createSignInButton(amazonmaxo.walletButton);
+            .then(() => { this._walletButton = this._createSignInButton(amazonmaxo.container);
             })
             .then(() => this._store.getState());
     }
@@ -52,6 +50,10 @@ export default class AmazonMaxoPaymentStrategy implements PaymentStrategy {
         const methodId = this._methodId || '';
 
         return this._store.dispatch(this._paymentStrategyActionCreator.widgetInteraction(() => {
+            if (this._signInCustomer) {
+                return this._signInCustomer();
+            }
+
             return Promise.reject();
         }, { methodId }), { queueId: 'widgetInteraction' });
     }

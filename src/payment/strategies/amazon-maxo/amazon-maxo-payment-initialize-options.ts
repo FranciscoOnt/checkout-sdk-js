@@ -1,3 +1,4 @@
 export default interface AmazonMaxoPaymentInitializeOptions {
-    walletButton: string;
+    container: string;
+    signInCustomer(): Promise<void>;
 }
