@@ -1,9 +1,11 @@
 import { CheckoutStore, InternalCheckoutSelectors } from '../../../checkout';
 import { InvalidArgumentError, MissingDataError, MissingDataErrorType } from '../../../common/error/errors';
 import { OrderRequestBody } from '../../../order';
+import { OrderFinalizationNotRequiredError } from '../../../order/errors';
 import { AmazonMaxoPaymentProcessor, AmazonMaxoPlacement } from '../../../payment/strategies/amazon-maxo';
 // import { RemoteCheckoutActionCreator } from '../../../remote-checkout';
 // import PaymentMethod from '../../payment-method';
+import PaymentMethodActionCreator from '../../payment-method-action-creator';
 import { PaymentInitializeOptions, PaymentRequestOptions } from '../../payment-request-options';
 import PaymentStrategyActionCreator from '../../payment-strategy-action-creator';
 import PaymentStrategy from '../payment-strategy';
@@ -22,6 +24,7 @@ export default class AmazonMaxoPaymentStrategy implements PaymentStrategy {
     constructor(
         private _store: CheckoutStore,
         private _paymentStrategyActionCreator: PaymentStrategyActionCreator,
+        private _paymentMethodActionCreator: PaymentMethodActionCreator,
         // private _remoteCheckoutActionCreator: RemoteCheckoutActionCreator,
         private _amazonMaxoPaymentProcessor: AmazonMaxoPaymentProcessor
     ) { }
@@ -37,13 +40,29 @@ export default class AmazonMaxoPaymentStrategy implements PaymentStrategy {
             throw new MissingDataError(MissingDataErrorType.MissingPaymentMethod);
         }
 
-        this._methodId = methodId;
-        this._signInCustomer = amazonmaxo.signInCustomer;
+        return this._store.dispatch(this._paymentMethodActionCreator.loadPaymentMethod(methodId))
+            .then(state => {
+                const paymentMethod = state.paymentMethods.getPaymentMethod(methodId);
 
-        return this._amazonMaxoPaymentProcessor.initialize(methodId)
-            .then(() => { this._walletButton = this._createSignInButton(amazonmaxo.container);
-            })
-            .then(() => this._store.getState());
+                if (!paymentMethod) {
+                    throw new MissingDataError(MissingDataErrorType.MissingPaymentMethod);
+                }
+
+                const { paymentToken } = paymentMethod.initializationData;
+
+                if (paymentToken) {
+                    return this._store.getState();
+                }
+
+                this._methodId = methodId;
+                this._signInCustomer = amazonmaxo.signInCustomer;
+
+                return this._amazonMaxoPaymentProcessor.initialize(methodId)
+                    .then(() => { this._walletButton = this._createSignInButton(amazonmaxo.container);
+                    })
+                    .then(() => this._store.getState());
+
+                    });
     }
 
     execute(_payload: OrderRequestBody, _options?: PaymentRequestOptions | undefined): Promise<InternalCheckoutSelectors> {
@@ -58,12 +77,10 @@ export default class AmazonMaxoPaymentStrategy implements PaymentStrategy {
         }, { methodId }), { queueId: 'widgetInteraction' });
     }
 
-    finalize(options?: PaymentRequestOptions | undefined): Promise<InternalCheckoutSelectors> {
-        if (!options) {
-            throw new InvalidArgumentError('Unable to initialize payment because "options.amazonmaxo" argument is not provided.');
-        }
-        throw new Error('Method not implemented.');
+    finalize(_options?: PaymentRequestOptions | undefined): Promise<InternalCheckoutSelectors> {
+        return Promise.reject(new OrderFinalizationNotRequiredError());
     }
+
     deinitialize(_options?: PaymentRequestOptions | undefined): Promise<InternalCheckoutSelectors> {
         if (this._walletButton && this._walletButton.parentNode) {
             this._walletButton.parentNode.removeChild(this._walletButton);
