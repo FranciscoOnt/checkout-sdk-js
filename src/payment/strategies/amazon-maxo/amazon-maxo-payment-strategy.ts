@@ -48,12 +48,6 @@ export default class AmazonMaxoPaymentStrategy implements PaymentStrategy {
                     throw new MissingDataError(MissingDataErrorType.MissingPaymentMethod);
                 }
 
-                const { paymentToken } = paymentMethod.initializationData;
-
-                if (paymentToken) {
-                    return this._store.getState();
-                }
-
                 this._methodId = methodId;
                 this._signInCustomer = amazonmaxo.signInCustomer;
 
