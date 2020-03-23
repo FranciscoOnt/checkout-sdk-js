@@ -51,6 +51,8 @@ export default class AmazonMaxoPaymentStrategy implements PaymentStrategy {
                 this._methodId = methodId;
                 this._signInCustomer = amazonmaxo.signInCustomer;
 
+                // TODO Do not create button if paymentoken is present
+                // TODO edit billing and shipping override
                 return this._amazonMaxoPaymentProcessor.initialize(methodId)
                     .then(() => { this._walletButton = this._createSignInButton(amazonmaxo.container);
                     })
@@ -62,6 +64,8 @@ export default class AmazonMaxoPaymentStrategy implements PaymentStrategy {
     execute(_payload: OrderRequestBody, _options?: PaymentRequestOptions | undefined): Promise<InternalCheckoutSelectors> {
         const methodId = this._methodId || '';
 
+        // TODO Load payment method and get token form initializationdata
+        // TODO Dispatch offsite initialize when token is present
         return this._store.dispatch(this._paymentStrategyActionCreator.widgetInteraction(() => {
             if (this._signInCustomer) {
                 return this._signInCustomer();
