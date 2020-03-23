@@ -10,7 +10,7 @@ export interface AmazonMaxoSDK {
 
 export interface AmazonMaxoClient {
     renderButton(containerId: string, params: AmazonMaxoButtonParams): HTMLElement;
-    bindChangeAction(): void;
+    bindChangeAction(buttonId: string, otraCosa: any): void;
 }
 
 export interface AmazonMaxoHostWindow extends Window {

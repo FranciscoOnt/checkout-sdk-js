@@ -21,6 +21,17 @@ export default class AmazonMaxoPaymentProcessor {
         return this._configureWallet();
     }
 
+    bindButton(buttonId: string, sessionId: string): void {
+        if (!this._amazonMaxoSDK) {
+            throw new NotInitializedError(NotInitializedErrorType.PaymentNotInitialized);
+        }
+
+        this._amazonMaxoSDK.Pay.bindChangeAction(buttonId, {
+            amazonCheckoutSessionId: sessionId,
+            changeAction: 'changeAddress',
+          });
+    }
+
     createButton(containerId: string, params: AmazonMaxoButtonParams): HTMLElement {
         if (!this._amazonMaxoSDK) {
             throw new NotInitializedError(NotInitializedErrorType.PaymentNotInitialized);

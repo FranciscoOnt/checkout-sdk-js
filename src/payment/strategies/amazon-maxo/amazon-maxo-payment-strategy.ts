@@ -48,13 +48,22 @@ export default class AmazonMaxoPaymentStrategy implements PaymentStrategy {
                     throw new MissingDataError(MissingDataErrorType.MissingPaymentMethod);
                 }
 
+                const { paymentToken } = paymentMethod.initializationData;
+
                 this._methodId = methodId;
                 this._signInCustomer = amazonmaxo.signInCustomer;
 
                 // TODO Do not create button if paymentoken is present
-                // TODO edit billing and shipping override
-                return this._amazonMaxoPaymentProcessor.initialize(methodId)
-                    .then(() => { this._walletButton = this._createSignInButton(amazonmaxo.container);
+                // TODO edit billing and shipping
+                return this._amazonMaxoPaymentProcessor.initialize(this._methodId)
+                    .then(() => {
+                        if (paymentToken) {
+                        // edit-shipping-address-button
+                            this._bindEditButton(paymentToken);
+                        } else {
+                            this._walletButton = this._createSignInButton(amazonmaxo.container);
+
+                        }
                     })
                     .then(() => this._store.getState());
 
@@ -86,6 +95,16 @@ export default class AmazonMaxoPaymentStrategy implements PaymentStrategy {
         }
 
         return Promise.resolve(this._store.getState());
+    }
+
+    private _bindEditButton(sessionId: string): void {
+        const button = document.querySelector('#edit-shipping-address-button');
+
+        if (!button) {
+            return;
+        }
+
+        this._amazonMaxoPaymentProcessor.bindButton('#edit-shipping-address-button', sessionId);
     }
 
     private _createSignInButton(containerId: string): HTMLElement {
