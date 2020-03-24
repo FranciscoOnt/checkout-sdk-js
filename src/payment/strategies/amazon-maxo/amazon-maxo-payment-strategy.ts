@@ -1,3 +1,5 @@
+//import { noop } from 'lodash';
+
 import { CheckoutStore, InternalCheckoutSelectors } from '../../../checkout';
 import { InvalidArgumentError, MissingDataError, MissingDataErrorType } from '../../../common/error/errors';
 import { OrderRequestBody } from '../../../order';
@@ -103,6 +105,9 @@ export default class AmazonMaxoPaymentStrategy implements PaymentStrategy {
         if (!button) {
             return;
         }
+
+        const clone = button.cloneNode(true);
+        button.replaceWith(clone);
 
         this._amazonMaxoPaymentProcessor.bindButton('#edit-shipping-address-button', sessionId);
     }
