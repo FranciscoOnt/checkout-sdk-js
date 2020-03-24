@@ -10,7 +10,7 @@ export interface AmazonMaxoSDK {
 
 export interface AmazonMaxoClient {
     renderButton(containerId: string, params: AmazonMaxoButtonParams): HTMLElement;
-    bindChangeAction(buttonId: string, otraCosa: any): void;
+    bindChangeAction(buttonId: string, options: AmazonMaxoChangeActionOptions): void;
 }
 
 export interface AmazonMaxoHostWindow extends Window {
@@ -32,6 +32,13 @@ export interface AmazonMaxoCheckoutSession {
     method?: string;
     extractAmazonCheckoutSessionId?: string;
 }
+
+export interface AmazonMaxoChangeActionOptions {
+    amazonCheckoutSessionId: string;
+    changeAction: string;
+}
+
+export type EditableAddressType = 'billing' | 'shipping';
 
 export enum AmazonMaxoRegions {
     de = 'eu',
