@@ -51,6 +51,7 @@ describe('AmazonMaxoPaymentProcessor', () => {
             clientMock = {
                 renderButton: jest.fn(() => Promise.resolve(new HTMLElement())),
                 bindChangeAction: () => null,
+                signout: () => null,
             };
             amazonMaxoSDK.Pay.renderButton = jest.fn(() => clientMock);
 
@@ -82,6 +83,7 @@ describe('AmazonMaxoPaymentProcessor', () => {
             clientMock = {
                 renderButton: jest.fn(() => Promise.resolve()),
                 bindChangeAction: () => null,
+                signout: () => null,
             };
 
             amazonMaxoSDK.Pay = clientMock;

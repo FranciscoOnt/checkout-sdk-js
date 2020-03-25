@@ -40,6 +40,19 @@ export default class AmazonMaxoPaymentProcessor {
         return this._amazonMaxoSDK.Pay.renderButton(containerId, params);
     }
 
+    signout(methodId: string): void {
+        this._methodId = methodId;
+
+        if (!this._amazonMaxoSDK) {
+            this._configureWallet()
+            .then(() => {
+                if (this._amazonMaxoSDK) {
+                    this._amazonMaxoSDK.Pay.signout();
+                }
+            });
+        }
+    }
+
     private _configureWallet(): Promise<void> {
         const methodId = this._getMethodId();
 

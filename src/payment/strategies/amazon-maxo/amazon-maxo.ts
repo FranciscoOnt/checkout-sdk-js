@@ -11,6 +11,7 @@ export interface AmazonMaxoSDK {
 export interface AmazonMaxoClient {
     renderButton(containerId: string, params: AmazonMaxoButtonParams): HTMLElement;
     bindChangeAction(buttonId: string, options: AmazonMaxoChangeActionOptions): void;
+    signout(): void;
 }
 
 export interface AmazonMaxoHostWindow extends Window {
