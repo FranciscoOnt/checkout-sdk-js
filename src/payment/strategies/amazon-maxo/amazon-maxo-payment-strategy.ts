@@ -67,8 +67,7 @@ export default class AmazonMaxoPaymentStrategy implements PaymentStrategy {
                         }
                     })
                     .then(() => this._store.getState());
-
-                    });
+                });
     }
 
     execute(_payload: OrderRequestBody, _options?: PaymentRequestOptions | undefined): Promise<InternalCheckoutSelectors> {
