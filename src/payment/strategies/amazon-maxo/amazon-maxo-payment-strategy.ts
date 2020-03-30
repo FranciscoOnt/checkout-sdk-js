@@ -81,14 +81,13 @@ export default class AmazonMaxoPaymentStrategy implements PaymentStrategy {
         const { paymentToken } = paymentMethod.initializationData;
 
         if (paymentToken) {
-            const { payment } = payload;
-            const orderPayload = payload;
+            const { payment, ...order } = payload;
 
             if (!payment) {
                 throw new PaymentArgumentInvalidError(['payment']);
             }
 
-            await  this._store.dispatch(this._orderActionCreator.submitOrder(orderPayload, options));
+            await  this._store.dispatch(this._orderActionCreator.submitOrder(order, options));
 
             return this._store.dispatch(this._paymentActionCreator.initializeOffsitePayment(
                 payment.methodId,
