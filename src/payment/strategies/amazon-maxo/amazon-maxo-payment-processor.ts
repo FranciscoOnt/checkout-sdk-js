@@ -21,6 +21,12 @@ export default class AmazonMaxoPaymentProcessor {
         return this._configureWallet();
     }
 
+    deinitialize(): Promise<void> {
+        this._amazonMaxoSDK = undefined;
+
+        return Promise.resolve();
+    }
+
     bindButton(buttonId: string, sessionId: string): void {
         if (!this._amazonMaxoSDK) {
             throw new NotInitializedError(NotInitializedErrorType.PaymentNotInitialized);
