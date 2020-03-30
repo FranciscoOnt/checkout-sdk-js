@@ -2,7 +2,7 @@ import { createClient as createPaymentClient } from '@bigcommerce/bigpay-client'
 import { createAction } from '@bigcommerce/data-store';
 import { createRequestSender, RequestSender } from '@bigcommerce/request-sender';
 import { createScriptLoader } from '@bigcommerce/script-loader';
-import { merge } from 'lodash';
+import { merge, omit } from 'lodash';
 import { of, Observable } from 'rxjs';
 
 import { createCheckoutStore, CheckoutRequestSender, CheckoutStore, CheckoutValidator } from '../../../checkout';
@@ -270,13 +270,14 @@ describe('AmazonMaxoPaymentStrategy', () => {
         });
 
         it('starts offsite flow if paymentToken is found on intializationData', async () => {
+            const {}
             paymentMethodMock.initializationData.paymentToken = paymentToken;
 
             await strategy.initialize(initializeOptions);
 
             await strategy.execute(orderRequestBody, initializeOptions);
 
-            expect(orderActionCreator.submitOrder).toHaveBeenCalledWith(orderRequestBody, initializeOptions);
+            expect(orderActionCreator.submitOrder).toHaveBeenCalledWith(omit(orderRequestBody, 'payment'), initializeOptions);
             expect(paymentActionCreator.initializeOffsitePayment).toHaveBeenCalledWith('amazonmaxo', undefined, paymentToken);
         });
 
