@@ -54,7 +54,7 @@ export default class AmazonMaxoCustomerStrategy implements CustomerStrategy {
         );
     }
 
-    signOut(options?: CustomerRequestOptions): Promise<InternalCheckoutSelectors> {
+    async signOut(options?: CustomerRequestOptions): Promise<InternalCheckoutSelectors> {
         const state = this._store.getState();
         const payment = state.payment.getPaymentId();
 
@@ -62,16 +62,12 @@ export default class AmazonMaxoCustomerStrategy implements CustomerStrategy {
             return Promise.resolve(this._store.getState());
         }
 
-        this._amazonMaxoPaymentProcessor.signout(payment.providerId);
+        await this._amazonMaxoPaymentProcessor.signout(payment.providerId);
+        await this._store.dispatch(this._remoteCheckoutActionCreator.signOut(payment.providerId, options));
 
-        return this._store.dispatch(
-            this._remoteCheckoutActionCreator.signOut(payment.providerId, options)
-        )
-        .then(() => {
-            this._reloadPage();
+        this._reloadPage();
 
-            return this._store.getState();
-        });
+        return this._store.getState();
     }
 
     private _reloadPage(): Promise<InternalCheckoutSelectors> {

@@ -69,6 +69,8 @@ describe('AmazonMaxoCustomerStrategy', () => {
 
         jest.spyOn(paymentProcessor, 'initialize')
             .mockReturnValue(Promise.resolve());
+        jest.spyOn(paymentProcessor, 'signout')
+            .mockReturnValue(Promise.resolve());
 
         jest.spyOn(store.getState().paymentMethods, 'getPaymentMethod')
             .mockReturnValue(paymentMethod);
@@ -204,6 +206,7 @@ describe('AmazonMaxoCustomerStrategy', () => {
             await strategy.signOut(options);
 
             expect(remoteCheckoutActionCreator.signOut).toHaveBeenCalledWith('amazonmaxo', options);
+            expect(paymentProcessor.signout).toHaveBeenCalledWith('amazonmaxo');
             expect(store.dispatch).toHaveBeenCalled();
         });
 

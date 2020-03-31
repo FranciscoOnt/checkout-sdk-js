@@ -270,7 +270,6 @@ describe('AmazonMaxoPaymentStrategy', () => {
         });
 
         it('starts offsite flow if paymentToken is found on intializationData', async () => {
-            const {}
             paymentMethodMock.initializationData.paymentToken = paymentToken;
 
             await strategy.initialize(initializeOptions);
