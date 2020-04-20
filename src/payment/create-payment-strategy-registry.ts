@@ -37,6 +37,7 @@ import { KlarnaV2PaymentStrategy, KlarnaV2ScriptLoader } from './strategies/klar
 import { LegacyPaymentStrategy } from './strategies/legacy';
 import { MasterpassPaymentStrategy, MasterpassScriptLoader } from './strategies/masterpass';
 import { NoPaymentDataRequiredPaymentStrategy } from './strategies/no-payment';
+import { NoncePassThroughPaymentStrategy } from './strategies/nonce-pass-through';
 import { OfflinePaymentStrategy } from './strategies/offline';
 import { OffsitePaymentStrategy } from './strategies/offsite';
 import { PaypalExpressPaymentStrategy, PaypalProPaymentStrategy, PaypalScriptLoader } from './strategies/paypal';
@@ -136,6 +137,14 @@ export default function createPaymentStrategyRegistry(
 
     registry.register(PaymentStrategyType.BLUESNAPV2, () =>
         new BlueSnapV2PaymentStrategy(
+            store,
+            orderActionCreator,
+            paymentActionCreator
+        )
+    );
+
+    registry.register(PaymentStrategyType.BOLT, () =>
+        new NoncePassThroughPaymentStrategy(
             store,
             orderActionCreator,
             paymentActionCreator
