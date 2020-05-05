@@ -1,8 +1,8 @@
 export interface BoltHostWindow extends Window {
-    Boltcheckout?: Boltcheckout;
+    BoltCheckout?: BoltCheckout;
 }
 
-export interface Boltcheckout {
+export interface BoltCheckout {
     configure(cart: BoltCart, callbacks: BoltCallbacks): BoltClient;
 }
 

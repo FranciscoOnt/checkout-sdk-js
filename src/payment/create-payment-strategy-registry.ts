@@ -25,6 +25,7 @@ import { AffirmPaymentStrategy, AffirmScriptLoader } from './strategies/affirm';
 import { AfterpayPaymentStrategy, AfterpayScriptLoader } from './strategies/afterpay';
 import { AmazonPayPaymentStrategy, AmazonPayScriptLoader } from './strategies/amazon-pay';
 import { BlueSnapV2PaymentStrategy } from './strategies/bluesnapv2';
+import { BoltPaymentStrategy, BoltScriptLoader } from './strategies/bolt';
 import { createBraintreePaymentProcessor, createBraintreeVisaCheckoutPaymentProcessor, BraintreeCreditCardPaymentStrategy, BraintreePaypalPaymentStrategy, BraintreeScriptLoader, BraintreeSDKCreator, BraintreeVisaCheckoutPaymentStrategy, VisaCheckoutScriptLoader } from './strategies/braintree';
 import { CardinalClient, CardinalScriptLoader, CardinalThreeDSecureFlow } from './strategies/cardinal';
 import { ChasePayPaymentStrategy, ChasePayScriptLoader } from './strategies/chasepay';
@@ -37,7 +38,6 @@ import { KlarnaV2PaymentStrategy, KlarnaV2ScriptLoader } from './strategies/klar
 import { LegacyPaymentStrategy } from './strategies/legacy';
 import { MasterpassPaymentStrategy, MasterpassScriptLoader } from './strategies/masterpass';
 import { NoPaymentDataRequiredPaymentStrategy } from './strategies/no-payment';
-import { NoncePassThroughPaymentStrategy } from './strategies/nonce-pass-through';
 import { OfflinePaymentStrategy } from './strategies/offline';
 import { OffsitePaymentStrategy } from './strategies/offsite';
 import { PaypalExpressPaymentStrategy, PaypalProPaymentStrategy, PaypalScriptLoader } from './strategies/paypal';
@@ -144,10 +144,12 @@ export default function createPaymentStrategyRegistry(
     );
 
     registry.register(PaymentStrategyType.BOLT, () =>
-        new NoncePassThroughPaymentStrategy(
+        new BoltPaymentStrategy(
             store,
             orderActionCreator,
-            paymentActionCreator
+            paymentActionCreator,
+            // paymentMethodActionCreator,
+            new BoltScriptLoader(scriptLoader)
         )
     );
 
