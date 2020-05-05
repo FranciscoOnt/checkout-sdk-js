@@ -26,7 +26,7 @@ import { AfterpayPaymentStrategy, AfterpayScriptLoader } from './strategies/afte
 import { AmazonPayPaymentStrategy, AmazonPayScriptLoader } from './strategies/amazon-pay';
 import { createAmazonPayV2PaymentProcessor, AmazonPayV2PaymentStrategy } from './strategies/amazon-pay-v2';
 import { BlueSnapV2PaymentStrategy } from './strategies/bluesnapv2';
-import { BoltPaymentStrategy } from './strategies/bolt';
+import { BoltPaymentStrategy, BoltScriptLoader } from './strategies/bolt';
 import { createBraintreePaymentProcessor, createBraintreeVisaCheckoutPaymentProcessor, BraintreeCreditCardPaymentStrategy, BraintreePaypalPaymentStrategy, BraintreeScriptLoader, BraintreeSDKCreator, BraintreeVisaCheckoutPaymentStrategy, VisaCheckoutScriptLoader } from './strategies/braintree';
 import { CardinalClient, CardinalScriptLoader, CardinalThreeDSecureFlow } from './strategies/cardinal';
 import { ChasePayPaymentStrategy, ChasePayScriptLoader } from './strategies/chasepay';
@@ -41,7 +41,6 @@ import { LaybuyPaymentStrategy } from './strategies/laybuy';
 import { LegacyPaymentStrategy } from './strategies/legacy';
 import { MasterpassPaymentStrategy, MasterpassScriptLoader } from './strategies/masterpass';
 import { NoPaymentDataRequiredPaymentStrategy } from './strategies/no-payment';
-import { NoncePassThroughPaymentStrategy } from './strategies/nonce-pass-through';
 import { OfflinePaymentStrategy } from './strategies/offline';
 import { OffsitePaymentStrategy } from './strategies/offsite';
 import { PaypalExpressPaymentStrategy, PaypalProPaymentStrategy, PaypalScriptLoader } from './strategies/paypal';
@@ -175,10 +174,12 @@ export default function createPaymentStrategyRegistry(
     );
 
     registry.register(PaymentStrategyType.BOLT, () =>
-        new NoncePassThroughPaymentStrategy(
+        new BoltPaymentStrategy(
             store,
             orderActionCreator,
-            paymentActionCreator
+            paymentActionCreator,
+            // paymentMethodActionCreator,
+            new BoltScriptLoader(scriptLoader)
         )
     );
 

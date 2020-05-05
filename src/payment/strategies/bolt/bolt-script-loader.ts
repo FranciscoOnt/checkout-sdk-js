@@ -2,15 +2,15 @@ import { LoadScriptOptions, ScriptLoader } from '@bigcommerce/script-loader';
 
 import { PaymentMethodClientUnavailableError } from '../../errors';
 
-import { Boltcheckout, BoltHostWindow } from './bolt';
+import { BoltCheckout, BoltHostWindow } from './bolt';
 
-export default class ChasePayScriptLoader {
+export default class BoltScriptLoader {
     constructor(
         private _scriptLoader: ScriptLoader,
         public _window: BoltHostWindow = window
     ) {}
 
-    load(publishableKey: string, testMode?: boolean): Promise<Boltcheckout> {
+    load(publishableKey: string, testMode?: boolean): Promise<BoltCheckout> {
         const options: LoadScriptOptions = {
             async: true,
             attributes: {
@@ -22,11 +22,11 @@ export default class ChasePayScriptLoader {
         return this._scriptLoader
             .loadScript(`//connect${testMode ? '-sandbox' : ''}.bolt.com/connect-bigcommerce.js`, options)
             .then(() => {
-                if (!this._window.Boltcheckout) {
+                if (!this._window.BoltCheckout) {
                     throw new PaymentMethodClientUnavailableError();
                 }
 
-                return this._window.Boltcheckout;
+                return this._window.BoltCheckout;
             });
     }
 }
