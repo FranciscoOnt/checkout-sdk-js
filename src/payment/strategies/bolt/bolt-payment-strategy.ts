@@ -7,7 +7,7 @@ import { OrderFinalizationNotRequiredError } from '../../../order/errors';
 import { PaymentMethodCancelledError } from '../../errors';
 // import Payment from '../../payment';
 import PaymentActionCreator from '../../payment-action-creator';
-// import PaymentMethodActionCreator from '../../payment-method-action-creator';
+import PaymentMethodActionCreator from '../../payment-method-action-creator';
 import { PaymentInitializeOptions, PaymentRequestOptions } from '../../payment-request-options';
 // import PaymentStrategyActionCreator from '../../payment-strategy-action-creator';
 import PaymentStrategy from '../payment-strategy';
@@ -23,7 +23,7 @@ export default class BoltPaymentStrategy implements PaymentStrategy {
         private _store: CheckoutStore,
         private _orderActionCreator: OrderActionCreator,
         private _paymentActionCreator: PaymentActionCreator,
-        // private _paymentMethodActionCreator: PaymentMethodActionCreator,
+        private _paymentMethodActionCreator: PaymentMethodActionCreator,
         // private _paymentStrategyActionCreator: PaymentStrategyActionCreator,
         // private _requestSender: RequestSender,
         private _boltScriptLoader: BoltScriptLoader,
@@ -35,11 +35,11 @@ export default class BoltPaymentStrategy implements PaymentStrategy {
         const state = this._store.getState();
         const paymentMethod = state.paymentMethods.getPaymentMethod(this._methodId);
 
-        if (!paymentMethod) {
+        if (!paymentMethod || !paymentMethod.initializationData.publishableKey) {
             throw new MissingDataError(MissingDataErrorType.MissingPaymentMethod);
         }
 
-        this._boltClient = await this._boltScriptLoader.load('DUMMY', paymentMethod.config.testMode);
+        this._boltClient = await this._boltScriptLoader.load(paymentMethod.initializationData.publishableKey, paymentMethod.config.testMode);
 
         return Promise.resolve(this._store.getState());
     }
@@ -57,15 +57,14 @@ export default class BoltPaymentStrategy implements PaymentStrategy {
             throw new InvalidArgumentError('Unable to submit payment because "payload.payment" argument is not provided.');
         }
 
-        /* const state = await this._store.dispatch(this._paymentMethodActionCreator.loadPaymentMethod(payment.methodId, options));
-
+        const state = await this._store.dispatch(this._paymentMethodActionCreator.loadPaymentMethod(payment.methodId, options));
         const paymentMethod = state.paymentMethods.getPaymentMethod(payment.methodId);
 
         if (!paymentMethod || !paymentMethod.clientToken) {
             throw new MissingDataError(MissingDataErrorType.MissingPaymentMethod);
-        } */
+        }
 
-        const orderToken = 'dummy'; // paymentMethod.clientToken
+        const orderToken = paymentMethod.clientToken;
 
         const transaction = await new Promise((resolve, reject) => {
             const onSuccess = (transaction: any,  callback: () => void) => {
