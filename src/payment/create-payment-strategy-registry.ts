@@ -178,7 +178,7 @@ export default function createPaymentStrategyRegistry(
             store,
             orderActionCreator,
             paymentActionCreator,
-            // paymentMethodActionCreator,
+            paymentMethodActionCreator,
             new BoltScriptLoader(scriptLoader)
         )
     );
