@@ -1,4 +1,4 @@
-import { createClient as createPaymentClient } from '@bigcommerce/bigpay-client';
+/* import { createClient as createPaymentClient } from '@bigcommerce/bigpay-client';
 import { createAction, Action } from '@bigcommerce/data-store';
 import { createRequestSender, RequestSender } from '@bigcommerce/request-sender';
 import { createScriptLoader, ScriptLoader } from '@bigcommerce/script-loader';
@@ -223,3 +223,4 @@ describe('BoltPaymentStrategy', () => {
     //     await expect(strategy.execute(payload, options)).rejects.toThrow(MissingDataError);
     // });
 });
+ */

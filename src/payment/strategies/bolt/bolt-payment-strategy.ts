@@ -6,13 +6,14 @@ import { OrderActionCreator, OrderRequestBody } from '../../../order';
 import { OrderFinalizationNotRequiredError } from '../../../order/errors';
 import { PaymentMethodCancelledError } from '../../errors';
 // import Payment from '../../payment';
+import { NonceInstrument } from '../../payment';
 import PaymentActionCreator from '../../payment-action-creator';
 import PaymentMethodActionCreator from '../../payment-method-action-creator';
 import { PaymentInitializeOptions, PaymentRequestOptions } from '../../payment-request-options';
 // import PaymentStrategyActionCreator from '../../payment-strategy-action-creator';
 import PaymentStrategy from '../payment-strategy';
 
-import { BoltCheckout } from './bolt';
+import { BoltCheckout, BoltTransacion } from './bolt';
 import BoltScriptLoader from './bolt-script-loader';
 
 export default class BoltPaymentStrategy implements PaymentStrategy {
@@ -35,11 +36,11 @@ export default class BoltPaymentStrategy implements PaymentStrategy {
         const state = this._store.getState();
         const paymentMethod = state.paymentMethods.getPaymentMethod(this._methodId);
 
-        if (!paymentMethod || !paymentMethod.initializationData.publishableKey) {
+        if (!paymentMethod /* || !paymentMethod.initializationData.publishableKey*/) {
             throw new MissingDataError(MissingDataErrorType.MissingPaymentMethod);
         }
 
-        this._boltClient = await this._boltScriptLoader.load(paymentMethod.initializationData.publishableKey, paymentMethod.config.testMode);
+        this._boltClient = await this._boltScriptLoader.load(/* || !paymentMethod.initializationData.publishableKey*/, paymentMethod.config.testMode);
 
         return Promise.resolve(this._store.getState());
     }
@@ -60,14 +61,14 @@ export default class BoltPaymentStrategy implements PaymentStrategy {
         const state = await this._store.dispatch(this._paymentMethodActionCreator.loadPaymentMethod(payment.methodId, options));
         const paymentMethod = state.paymentMethods.getPaymentMethod(payment.methodId);
 
-        if (!paymentMethod || !paymentMethod.clientToken) {
+        if (!paymentMethod/*  || !paymentMethod.clientToken */) {
             throw new MissingDataError(MissingDataErrorType.MissingPaymentMethod);
         }
 
-        const orderToken = paymentMethod.clientToken;
+        const orderToken = prompt('order Token') || ''; // paymentMethod.clientToken;
 
-        const transaction = await new Promise((resolve, reject) => {
-            const onSuccess = (transaction: any,  callback: () => void) => {
+        const transaction: BoltTransacion = await new Promise((resolve, reject) => {
+            const onSuccess = (transaction: BoltTransacion,  callback: () => void) => {
                 resolve(transaction);
                 callback();
             };
@@ -75,6 +76,7 @@ export default class BoltPaymentStrategy implements PaymentStrategy {
             const onClose = () => {
                 reject(new PaymentMethodCancelledError());
             };
+
             const callbacks = {
                 success: onSuccess,
                 close: onClose,
@@ -84,12 +86,18 @@ export default class BoltPaymentStrategy implements PaymentStrategy {
                 throw new NotInitializedError(NotInitializedErrorType.PaymentNotInitialized);
             }
 
-            this._boltClient.configure({ orderToken }, callbacks).open();
+            // this._boltClient.setClientCustomCallbacks(callbacks);
+            this._boltClient.configure({ orderToken }, {}, callbacks).open();
         });
+
+        const { shouldSaveInstrument } = payment.paymentData as NonceInstrument;
 
         const paymentPayload = {
             methodId: payment.methodId,
-            nonce: transaction,
+            paymentData: {
+                nonce: transaction.reference,
+                shouldSaveInstrument,
+            },
         };
 
         await this._store.dispatch(this._orderActionCreator.submitOrder(order, options));

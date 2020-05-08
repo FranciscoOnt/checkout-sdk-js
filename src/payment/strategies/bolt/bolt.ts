@@ -3,7 +3,8 @@ export interface BoltHostWindow extends Window {
 }
 
 export interface BoltCheckout {
-    configure(cart: BoltCart, callbacks: BoltCallbacks): BoltClient;
+    configure(cart: BoltCart, hints: {}, callbacks?: BoltCallbacks): BoltClient;
+    setClientCustomCallbacks(callbacks: BoltCallbacks): void;
 }
 
 export interface BoltClient {
@@ -20,4 +21,19 @@ export interface BoltCallbacks {
     onPaymentSubmit?(): void;
     success(transaction: any, callback: () => void): void;
     close?(): void;
+}
+
+export interface BoltTransacion {
+    id: string;
+    type: string;
+    processor: string;
+    date: number;
+    reference: string;
+    status: string;
+    authorization: BoltAuthorization;
+}
+
+export interface BoltAuthorization {
+    status: string;
+    reason: string;
 }
