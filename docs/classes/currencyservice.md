@@ -2,6 +2,8 @@
 
 # CurrencyService
 
+Responsible for formatting and converting currencies.
+
 ## Hierarchy
 
 **CurrencyService**

@@ -2,6 +2,10 @@
 
 # CustomerInitializeOptions
 
+A set of options that are required to initialize the customer step of the current checkout flow.
+
+Some payment methods have specific requirements for setting the customer details for checkout. For example, Amazon Pay requires the customer to sign in using their sign-in button. As a result, you may need to provide additional information in order to initialize the customer step of checkout.
+
 ## Type parameters
 
 #### TParams 
@@ -37,12 +41,16 @@
 
 **● amazon**: *[AmazonPayCustomerInitializeOptions](amazonpaycustomerinitializeoptions.md)*
 
+The options that are required to initialize the customer step of checkout when using Amazon Pay.
+
 ___
 <a id="braintreevisacheckout"></a>
 
 ### `<Optional>` braintreevisacheckout
 
 **● braintreevisacheckout**: *[BraintreeVisaCheckoutCustomerInitializeOptions](braintreevisacheckoutcustomerinitializeoptions.md)*
+
+The options that are required to initialize the customer step of checkout when using Visa Checkout provided by Braintree.
 
 ___
 <a id="chasepay"></a>
@@ -51,12 +59,16 @@ ___
 
 **● chasepay**: *[ChasePayCustomerInitializeOptions](chasepaycustomerinitializeoptions.md)*
 
+The options that are required to initialize the Chasepay payment method. They can be omitted unless you need to support Chasepay.
+
 ___
 <a id="googlepayadyenv2"></a>
 
 ### `<Optional>` googlepayadyenv2
 
 **● googlepayadyenv2**: *[GooglePayCustomerInitializeOptions](googlepaycustomerinitializeoptions.md)*
+
+The options that are required to initialize the GooglePay payment method. They can be omitted unless you need to support GooglePay.
 
 ___
 <a id="googlepayauthorizenet"></a>
@@ -65,12 +77,16 @@ ___
 
 **● googlepayauthorizenet**: *[GooglePayCustomerInitializeOptions](googlepaycustomerinitializeoptions.md)*
 
+The options that are required to initialize the GooglePay payment method. They can be omitted unless you need to support GooglePay.
+
 ___
 <a id="googlepaybraintree"></a>
 
 ### `<Optional>` googlepaybraintree
 
 **● googlepaybraintree**: *[GooglePayCustomerInitializeOptions](googlepaycustomerinitializeoptions.md)*
+
+The options that are required to initialize the GooglePay payment method. They can be omitted unless you need to support GooglePay.
 
 ___
 <a id="googlepaystripe"></a>
@@ -79,12 +95,16 @@ ___
 
 **● googlepaystripe**: *[GooglePayCustomerInitializeOptions](googlepaycustomerinitializeoptions.md)*
 
+The options that are required to initialize the GooglePay payment method. They can be omitted unless you need to support GooglePay.
+
 ___
 <a id="masterpass"></a>
 
 ### `<Optional>` masterpass
 
 **● masterpass**: *[MasterpassCustomerInitializeOptions](masterpasscustomerinitializeoptions.md)*
+
+The options that are required to initialize the Masterpass payment method. They can be omitted unless you need to support Masterpass.
 
 ___
 <a id="methodid"></a>
@@ -101,12 +121,16 @@ ___
 
 **● params**: *[TParams]()*
 
+The parameters of the request, if required.
+
 ___
 <a id="timeout"></a>
 
 ### `<Optional>` timeout
 
 **● timeout**: *`Timeout`*
+
+Provide this option if you want to cancel or time out the request. If the timeout object completes before the request, the request will be cancelled.
 
 ___
 

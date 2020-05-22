@@ -2,6 +2,8 @@
 
 # CheckoutButtonOptions
 
+The set of options for configuring the checkout button.
+
 ## Type parameters
 
 #### TParams 
@@ -31,6 +33,8 @@
 
 **● methodId**: *[CheckoutButtonMethodType](../enums/checkoutbuttonmethodtype.md)*
 
+The identifier of the payment method.
+
 ___
 <a id="params"></a>
 
@@ -38,12 +42,16 @@ ___
 
 **● params**: *[TParams]()*
 
+The parameters of the request, if required.
+
 ___
 <a id="timeout"></a>
 
 ### `<Optional>` timeout
 
 **● timeout**: *`Timeout`*
+
+Provide this option if you want to cancel or time out the request. If the timeout object completes before the request, the request will be cancelled.
 
 ___
 

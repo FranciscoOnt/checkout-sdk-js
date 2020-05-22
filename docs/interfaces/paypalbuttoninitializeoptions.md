@@ -30,6 +30,8 @@
 **● allowCredit**: * `undefined` &#124; `false` &#124; `true`
 *
 
+Whether or not to show a credit button.
+
 ___
 <a id="clientid"></a>
 
@@ -37,12 +39,16 @@ ___
 
 **● clientId**: *`string`*
 
+The Client ID of the Paypal App
+
 ___
 <a id="style"></a>
 
 ### `<Optional>` style
 
 **● style**: *`Pick`<[PaypalButtonStyleOptions](paypalbuttonstyleoptions.md),  "layout" &#124; "size" &#124; "color" &#124; "label" &#124; "shape" &#124; "tagline" &#124; "fundingicons">*
+
+A set of styling options for the checkout button.
 
 ___
 
@@ -53,6 +59,8 @@ ___
 ### `<Optional>` onAuthorizeError
 
 ▸ **onAuthorizeError**(error: *[StandardError](../classes/standarderror.md)*): `void`
+
+A callback that gets called if unable to authorize and tokenize payment.
 
 **Parameters:**
 
@@ -68,6 +76,8 @@ ___
 ### `<Optional>` onPaymentError
 
 ▸ **onPaymentError**(error: *[StandardError](../classes/standarderror.md)*): `void`
+
+A callback that gets called if unable to submit payment.
 
 **Parameters:**
 

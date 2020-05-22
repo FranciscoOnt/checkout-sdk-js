@@ -30,6 +30,8 @@
 
 **● containerId**: *`string`*
 
+The location to insert the additional action component.
+
 ___
 
 ## Methods
@@ -39,6 +41,8 @@ ___
 ### `<Optional>` onBeforeLoad
 
 ▸ **onBeforeLoad**(shopperInteraction?: * `undefined` &#124; `false` &#124; `true`*): `void`
+
+A callback that gets called before adyen component is loaded
 
 **Parameters:**
 
@@ -55,6 +59,8 @@ ___
 
 ▸ **onComplete**(): `void`
 
+A callback that gets called when adyen component verification is completed
+
 **Returns:** `void`
 
 ___
@@ -63,6 +69,8 @@ ___
 ### `<Optional>` onLoad
 
 ▸ **onLoad**(cancel?: * `undefined` &#124; `function`*): `void`
+
+A callback that gets called when adyen component is loaded
 
 **Parameters:**
 

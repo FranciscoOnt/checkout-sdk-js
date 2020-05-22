@@ -2,6 +2,8 @@
 
 # OrderPaymentRequestBody
 
+An object that contains the payment information required for submitting an order.
+
 ## Hierarchy
 
 **OrderPaymentRequestBody**
@@ -25,12 +27,16 @@
 **● gatewayId**: * `undefined` &#124; `string`
 *
 
+The identifier of the payment provider that is chosen for the order.
+
 ___
 <a id="methodid"></a>
 
 ###  methodId
 
 **● methodId**: *`string`*
+
+The identifier of the payment method that is chosen for the order.
 
 ___
 <a id="paymentdata"></a>
@@ -39,6 +45,8 @@ ___
 
 **● paymentData**: * [CreditCardInstrument](creditcardinstrument.md) &#124; [HostedInstrument](hostedinstrument.md) &#124; [HostedCreditCardInstrument](../#hostedcreditcardinstrument) &#124; [HostedVaultedInstrument](../#hostedvaultedinstrument) &#124; [NonceInstrument](nonceinstrument.md) &#124; [VaultedInstrument](vaultedinstrument.md)
 *
+
+An object that contains the details of a credit card, vaulted payment instrument or nonce instrument.
 
 ___
 
