@@ -37,7 +37,16 @@ ___
 
 ### `Optional` paymentData
 
+<<<<<<< HEAD
 • **paymentData**? : *[CreditCardInstrument](creditcardinstrument.md) | [HostedInstrument](hostedinstrument.md) | [HostedCreditCardInstrument](../README.md#hostedcreditcardinstrument) | [HostedVaultedInstrument](../README.md#hostedvaultedinstrument) | [NonceInstrument](nonceinstrument.md) | [VaultedInstrument](vaultedinstrument.md)*
+=======
+<<<<<<< HEAD
+=======
+An object that contains the details of a credit card, vaulted payment instrument or nonce instrument.
+
+>>>>>>> build
+___
+>>>>>>> build
 
 An object that contains the details of a credit card, vaulted payment
 instrument or nonce instrument.
