@@ -21,8 +21,6 @@
 =======
 **● container**: *`string`*
 
-The ID of a container which the checkout button should be inserted into.
-
 ___
 >>>>>>> build
 

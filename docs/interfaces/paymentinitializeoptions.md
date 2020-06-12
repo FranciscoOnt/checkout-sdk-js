@@ -5,8 +5,6 @@
 A set of options that are required to initialize the payment step of the
 current checkout flow.
 
-A set of options that are required to initialize the payment step of the current checkout flow.
-
 ## Type parameters
 
 ▪ **TParams**
@@ -54,8 +52,6 @@ A set of options that are required to initialize the payment step of the current
 The options that are required to initialize the AdyenV2 payment
 method. They can be omitted unless you need to support AdyenV2.
 
-The options that are required to initialize the AdyenV2 payment method. They can be omitted unless you need to support AdyenV2.
-
 ___
 
 ### `Optional` amazon
@@ -64,8 +60,6 @@ ___
 
 The options that are required to initialize the Amazon Pay payment
 method. They can be omitted unless you need to support AmazonPay.
-
-The options that are required to initialize the Amazon Pay payment method. They can be omitted unless you need to support AmazonPay.
 
 ___
 
@@ -78,8 +72,6 @@ method. They can be omitted unless you need to support AmazonPayV2.
 
 **`alpha`** 
 
-The options that are required to initialize the BlueSnapV2 payment method. They can be omitted unless you need to support BlueSnapV2.
-
 ___
 
 ### `Optional` bluesnapv2
@@ -89,8 +81,6 @@ ___
 The options that are required to initialize the BlueSnapV2 payment method.
 They can be omitted unless you need to support BlueSnapV2.
 
-The options that are required to initialize the Braintree payment method. They can be omitted unless you need to support Braintree.
-
 ___
 
 ### `Optional` braintree
@@ -99,8 +89,6 @@ ___
 
 The options that are required to initialize the Braintree payment method.
 They can be omitted unless you need to support Braintree.
-
-The options that are required to initialize the Visa Checkout payment method provided by Braintree. They can be omitted unless you need to support Visa Checkout.
 
 ___
 
@@ -112,8 +100,6 @@ The options that are required to initialize the Visa Checkout payment
 method provided by Braintree. They can be omitted unless you need to
 support Visa Checkout.
 
-The options that are required to initialize the Chasepay payment method. They can be omitted unless you need to support Chasepay.
-
 ___
 
 ### `Optional` chasepay
@@ -122,8 +108,6 @@ ___
 
 The options that are required to initialize the Chasepay payment method.
 They can be omitted unless you need to support Chasepay.
-
-*__alpha__*: Please note that this option is currently in an early stage of development. Therefore the API is unstable and not ready for public consumption.
 
 ___
 
@@ -135,8 +119,6 @@ ___
 Please note that this option is currently in an early stage of
 development. Therefore the API is unstable and not ready for public
 consumption.
-
-The identifier of the payment provider providing the payment method. This option is only required if the provider offers multiple payment options. i.e.: Adyen and Klarna.
 
 ___
 
@@ -150,8 +132,6 @@ The identifier of the payment provider providing the payment method. This
 option is only required if the provider offers multiple payment options.
 i.e.: Adyen and Klarna.
 
-The options that are required to initialize the GooglePay Authorize.Net payment method. They can be omitted unless you need to support GooglePay.
-
 ___
 
 ### `Optional` googlepayadyenv2
@@ -160,8 +140,6 @@ ___
 
 The options that are required to initialize the GooglePay Authorize.Net
 payment method. They can be omitted unless you need to support GooglePay.
-
-The options that are required to initialize the GooglePay Authorize.Net payment method. They can be omitted unless you need to support GooglePay.
 
 ___
 
@@ -172,8 +150,6 @@ ___
 The options that are required to initialize the GooglePay Authorize.Net
 payment method. They can be omitted unless you need to support GooglePay.
 
-The options that are required to initialize the GooglePay Braintree payment method. They can be omitted unless you need to support GooglePay.
-
 ___
 
 ### `Optional` googlepaybraintree
@@ -182,8 +158,6 @@ ___
 
 The options that are required to initialize the GooglePay Braintree payment method.
 They can be omitted unless you need to support GooglePay.
-
-The options that are required to initialize the GooglePay Stripe payment method. They can be omitted unless you need to support GooglePay.
 
 ___
 
@@ -194,8 +168,6 @@ ___
 The options that are required to initialize the GooglePay Checkout.com payment method.
 They can be omitted unless you need to support GooglePay.
 
-The options that are required to initialize the Klarna payment method. They can be omitted unless you need to support Klarna.
-
 ___
 
 ### `Optional` googlepaystripe
@@ -204,8 +176,6 @@ ___
 
 The options that are required to initialize the GooglePay Stripe payment method.
 They can be omitted unless you need to support GooglePay.
-
-The options that are required to initialize the KlarnaV2 payment method. They can be omitted unless you need to support KlarnaV2.
 
 ___
 
@@ -216,8 +186,6 @@ ___
 The options that are required to initialize the Klarna payment method.
 They can be omitted unless you need to support Klarna.
 
-The options that are required to initialize the Masterpass payment method. They can be omitted unless you need to support Masterpass.
-
 ___
 
 ### `Optional` klarnav2
@@ -226,8 +194,6 @@ ___
 
 The options that are required to initialize the KlarnaV2 payment method.
 They can be omitted unless you need to support KlarnaV2.
-
-The identifier of the payment method.
 
 ___
 
@@ -248,8 +214,6 @@ ___
 
 The identifier of the payment method.
 
-The parameters of the request, if required.
-
 ___
 
 ### `Optional` params
@@ -260,8 +224,6 @@ ___
 
 The parameters of the request, if required.
 
-The options that are required to initialize the PayPal Express payment method. They can be omitted unless you need to support PayPal Express.
-
 ___
 
 ### `Optional` paypalexpress
@@ -270,8 +232,6 @@ ___
 
 The options that are required to initialize the PayPal Express payment method.
 They can be omitted unless you need to support PayPal Express.
-
-The options that are required to initialize the Square payment method. They can be omitted unless you need to support Square.
 
 ___
 
@@ -282,8 +242,6 @@ ___
 The options that are required to initialize the Square payment method.
 They can be omitted unless you need to support Square.
 
-The options that are required to initialize the Stripe payment method. They can be omitted unless you need to support StripeV3.
-
 ___
 
 ### `Optional` stripev3
@@ -292,8 +250,6 @@ ___
 
 The options that are required to initialize the Stripe payment method.
 They can be omitted unless you need to support StripeV3.
-
-Provide this option if you want to cancel or time out the request. If the timeout object completes before the request, the request will be cancelled.
 
 ___
 

@@ -29,14 +29,6 @@ await service.deinitializeButton({
 });
 ```
 
-De-initializes the checkout button by performing any necessary clean-ups.
-
-```js
-await service.deinitializeButton({
-    methodId: 'braintreepaypal',
-});
-```
-
 **Parameters:**
 
 Name | Type | Description |
@@ -68,6 +60,7 @@ console.log(state.statuses.isInitializingButton());
 **Returns:** *[CheckoutButtonSelectors](../interfaces/checkoutbuttonselectors.md)*
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 Returns a snapshot of the current state.
 
@@ -80,6 +73,8 @@ console.log(state.errors.getInitializeButtonError());
 console.log(state.statuses.isInitializingButton());
 ```
 
+=======
+>>>>>>> build
 **Returns:** [CheckoutButtonSelectors](../interfaces/checkoutbuttonselectors.md)
 >>>>>>> build
 The current customer's checkout state
@@ -94,19 +89,6 @@ Initializes the checkout button of a payment method.
 
 When the checkout button is initialized, it will be inserted into the DOM,
 ready to be interacted with by the customer.
-
-```js
-initializer.initializeButton({
-    methodId: 'braintreepaypal',
-    containerId: 'checkoutButton',
-    braintreepaypal: {
-    },
-});
-```
-
-Initializes the checkout button of a payment method.
-
-When the checkout button is initialized, it will be inserted into the DOM, ready to be interacted with by the customer.
 
 ```js
 initializer.initializeButton({
@@ -146,27 +128,6 @@ service.subscribe(state => {
 
 The method can be configured to notify subscribers only regarding
 relevant changes, by providing a filter function.
-
-```js
-const filter = state => state.errors.getInitializeButtonError();
-
-// Only trigger the subscriber when the cart changes.
-service.subscribe(state => {
-    console.log(state.errors.getInitializeButtonError())
-}, filter);
-```
-
-Subscribes to any changes to the current state.
-
-The method registers a callback function and executes it every time there is a change in the current state.
-
-```js
-service.subscribe(state => {
-    console.log(state.statuses.isInitializingButton());
-});
-```
-
-The method can be configured to notify subscribers only regarding relevant changes, by providing a filter function.
 
 ```js
 const filter = state => state.errors.getInitializeButtonError();

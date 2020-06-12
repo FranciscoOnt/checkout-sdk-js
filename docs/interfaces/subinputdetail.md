@@ -25,15 +25,11 @@
 
 Configuration parameters for the required input.
 
-Configuration parameters for the required input.
-
 ___
 
 ### `Optional` items
 
 • **items**? : *[Item](item.md)[]*
-
-In case of a select, the items to choose from.
 
 In case of a select, the items to choose from.
 
@@ -45,15 +41,11 @@ ___
 
 The value to provide in the result.
 
-The value to provide in the result.
-
 ___
 
 ### `Optional` optional
 
 • **optional**? : *undefined | false | true*
-
-True if this input is optional to provide.
 
 True if this input is optional to provide.
 
@@ -63,10 +55,13 @@ ___
 
 • **type**? : *undefined | string*
 
+<<<<<<< HEAD
 The type of the required input.
 <<<<<<< HEAD
 =======
 
+=======
+>>>>>>> build
 ___
 <a id="value"></a>
 >>>>>>> build
@@ -76,10 +71,13 @@ ___
 ### `Optional` value
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 • **value**? : *undefined | string*
 =======
 The value can be pre-filled, if available.
 
+=======
+>>>>>>> build
 ___
 >>>>>>> build
 

@@ -39,8 +39,6 @@
 
 Array of card brands that will be recognized by the component.
 
-Array of card brands that will be recognized by the component.
-
 ___
 
 ### `Optional` details
@@ -50,15 +48,11 @@ ___
 Set an object containing the details array for type: scheme from
 the /paymentMethods response.
 
-Set an object containing the details array for type: scheme from the /paymentMethods response.
-
 ___
 
 ### `Optional` enableStoreDetails
 
 • **enableStoreDetails**? : *undefined | false | true*
-
-Set to true to show the checkbox to save card details for the next payment.
 
 Set to true to show the checkbox to save card details for the next payment.
 
@@ -73,15 +67,11 @@ facilitate brand recognition used in the Secured Fields onBrand callback.
 See list of available card types. If a shopper enters a card type not
 specified in the GroupTypes configuration, the onBrand callback will not be invoked.
 
-Defaults to \['mc','visa','amex'\]. Configure supported card types to facilitate brand recognition used in the Secured Fields onBrand callback. See list of available card types. If a shopper enters a card type not specified in the GroupTypes configuration, the onBrand callback will not be invoked.
-
 ___
 
 ### `Optional` hasHolderName
 
 • **hasHolderName**? : *undefined | false | true*
-
-Set to true to request the name of the card holder.
 
 Set to true to request the name of the card holder.
 
@@ -93,15 +83,11 @@ ___
 
 Prefill the card holder name field. Supported from Card component
 
-Prefill the card holder name field. Supported from Card component
-
 ___
 
 ### `Optional` holderNameRequired
 
 • **holderNameRequired**? : *undefined | false | true*
-
-Set to true to require the card holder name.
 
 Set to true to require the card holder name.
 
@@ -113,14 +99,13 @@ ___
 
 Specify the sample values you want to appear for card detail input fields.
 
-Specify the sample values you want to appear for card detail input fields.
-
 ___
 
 ### `Optional` styles
 
 • **styles**? : *[StyleOptions](styleoptions.md)*
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 *Inherited from [AdyenBaseCardComponentOptions](adyenbasecardcomponentoptions.md).[styles](adyenbasecardcomponentoptions.md#optional-styles)*
 
@@ -129,6 +114,8 @@ for a list of supported properties.
 =======
 Set a style object to customize the input fields. See Styling Secured Fields for a list of supported properties.
 
+=======
+>>>>>>> build
 ___
 >>>>>>> build
 
@@ -142,8 +129,6 @@ ___
 
 Called when the shopper enters data in the card input fields.
 Here you have the option to override your main Adyen Checkout configuration.
-
-Called when the shopper enters data in the card input fields. Here you have the option to override your main Adyen Checkout configuration.
 
 **Parameters:**
 
@@ -161,10 +146,13 @@ ___
 ▸ **onError**(`state`: [AdyenComponentState](../README.md#adyencomponentstate), `component`: [AdyenComponent](adyencomponent.md)): *void*
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 *Inherited from [AdyenComponentEvents](adyencomponentevents.md).[onError](adyencomponentevents.md#optional-onerror)*
 =======
 Called in case of an invalid card number, invalid expiry date, or incomplete field. Called again when errors are cleared.
 
+=======
+>>>>>>> build
 **Parameters:**
 >>>>>>> build
 

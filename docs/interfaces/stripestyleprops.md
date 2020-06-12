@@ -26,8 +26,6 @@
 The base class applied to the container.
 Defaults to StripeElement.
 
-The base class applied to the container. Defaults to StripeElement.
-
 ___
 
 ### `Optional` complete
@@ -36,8 +34,6 @@ ___
 
 The class name to apply when the Element is complete.
 Defaults to StripeElement--complete.
-
-The class name to apply when the Element is complete. Defaults to StripeElement--complete.
 
 ___
 
@@ -48,8 +44,6 @@ ___
 The class name to apply when the Element is empty.
 Defaults to StripeElement--empty.
 
-The class name to apply when the Element is empty. Defaults to StripeElement--empty.
-
 ___
 
 ### `Optional` focus
@@ -59,8 +53,6 @@ ___
 The class name to apply when the Element is focused.
 Defaults to StripeElement--focus.
 
-The class name to apply when the Element is focused. Defaults to StripeElement--focus.
-
 ___
 
 ### `Optional` invalid
@@ -68,11 +60,14 @@ ___
 • **invalid**? : *[CardElementProps](cardelementprops.md)*
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 The class name to apply when the Element is invalid.
 Defaults to StripeElement--invalid.
 =======
 The class name to apply when the Element is invalid. Defaults to StripeElement--invalid.
 
+=======
+>>>>>>> build
 ___
 <a id="webkitautofill"></a>
 >>>>>>> build
@@ -82,10 +77,13 @@ ___
 ### `Optional` webkitAutofill
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 • **webkitAutofill**? : *[CardElementProps](cardelementprops.md)*
 =======
 The class name to apply when the Element has its value autofilled by the browser (only on Chrome and Safari). Defaults to StripeElement--webkit-autofill.
 
+=======
+>>>>>>> build
 ___
 >>>>>>> build
 

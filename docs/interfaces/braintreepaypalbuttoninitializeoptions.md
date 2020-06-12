@@ -27,8 +27,6 @@
 
 Whether or not to show a credit button.
 
-Whether or not to show a credit button.
-
 ___
 
 ### `Optional` shippingAddress
@@ -38,18 +36,19 @@ ___
 Address to be used for shipping.
 If not provided, it will use the first saved address from the active customer.
 
-Address to be used for shipping. If not provided, it will use the first saved address from the active customer.
-
 ___
 
 ### `Optional` style
 
 • **style**? : *Pick‹[PaypalButtonStyleOptions](paypalbuttonstyleoptions.md), "layout" | "size" | "color" | "label" | "shape" | "tagline" | "fundingicons"›*
 
+<<<<<<< HEAD
 A set of styling options for the checkout button.
 <<<<<<< HEAD
 =======
 
+=======
+>>>>>>> build
 ___
 >>>>>>> build
 
@@ -58,8 +57,6 @@ ___
 ### `Optional` onAuthorizeError
 
 ▸ **onAuthorizeError**(`error`: [BraintreeError](braintreeerror.md) | [StandardError](../classes/standarderror.md)): *void*
-
-A callback that gets called if unable to authorize and tokenize payment.
 
 A callback that gets called if unable to authorize and tokenize payment.
 
@@ -77,10 +74,13 @@ ___
 
 ▸ **onPaymentError**(`error`: [BraintreeError](braintreeerror.md) | [StandardError](../classes/standarderror.md)): *void*
 
+<<<<<<< HEAD
 A callback that gets called if unable to submit payment.
 <<<<<<< HEAD
 =======
 
+=======
+>>>>>>> build
 **Parameters:**
 >>>>>>> build
 

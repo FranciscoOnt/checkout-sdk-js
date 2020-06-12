@@ -9,10 +9,6 @@ This object has a set of getters that would return an error if an action is
 not executed successfully. For example, if you are unable to submit an order,
 you can use this object to retrieve the reason for the failure.
 
-Responsible for getting the error of any asynchronous checkout action, if there is any.
-
-This object has a set of getters that would return an error if an action is not executed successfully. For example, if you are unable to submit an order, you can use this object to retrieve the reason for the failure.
-
 ## Hierarchy
 
 * **CheckoutStoreErrorSelector**
@@ -62,6 +58,7 @@ This object has a set of getters that would return an error if an action is not 
 
 ▸ **getApplyCouponError**(): *[RequestError](../classes/requesterror.md) | undefined*
 
+<<<<<<< HEAD
 Returns an error if unable to apply a coupon code.
 
 <<<<<<< HEAD
@@ -69,6 +66,8 @@ Returns an error if unable to apply a coupon code.
 =======
 Returns an error if unable to apply a coupon code.
 
+=======
+>>>>>>> build
 **Returns:**  [RequestError](../classes/requesterror.md) &#124; `undefined`
 >>>>>>> build
 
@@ -83,10 +82,13 @@ ___
 Returns an error if unable to apply a gift certificate.
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 **Returns:** *[RequestError](../classes/requesterror.md) | undefined*
 =======
 Returns an error if unable to apply a gift certificate.
 
+=======
+>>>>>>> build
 **Returns:**  [RequestError](../classes/requesterror.md) &#124; `undefined`
 >>>>>>> build
 
@@ -98,11 +100,14 @@ ___
 
 ▸ **getApplyStoreCreditError**(): *[RequestError](../classes/requesterror.md) | undefined*
 
+<<<<<<< HEAD
 Returns an error if unable to apply store credit.
 
 <<<<<<< HEAD
 **Returns:** *[RequestError](../classes/requesterror.md) | undefined*
 =======
+=======
+>>>>>>> build
 **Returns:**  [RequestError](../classes/requesterror.md) &#124; `undefined`
 >>>>>>> build
 
@@ -114,6 +119,7 @@ ___
 
 ▸ **getContinueAsGuestError**(): *[Error](amazonpaywidgeterror.md#error) | undefined*
 
+<<<<<<< HEAD
 Returns an error if unable to continue as guest.
 
 The call could fail in scenarios where guest checkout is not allowed, for example, when existing accounts are required to sign-in.
@@ -132,6 +138,8 @@ For more information about status codes, check [Checkout Storefront API - Add Ch
 =======
 Returns an error if unable to continue as guest.
 
+=======
+>>>>>>> build
 **Returns:**  `Error` &#124; `undefined`
 >>>>>>> build
 
@@ -143,11 +151,14 @@ ___
 
 ▸ **getCreateConsignmentsError**(): *[Error](amazonpaywidgeterror.md#error) | undefined*
 
+<<<<<<< HEAD
 Returns an error if unable to create consignments.
 
 <<<<<<< HEAD
 **Returns:** *[Error](amazonpaywidgeterror.md#error) | undefined*
 =======
+=======
+>>>>>>> build
 **Returns:**  `Error` &#124; `undefined`
 >>>>>>> build
 
@@ -164,10 +175,6 @@ Returns an error if unable to delete a consignment.
 A consignment ID should be provided when checking for an error for a
 specific consignment, otherwise it will check for all available consignments.
 
-Returns an error if unable to delete a consignment.
-
-A consignment ID should be provided when checking for an error for a specific consignment, otherwise it will check for all available consignments.
-
 **Parameters:**
 
 Name | Type | Description |
@@ -183,8 +190,6 @@ ___
 ###  getDeleteInstrumentError
 
 ▸ **getDeleteInstrumentError**(`instrumentId?`: undefined | string): *[Error](amazonpaywidgeterror.md#error) | undefined*
-
-Returns an error if unable to delete a payment instrument.
 
 Returns an error if unable to delete a payment instrument.
 
@@ -212,6 +217,7 @@ ___
 
 ▸ **getFinalizeOrderError**(): *[Error](amazonpaywidgeterror.md#error) | undefined*
 
+<<<<<<< HEAD
 Returns an error if unable to finalize the current order.
 
 <<<<<<< HEAD
@@ -219,6 +225,8 @@ Returns an error if unable to finalize the current order.
 =======
 Returns an error if unable to finalize the current order.
 
+=======
+>>>>>>> build
 **Returns:**  `Error` &#124; `undefined`
 >>>>>>> build
 
@@ -232,8 +240,6 @@ ___
 
 Returns an error if unable to initialize the customer step of a checkout
 process.
-
-Returns an error if unable to initialize the customer step of a checkout process.
 
 **Parameters:**
 
@@ -250,8 +256,6 @@ ___
 ###  getInitializePaymentError
 
 ▸ **getInitializePaymentError**(`methodId?`: undefined | string): *[Error](amazonpaywidgeterror.md#error) | undefined*
-
-Returns an error if unable to initialize a specific payment method.
 
 Returns an error if unable to initialize a specific payment method.
 
@@ -274,8 +278,6 @@ ___
 Returns an error if unable to initialize the shipping step of a checkout
 process.
 
-Returns an error if unable to initialize the shipping step of a checkout process.
-
 **Parameters:**
 
 Name | Type | Description |
@@ -295,10 +297,13 @@ ___
 Returns an error if unable to load billing countries.
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 **Returns:** *[Error](amazonpaywidgeterror.md#error) | undefined*
 =======
 Returns an error if unable to load billing countries.
 
+=======
+>>>>>>> build
 **Returns:**  `Error` &#124; `undefined`
 >>>>>>> build
 
@@ -310,11 +315,14 @@ ___
 
 ▸ **getLoadCartError**(): *[Error](amazonpaywidgeterror.md#error) | undefined*
 
+<<<<<<< HEAD
 Returns an error if unable to load the current cart.
 
 <<<<<<< HEAD
 **Returns:** *[Error](amazonpaywidgeterror.md#error) | undefined*
 =======
+=======
+>>>>>>> build
 **Returns:**  `Error` &#124; `undefined`
 >>>>>>> build
 
@@ -329,10 +337,13 @@ ___
 Returns an error if unable to load the current checkout.
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 **Returns:** *[Error](amazonpaywidgeterror.md#error) | undefined*
 =======
 Returns an error if unable to load the current checkout.
 
+=======
+>>>>>>> build
 **Returns:**  `Error` &#124; `undefined`
 >>>>>>> build
 
@@ -347,10 +358,13 @@ ___
 Returns an error if unable to load the checkout configuration of a store.
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 **Returns:** *[Error](amazonpaywidgeterror.md#error) | undefined*
 =======
 Returns an error if unable to load the checkout configuration of a store.
 
+=======
+>>>>>>> build
 **Returns:**  `Error` &#124; `undefined`
 >>>>>>> build
 
@@ -362,11 +376,14 @@ ___
 
 ▸ **getLoadInstrumentsError**(): *[Error](amazonpaywidgeterror.md#error) | undefined*
 
+<<<<<<< HEAD
 Returns an error if unable to load payment instruments.
 
 <<<<<<< HEAD
 **Returns:** *[Error](amazonpaywidgeterror.md#error) | undefined*
 =======
+=======
+>>>>>>> build
 **Returns:**  `Error` &#124; `undefined`
 >>>>>>> build
 
@@ -381,10 +398,13 @@ ___
 Returns an error if unable to load the current order.
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 **Returns:** *[Error](amazonpaywidgeterror.md#error) | undefined*
 =======
 Returns an error if unable to load the current order.
 
+=======
+>>>>>>> build
 **Returns:**  `Error` &#124; `undefined`
 >>>>>>> build
 
@@ -395,8 +415,6 @@ ___
 ###  getLoadPaymentMethodError
 
 ▸ **getLoadPaymentMethodError**(`methodId?`: undefined | string): *[Error](amazonpaywidgeterror.md#error) | undefined*
-
-Returns an error if unable to load a specific payment method.
 
 Returns an error if unable to load a specific payment method.
 
@@ -416,11 +434,14 @@ ___
 
 ▸ **getLoadPaymentMethodsError**(): *[Error](amazonpaywidgeterror.md#error) | undefined*
 
+<<<<<<< HEAD
 Returns an error if unable to load payment methods.
 
 <<<<<<< HEAD
 **Returns:** *[Error](amazonpaywidgeterror.md#error) | undefined*
 =======
+=======
+>>>>>>> build
 **Returns:**  `Error` &#124; `undefined`
 >>>>>>> build
 
@@ -432,6 +453,7 @@ ___
 
 ▸ **getLoadShippingCountriesError**(): *[Error](amazonpaywidgeterror.md#error) | undefined*
 
+<<<<<<< HEAD
 Returns an error if unable to load shipping countries.
 
 <<<<<<< HEAD
@@ -439,6 +461,8 @@ Returns an error if unable to load shipping countries.
 =======
 Returns an error if unable to load shipping countries.
 
+=======
+>>>>>>> build
 **Returns:**  `Error` &#124; `undefined`
 >>>>>>> build
 
@@ -453,10 +477,13 @@ ___
 Returns an error if unable to load shipping options.
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 **Returns:** *[Error](amazonpaywidgeterror.md#error) | undefined*
 =======
 Returns an error if unable to load shipping options.
 
+=======
+>>>>>>> build
 **Returns:**  `Error` &#124; `undefined`
 >>>>>>> build
 
@@ -468,11 +495,14 @@ ___
 
 ▸ **getRemoveCouponError**(): *[RequestError](../classes/requesterror.md) | undefined*
 
+<<<<<<< HEAD
 Returns an error if unable to remove a coupon code.
 
 <<<<<<< HEAD
 **Returns:** *[RequestError](../classes/requesterror.md) | undefined*
 =======
+=======
+>>>>>>> build
 **Returns:**  [RequestError](../classes/requesterror.md) &#124; `undefined`
 >>>>>>> build
 
@@ -487,10 +517,13 @@ ___
 Returns an error if unable to remove a gift certificate.
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 **Returns:** *[RequestError](../classes/requesterror.md) | undefined*
 =======
 Returns an error if unable to remove a gift certificate.
 
+=======
+>>>>>>> build
 **Returns:**  [RequestError](../classes/requesterror.md) &#124; `undefined`
 >>>>>>> build
 
@@ -506,10 +539,6 @@ Returns an error if unable to select a shipping option.
 
 A consignment ID should be provided when checking for an error for a
 specific consignment, otherwise it will check for all available consignments.
-
-Returns an error if unable to select a shipping option.
-
-A consignment ID should be provided when checking for an error for a specific consignment, otherwise it will check for all available consignments.
 
 **Parameters:**
 
@@ -530,10 +559,13 @@ ___
 Returns an error if unable to send sign-in email.
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 **Returns:** *[Error](amazonpaywidgeterror.md#error) | undefined*
 =======
 Returns an error if unable to send sign-in email.
 
+=======
+>>>>>>> build
 **Returns:**  `Error` &#124; `undefined`
 >>>>>>> build
 
@@ -548,10 +580,13 @@ ___
 Returns an error if unable to sign in.
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 **Returns:** *[Error](amazonpaywidgeterror.md#error) | undefined*
 =======
 Returns an error if unable to sign in.
 
+=======
+>>>>>>> build
 **Returns:**  `Error` &#124; `undefined`
 >>>>>>> build
 
@@ -563,11 +598,14 @@ ___
 
 ▸ **getSignOutError**(): *[Error](amazonpaywidgeterror.md#error) | undefined*
 
+<<<<<<< HEAD
 Returns an error if unable to sign out.
 
 <<<<<<< HEAD
 **Returns:** *[Error](amazonpaywidgeterror.md#error) | undefined*
 =======
+=======
+>>>>>>> build
 **Returns:**  `Error` &#124; `undefined`
 >>>>>>> build
 
@@ -579,6 +617,7 @@ ___
 
 ▸ **getSubmitOrderError**(): *[Error](amazonpaywidgeterror.md#error) | undefined*
 
+<<<<<<< HEAD
 Returns an error if unable to submit the current order.
 
 <<<<<<< HEAD
@@ -586,6 +625,8 @@ Returns an error if unable to submit the current order.
 =======
 Returns an error if unable to submit the current order.
 
+=======
+>>>>>>> build
 **Returns:**  `Error` &#124; `undefined`
 >>>>>>> build
 
@@ -600,10 +641,13 @@ ___
 Returns an error if unable to update billing address.
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 **Returns:** *[Error](amazonpaywidgeterror.md#error) | undefined*
 =======
 Returns an error if unable to update billing address.
 
+=======
+>>>>>>> build
 **Returns:**  `Error` &#124; `undefined`
 >>>>>>> build
 
@@ -615,11 +659,14 @@ ___
 
 ▸ **getUpdateCheckoutError**(): *[Error](amazonpaywidgeterror.md#error) | undefined*
 
+<<<<<<< HEAD
 Returns an error if unable to update the current checkout.
 
 <<<<<<< HEAD
 **Returns:** *[Error](amazonpaywidgeterror.md#error) | undefined*
 =======
+=======
+>>>>>>> build
 **Returns:**  `Error` &#124; `undefined`
 >>>>>>> build
 
@@ -635,10 +682,6 @@ Returns an error if unable to update a consignment.
 
 A consignment ID should be provided when checking for an error for a
 specific consignment, otherwise it will check for all available consignments.
-
-Returns an error if unable to update a consignment.
-
-A consignment ID should be provided when checking for an error for a specific consignment, otherwise it will check for all available consignments.
 
 **Parameters:**
 
@@ -656,11 +699,14 @@ ___
 
 ▸ **getUpdateShippingAddressError**(): *[Error](amazonpaywidgeterror.md#error) | undefined*
 
+<<<<<<< HEAD
 Returns an error if unable to update shipping address.
 
 <<<<<<< HEAD
 **Returns:** *[Error](amazonpaywidgeterror.md#error) | undefined*
 =======
+=======
+>>>>>>> build
 **Returns:**  `Error` &#124; `undefined`
 >>>>>>> build
 
@@ -672,10 +718,13 @@ ___
 
 ▸ **getUpdateSubscriptionsError**(): *[Error](amazonpaywidgeterror.md#error) | undefined*
 
+<<<<<<< HEAD
 Returns an error if unable to update subscriptions.
 <<<<<<< HEAD
 =======
 
+=======
+>>>>>>> build
 **Returns:**  `Error` &#124; `undefined`
 >>>>>>> build
 

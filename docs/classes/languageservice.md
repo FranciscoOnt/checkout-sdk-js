@@ -10,12 +10,6 @@ appropriate for a given locale.
 The language strings provided to the object should follow [ICU
 MessageFormat](http://userguide.icu-project.org/formatparse/messages) syntax.
 
-Responsible for getting language strings.
-
-This object can be used to retrieve language strings that are most appropriate for a given locale.
-
-The language strings provided to the object should follow [ICU MessageFormat](http://userguide.icu-project.org/formatparse/messages) syntax.
-
 ## Hierarchy
 
 * **LanguageService**
@@ -39,9 +33,12 @@ Gets the preferred locale of the current customer.
 **Returns:** *string*
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 Gets the preferred locale of the current customer.
 
+=======
+>>>>>>> build
 **Returns:** `string`
 >>>>>>> build
 The preferred locale code.
@@ -51,16 +48,6 @@ ___
 ###  mapKeys
 
 ▸ **mapKeys**(`maps`: object): *void*
-
-Remaps a set of language strings with a different set of keys.
-
-```js
-service.mapKeys({
-    'new_key': 'existing_key',
-});
-
-console.log(service.translate('new_key'));
-```
 
 Remaps a set of language strings with a different set of keys.
 
@@ -86,6 +73,7 @@ ___
 
 ▸ **translate**(`key`: string, `data?`: [TranslationData](../interfaces/translationdata.md)): *string*
 
+<<<<<<< HEAD
 Gets a language string by a key.
 <<<<<<< HEAD
 =======
@@ -100,6 +88,8 @@ If the language string contains a placeholder, you can replace it by providing a
 service.translate('language_key', { placeholder: 'Hello' });
 ```
 
+=======
+>>>>>>> build
 **Parameters:**
 >>>>>>> build
 

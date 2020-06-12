@@ -4,8 +4,6 @@
 
 The set of options for configuring the checkout button.
 
-The set of options for configuring the checkout button.
-
 ## Type parameters
 
 ▪ **TParams**
@@ -34,8 +32,6 @@ The set of options for configuring the checkout button.
 
 The identifier of the payment method.
 
-The identifier of the payment method.
-
 ___
 
 ### `Optional` params
@@ -46,8 +42,6 @@ ___
 
 The parameters of the request, if required.
 
-The parameters of the request, if required.
-
 ___
 
 ### `Optional` timeout
@@ -55,10 +49,13 @@ ___
 • **timeout**? : *Timeout*
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 *Inherited from [CheckoutButtonInitializeOptions](checkoutbuttoninitializeoptions.md).[timeout](checkoutbuttoninitializeoptions.md#optional-timeout)*
 =======
 Provide this option if you want to cancel or time out the request. If the timeout object completes before the request, the request will be cancelled.
 
+=======
+>>>>>>> build
 ___
 >>>>>>> build
 

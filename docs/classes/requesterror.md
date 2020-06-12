@@ -5,8 +5,6 @@
 Throw this error if we are unable to make a request to the server. It wraps
 any server response into a JS error object.
 
-Throw this error if we are unable to make a request to the server. It wraps any server response into a JS error object.
-
 ## Type parameters
 
 ▪ **TBody**

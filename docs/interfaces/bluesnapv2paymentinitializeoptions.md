@@ -8,10 +8,6 @@ method.
 The payment step is done through a web page via an iframe provided by the
 strategy.
 
-A set of options that are required to initialize the BlueSnap V2 payment method.
-
-The payment step is done through a web page via an iframe provided by the strategy.
-
 ## Hierarchy
 
 * **BlueSnapV2PaymentInitializeOptions**
@@ -32,10 +28,13 @@ The payment step is done through a web page via an iframe provided by the strate
 
 • **style**? : *[BlueSnapV2StyleProps](bluesnapv2styleprops.md)*
 
+<<<<<<< HEAD
 A set of CSS properties to apply to the iframe.
 <<<<<<< HEAD
 =======
 
+=======
+>>>>>>> build
 ___
 >>>>>>> build
 
@@ -48,8 +47,6 @@ ___
 A callback that gets called when the iframe is ready to be added to the
 current page. It is responsible for determining where the iframe should
 be inserted in the DOM.
-
-A callback that gets called when the iframe is ready to be added to the current page. It is responsible for determining where the iframe should be inserted in the DOM.
 
 **Parameters:**
 

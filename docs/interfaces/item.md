@@ -21,17 +21,18 @@
 
 The value to provide in the result.
 
-The value to provide in the result.
-
 ___
 
 ### `Optional` name
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 • **name**? : *undefined | string*
 =======
 The display name.
 
+=======
+>>>>>>> build
 ___
 >>>>>>> build
 

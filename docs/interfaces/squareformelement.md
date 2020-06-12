@@ -4,8 +4,6 @@
 
 Configures any form element provided by Square payment.
 
-Configures any form element provided by Square payment.
-
 ## Hierarchy
 
 * **SquareFormElement**
@@ -23,10 +21,13 @@ Configures any form element provided by Square payment.
 
 • **elementId**: *string*
 
+<<<<<<< HEAD
 The ID of the container which the form element should insert into.
 <<<<<<< HEAD
 =======
 
+=======
+>>>>>>> build
 ___
 <a id="placeholder"></a>
 >>>>>>> build
@@ -36,10 +37,13 @@ ___
 ### `Optional` placeholder
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 • **placeholder**? : *undefined | string*
 =======
 The placeholder text to use for the form element, if provided.
 
+=======
+>>>>>>> build
 ___
 >>>>>>> build
 

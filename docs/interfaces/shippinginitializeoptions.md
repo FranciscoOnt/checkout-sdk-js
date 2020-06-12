@@ -11,10 +11,6 @@ their shipping address using their address book widget. As a result, you may
 need to provide additional information in order to initialize the shipping
 step of checkout.
 
-A set of options that are required to initialize the shipping step of the current checkout flow.
-
-Some payment methods have specific requirements for setting the shipping details for checkout. For example, Amazon Pay requires the customer to enter their shipping address using their address book widget. As a result, you may need to provide additional information in order to initialize the shipping step of checkout.
-
 ## Type parameters
 
 ▪ **T**
@@ -44,8 +40,6 @@ Some payment methods have specific requirements for setting the shipping details
 The options that are required to initialize the shipping step of checkout
 when using Amazon Pay.
 
-The options that are required to initialize the shipping step of checkout when using Amazon Pay.
-
 ___
 
 ### `Optional` amazonpay
@@ -65,8 +59,6 @@ ___
 
 *Inherited from [ShippingInitializeOptions](shippinginitializeoptions.md).[methodId](shippinginitializeoptions.md#optional-methodid)*
 
-The parameters of the request, if required.
-
 ___
 
 ### `Optional` params
@@ -76,8 +68,6 @@ ___
 *Inherited from [CheckoutButtonInitializeOptions](checkoutbuttoninitializeoptions.md).[params](checkoutbuttoninitializeoptions.md#optional-params)*
 
 The parameters of the request, if required.
-
-Provide this option if you want to cancel or time out the request. If the timeout object completes before the request, the request will be cancelled.
 
 ___
 

@@ -8,10 +8,6 @@ Once Square payment is initialized, credit card form fields, provided by the
 payment provider as iframes, will be inserted into the current page. These
 options provide a location and styling for each of the form fields.
 
-A set of options that are required to initialize the Square payment method.
-
-Once Square payment is initialized, credit card form fields, provided by the payment provider as iframes, will be inserted into the current page. These options provide a location and styling for each of the form fields.
-
 ## Hierarchy
 
 * **SquarePaymentInitializeOptions**
@@ -41,15 +37,11 @@ Once Square payment is initialized, credit card form fields, provided by the pay
 
 The location to insert the credit card number form field.
 
-The location to insert the credit card number form field.
-
 ___
 
 ###  cvv
 
 • **cvv**: *[SquareFormElement](squareformelement.md)*
-
-The location to insert the CVV form field.
 
 The location to insert the CVV form field.
 
@@ -61,15 +53,11 @@ ___
 
 The location to insert the expiration date form field.
 
-The location to insert the expiration date form field.
-
 ___
 
 ### `Optional` inputClass
 
 • **inputClass**? : *undefined | string*
-
-The CSS class to apply to all form fields.
 
 The CSS class to apply to all form fields.
 
@@ -81,15 +69,11 @@ ___
 
 The set of CSS styles to apply to all form fields.
 
-The set of CSS styles to apply to all form fields.
-
 ___
 
 ### `Optional` masterpass
 
 • **masterpass**? : *[SquareFormElement](squareformelement.md)*
-
-Initialize Masterpass placeholder ID
 
 Initialize Masterpass placeholder ID
 
@@ -99,10 +83,13 @@ ___
 
 • **postalCode**: *[SquareFormElement](squareformelement.md)*
 
+<<<<<<< HEAD
 The location to insert the postal code form field.
 <<<<<<< HEAD
 =======
 
+=======
+>>>>>>> build
 ___
 >>>>>>> build
 
@@ -111,8 +98,6 @@ ___
 ### `Optional` onError
 
 ▸ **onError**(`errors?`: [NonceGenerationError](noncegenerationerror.md)[]): *void*
-
-A callback that gets called when an error occurs in the card nonce generation
 
 A callback that gets called when an error occurs in the card nonce generation
 
@@ -129,10 +114,13 @@ ___
 ### `Optional` onPaymentSelect
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 ▸ **onPaymentSelect**(): *void*
 =======
 A callback that gets called when the customer selects a payment option.
 
+=======
+>>>>>>> build
 **Returns:** `void`
 >>>>>>> build
 
