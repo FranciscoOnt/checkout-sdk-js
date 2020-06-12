@@ -8,6 +8,10 @@ Once AdyenV2 payment is initialized, credit card form fields, provided by the
 payment provider as IFrames, will be inserted into the current page. These
 options provide a location and styling for each of the form fields.
 
+A set of options that are required to initialize the AdyenV2 payment method.
+
+Once AdyenV2 payment is initialized, credit card form fields, provided by the payment provider as IFrames, will be inserted into the current page. These options provide a location and styling for each of the form fields.
+
 ## Hierarchy
 
 * **AdyenV2PaymentInitializeOptions**
@@ -32,11 +36,15 @@ options provide a location and styling for each of the form fields.
 
 A set of options that are required to initialize additional payment actions.
 
+A set of options that are required to initialize additional payment actions.
+
 ___
 
 ### `Optional` cardVerificationContainerId
 
 • **cardVerificationContainerId**? : *undefined | string*
+
+The location to insert the Adyen custom card component
 
 The location to insert the Adyen custom card component
 
@@ -48,6 +56,8 @@ ___
 
 The location to insert the Adyen component.
 
+The location to insert the Adyen component.
+
 ___
 
 ### `Optional` hasVaultedInstruments
@@ -56,11 +66,15 @@ ___
 
 True if the Adyen component has some Vaulted instrument
 
+True if the Adyen component has some Vaulted instrument
+
 ___
 
 ### `Optional` options
 
 • **options**? : *[Omit](../README.md#omit)‹[AdyenCreditCardComponentOptions](adyencreditcardcomponentoptions.md), "onChange"› | [AdyenIdealComponentOptions](adyenidealcomponentoptions.md)*
+
+Optional. Overwriting the default options
 
 Optional. Overwriting the default options
 
@@ -73,11 +87,21 @@ ___
 **`deprecated`** The location to insert the Adyen 3DS V2 component.
 Use additionalActionOptions instead as this property will be removed in the future
 
+*__deprecated__*: The location to insert the Adyen 3DS V2 component. Use additionalActionOptions instead as this property will be removed in the future
+
 ___
 
 ###  threeDS2Options
 
+<<<<<<< HEAD
 • **threeDS2Options**: *[AdyenThreeDS2Options](adyenthreeds2options.md)*
+=======
+**● threeDS2Options**: *[AdyenThreeDS2Options](adyenthreeds2options.md)*
+
+*__deprecated__*: Use additionalActionOptions instead as this property will be removed in the future
+
+___
+>>>>>>> build
 
 **`deprecated`** 
 Use additionalActionOptions instead as this property will be removed in the future

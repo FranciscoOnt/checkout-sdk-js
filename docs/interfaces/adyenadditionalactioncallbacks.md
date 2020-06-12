@@ -26,6 +26,8 @@
 
 A callback that gets called before adyen component is loaded
 
+A callback that gets called before adyen component is loaded
+
 **Parameters:**
 
 Name | Type |
@@ -40,8 +42,14 @@ ___
 
 ▸ **onComplete**(): *void*
 
+<<<<<<< HEAD
 A callback that gets called when adyen component verification
 is completed
+=======
+A callback that gets called when adyen component verification is completed
+
+**Returns:** `void`
+>>>>>>> build
 
 **Returns:** *void*
 
@@ -49,7 +57,13 @@ ___
 
 ### `Optional` onLoad
 
+<<<<<<< HEAD
 ▸ **onLoad**(`cancel?`: undefined | function): *void*
+=======
+A callback that gets called when adyen component is loaded
+
+**Parameters:**
+>>>>>>> build
 
 A callback that gets called when adyen component is loaded
 

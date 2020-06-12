@@ -4,6 +4,8 @@
 
 The set of options for configuring any requests related to spam protection.
 
+The set of options for configuring any requests related to spam protection.
+
 ## Hierarchy
 
 * RequestOptions
@@ -45,6 +47,8 @@ ___
 ###  containerId
 
 • **containerId**: *string*
+
+The container ID where the spam protection should be rendered.
 
 The container ID where the spam protection should be rendered.
 

@@ -7,6 +7,10 @@ A set of options that are required to initialize the Klarna payment method.
 When Klarna is initialized, a widget will be inserted into the DOM. The
 widget has a list of payment options for the customer to choose from.
 
+A set of options that are required to initialize the Klarna payment method.
+
+When Klarna is initialized, a widget will be inserted into the DOM. The widget has a list of payment options for the customer to choose from.
+
 ## Hierarchy
 
 * **KlarnaPaymentInitializeOptions**
@@ -28,6 +32,11 @@ widget has a list of payment options for the customer to choose from.
 • **container**: *string*
 
 The ID of a container which the payment widget should insert into.
+<<<<<<< HEAD
+=======
+
+___
+>>>>>>> build
 
 ## Methods
 
@@ -37,6 +46,8 @@ The ID of a container which the payment widget should insert into.
 
 A callback that gets called when the widget is loaded and ready to be
 interacted with.
+
+A callback that gets called when the widget is loaded and ready to be interacted with.
 
 **Parameters:**
 

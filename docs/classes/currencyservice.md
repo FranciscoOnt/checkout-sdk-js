@@ -4,6 +4,8 @@
 
 Responsible for formatting and converting currencies.
 
+Responsible for formatting and converting currencies.
+
 ## Hierarchy
 
 * **CurrencyService**

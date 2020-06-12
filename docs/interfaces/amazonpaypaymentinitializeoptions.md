@@ -8,6 +8,10 @@ method.
 When AmazonPay is initialized, a widget will be inserted into the DOM. The
 widget has a list of payment options for the customer to choose from.
 
+A set of options that are required to initialize the Amazon Pay payment method.
+
+When AmazonPay is initialized, a widget will be inserted into the DOM. The widget has a list of payment options for the customer to choose from.
+
 ## Hierarchy
 
 * **AmazonPayPaymentInitializeOptions**
@@ -31,6 +35,11 @@ widget has a list of payment options for the customer to choose from.
 • **container**: *string*
 
 The ID of a container which the payment widget should insert into.
+<<<<<<< HEAD
+=======
+
+___
+>>>>>>> build
 
 ## Methods
 
@@ -40,6 +49,8 @@ The ID of a container which the payment widget should insert into.
 
 A callback that gets called if unable to initialize the widget or select
 one of the payment options.
+
+A callback that gets called if unable to initialize the widget or select one of the payment options.
 
 **Parameters:**
 
@@ -58,6 +69,8 @@ ___
 A callback that gets called when the customer selects one of the payment
 options provided by the widget.
 
+A callback that gets called when the customer selects one of the payment options provided by the widget.
+
 **Parameters:**
 
 Name | Type | Description |
@@ -70,7 +83,13 @@ ___
 
 ### `Optional` onReady
 
+<<<<<<< HEAD
 ▸ **onReady**(`reference`: [AmazonPayOrderReference](amazonpayorderreference.md)): *void*
+=======
+A callback that gets called when the widget is loaded and ready to be interacted with.
+
+**Parameters:**
+>>>>>>> build
 
 A callback that gets called when the widget is loaded and ready to be
 interacted with.

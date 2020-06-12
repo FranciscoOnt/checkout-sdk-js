@@ -9,6 +9,10 @@ If the customer chooses to pay with Visa Checkout, they will be asked to
 enter their payment details via a modal. You can hook into events emitted by
 the modal by providing the callbacks listed below.
 
+A set of options that are required to initialize the Visa Checkout payment method provided by Braintree.
+
+If the customer chooses to pay with Visa Checkout, they will be asked to enter their payment details via a modal. You can hook into events emitted by the modal by providing the callbacks listed below.
+
 ## Hierarchy
 
 * **BraintreeVisaCheckoutPaymentInitializeOptions**
@@ -29,6 +33,8 @@ the modal by providing the callbacks listed below.
 A callback that gets called when Visa Checkout fails to initialize or
 selects a payment option.
 
+A callback that gets called when Visa Checkout fails to initialize or selects a payment option.
+
 **Parameters:**
 
 Name | Type | Description |
@@ -44,5 +50,12 @@ ___
 ▸ **onPaymentSelect**(): *void*
 
 A callback that gets called when the customer selects a payment option.
+<<<<<<< HEAD
+=======
+
+**Returns:** `void`
+
+___
+>>>>>>> build
 
 **Returns:** *void*

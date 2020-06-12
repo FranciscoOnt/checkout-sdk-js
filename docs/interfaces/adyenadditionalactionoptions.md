@@ -27,6 +27,11 @@
 • **containerId**: *string*
 
 The location to insert the additional action component.
+<<<<<<< HEAD
+=======
+
+___
+>>>>>>> build
 
 ## Methods
 
@@ -35,6 +40,8 @@ The location to insert the additional action component.
 ▸ **onBeforeLoad**(`shopperInteraction?`: undefined | false | true): *void*
 
 *Inherited from [AdyenAdditionalActionCallbacks](adyenadditionalactioncallbacks.md).[onBeforeLoad](adyenadditionalactioncallbacks.md#optional-onbeforeload)*
+
+A callback that gets called before adyen component is loaded
 
 A callback that gets called before adyen component is loaded
 
@@ -54,10 +61,16 @@ ___
 
 *Inherited from [AdyenAdditionalActionCallbacks](adyenadditionalactioncallbacks.md).[onComplete](adyenadditionalactioncallbacks.md#optional-oncomplete)*
 
+<<<<<<< HEAD
 A callback that gets called when adyen component verification
 is completed
 
 **Returns:** *void*
+=======
+A callback that gets called when adyen component verification is completed
+
+**Returns:** `void`
+>>>>>>> build
 
 ___
 
@@ -65,7 +78,13 @@ ___
 
 ▸ **onLoad**(`cancel?`: undefined | function): *void*
 
+<<<<<<< HEAD
 *Inherited from [AdyenAdditionalActionCallbacks](adyenadditionalactioncallbacks.md).[onLoad](adyenadditionalactioncallbacks.md#optional-onload)*
+=======
+A callback that gets called when adyen component is loaded
+
+**Parameters:**
+>>>>>>> build
 
 A callback that gets called when adyen component is loaded
 

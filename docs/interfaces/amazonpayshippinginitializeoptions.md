@@ -8,6 +8,10 @@ checkout in order to support Amazon Pay.
 When Amazon Pay is initialized, a widget will be inserted into the DOM. The
 widget has a list of shipping addresses for the customer to choose from.
 
+A set of options that are required to initialize the shipping step of checkout in order to support Amazon Pay.
+
+When Amazon Pay is initialized, a widget will be inserted into the DOM. The widget has a list of shipping addresses for the customer to choose from.
+
 ## Hierarchy
 
 * **AmazonPayShippingInitializeOptions**
@@ -31,12 +35,19 @@ widget has a list of shipping addresses for the customer to choose from.
 • **container**: *string*
 
 The ID of a container which the address widget should insert into.
+<<<<<<< HEAD
+=======
+
+___
+>>>>>>> build
 
 ## Methods
 
 ### `Optional` onAddressSelect
 
 ▸ **onAddressSelect**(`reference`: [AmazonPayOrderReference](amazonpayorderreference.md)): *void*
+
+A callback that gets called when the customer selects an address option.
 
 A callback that gets called when the customer selects an address option.
 
@@ -57,6 +68,8 @@ ___
 A callback that gets called if unable to initialize the widget or select
 one of the address options provided by the widget.
 
+A callback that gets called if unable to initialize the widget or select one of the address options provided by the widget.
+
 **Parameters:**
 
 Name | Type | Description |
@@ -69,7 +82,13 @@ ___
 
 ### `Optional` onReady
 
+<<<<<<< HEAD
 ▸ **onReady**(`reference`: [AmazonPayOrderReference](amazonpayorderreference.md)): *void*
+=======
+A callback that gets called when the widget is loaded and ready to be interacted with.
+
+**Parameters:**
+>>>>>>> build
 
 A callback that gets called when the widget is loaded and ready to be
 interacted with.

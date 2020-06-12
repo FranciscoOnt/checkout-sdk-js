@@ -9,6 +9,10 @@ Some payment methods have their own sign-in or sign-out flow. Therefore, you
 need to indicate the method you want to use if you need to trigger a specific
 flow for signing in or out a customer. Otherwise, these options are not required.
 
+A set of options for configuring any requests related to the customer step of the current checkout flow.
+
+Some payment methods have their own sign-in or sign-out flow. Therefore, you need to indicate the method you want to use if you need to trigger a specific flow for signing in or out a customer. Otherwise, these options are not required.
+
 ## Type parameters
 
 ▪ **TParams**
@@ -45,13 +49,21 @@ ___
 
 The parameters of the request, if required.
 
+The parameters of the request, if required.
+
 ___
 
 ### `Optional` timeout
 
 • **timeout**? : *Timeout*
 
+<<<<<<< HEAD
 *Inherited from [CheckoutButtonInitializeOptions](checkoutbuttoninitializeoptions.md).[timeout](checkoutbuttoninitializeoptions.md#optional-timeout)*
+=======
+Provide this option if you want to cancel or time out the request. If the timeout object completes before the request, the request will be cancelled.
+
+___
+>>>>>>> build
 
 Provide this option if you want to cancel or time out the request. If the
 timeout object completes before the request, the request will be

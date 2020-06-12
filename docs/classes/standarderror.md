@@ -5,6 +5,8 @@
 This error type should not be constructed directly. It is a base class for
 all custom errors thrown in this library.
 
+This error type should not be constructed directly. It is a base class for all custom errors thrown in this library.
+
 ## Hierarchy
 
 * [Error](../interfaces/amazonpaywidgeterror.md#error)

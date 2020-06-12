@@ -10,6 +10,10 @@ details for checkout. For example, Amazon Pay requires the customer to sign in
 using their sign-in button. As a result, you may need to provide additional
 information in order to initialize the customer step of checkout.
 
+A set of options that are required to initialize the customer step of the current checkout flow.
+
+Some payment methods have specific requirements for setting the customer details for checkout. For example, Amazon Pay requires the customer to sign in using their sign-in button. As a result, you may need to provide additional information in order to initialize the customer step of checkout.
+
 ## Type parameters
 
 ▪ **TParams**
@@ -58,6 +62,8 @@ when using AmazonPayV2.
 
 **`alpha`** 
 
+The options that are required to initialize the customer step of checkout when using Amazon Pay.
+
 ___
 
 ### `Optional` braintreevisacheckout
@@ -66,6 +72,8 @@ ___
 
 The options that are required to initialize the customer step of checkout
 when using Visa Checkout provided by Braintree.
+
+The options that are required to initialize the customer step of checkout when using Visa Checkout provided by Braintree.
 
 ___
 
@@ -76,6 +84,8 @@ ___
 The options that are required to initialize the Chasepay payment method.
 They can be omitted unless you need to support Chasepay.
 
+The options that are required to initialize the Chasepay payment method. They can be omitted unless you need to support Chasepay.
+
 ___
 
 ### `Optional` googlepayadyenv2
@@ -84,6 +94,8 @@ ___
 
 The options that are required to initialize the GooglePay payment method.
 They can be omitted unless you need to support GooglePay.
+
+The options that are required to initialize the GooglePay payment method. They can be omitted unless you need to support GooglePay.
 
 ___
 
@@ -94,6 +106,8 @@ ___
 The options that are required to initialize the GooglePay payment method.
 They can be omitted unless you need to support GooglePay.
 
+The options that are required to initialize the GooglePay payment method. They can be omitted unless you need to support GooglePay.
+
 ___
 
 ### `Optional` googlepaybraintree
@@ -102,6 +116,8 @@ ___
 
 The options that are required to initialize the GooglePay payment method.
 They can be omitted unless you need to support GooglePay.
+
+The options that are required to initialize the GooglePay payment method. They can be omitted unless you need to support GooglePay.
 
 ___
 
@@ -112,6 +128,8 @@ ___
 The options that are required to initialize the GooglePay payment method.
 They can be omitted unless you need to support GooglePay.
 
+The options that are required to initialize the GooglePay payment method. They can be omitted unless you need to support GooglePay.
+
 ___
 
 ### `Optional` googlepaystripe
@@ -120,6 +138,8 @@ ___
 
 The options that are required to initialize the GooglePay payment method.
 They can be omitted unless you need to support GooglePay.
+
+The options that are required to initialize the Masterpass payment method. They can be omitted unless you need to support Masterpass.
 
 ___
 
@@ -138,6 +158,8 @@ ___
 
 *Inherited from [CustomerInitializeOptions](customerinitializeoptions.md).[methodId](customerinitializeoptions.md#optional-methodid)*
 
+The parameters of the request, if required.
+
 ___
 
 ### `Optional` params
@@ -147,6 +169,8 @@ ___
 *Inherited from [CheckoutButtonInitializeOptions](checkoutbuttoninitializeoptions.md).[params](checkoutbuttoninitializeoptions.md#optional-params)*
 
 The parameters of the request, if required.
+
+Provide this option if you want to cancel or time out the request. If the timeout object completes before the request, the request will be cancelled.
 
 ___
 

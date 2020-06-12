@@ -9,6 +9,10 @@ When AmazonPay is initialized, a sign-in button will be inserted into the
 DOM. When the customer clicks on it, they will be redirected to Amazon to
 sign in.
 
+A set of options that are required to initialize the customer step of checkout to support Amazon Pay.
+
+When AmazonPay is initialized, a sign-in button will be inserted into the DOM. When the customer clicks on it, they will be redirected to Amazon to sign in.
+
 ## Hierarchy
 
 * **AmazonPayCustomerInitializeOptions**
@@ -33,11 +37,15 @@ sign in.
 
 The colour of the sign-in button.
 
+The colour of the sign-in button.
+
 ___
 
 ###  container
 
 • **container**: *string*
+
+The ID of a container which the sign-in button should insert into.
 
 The ID of a container which the sign-in button should insert into.
 
@@ -48,6 +56,11 @@ ___
 • **size**? : *"small" | "medium" | "large" | "x-large"*
 
 The size of the sign-in button.
+<<<<<<< HEAD
+=======
+
+___
+>>>>>>> build
 
 ## Methods
 
@@ -57,6 +70,8 @@ The size of the sign-in button.
 
 A callback that gets called if unable to initialize the widget or select
 one of the address options provided by the widget.
+
+A callback that gets called if unable to initialize the widget or select one of the address options provided by the widget.
 
 **Parameters:**
 

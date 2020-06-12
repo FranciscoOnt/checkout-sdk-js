@@ -4,6 +4,8 @@
 
 A set of options for configuring an asynchronous request.
 
+A set of options for configuring an asynchronous request.
+
 ## Type parameters
 
 ▪ **TParams**
@@ -35,11 +37,21 @@ A set of options for configuring an asynchronous request.
 
 The parameters of the request, if required.
 
+The parameters of the request, if required.
+
 ___
 
 ### `Optional` timeout
 
+<<<<<<< HEAD
 • **timeout**? : *Timeout*
+=======
+**● timeout**: *`Timeout`*
+
+Provide this option if you want to cancel or time out the request. If the timeout object completes before the request, the request will be cancelled.
+
+___
+>>>>>>> build
 
 Provide this option if you want to cancel or time out the request. If the
 timeout object completes before the request, the request will be

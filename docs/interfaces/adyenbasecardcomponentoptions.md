@@ -23,11 +23,19 @@
 
 Array of card brands that will be recognized by the component.
 
+Array of card brands that will be recognized by the component.
+
 ___
 
 ### `Optional` styles
 
+<<<<<<< HEAD
 • **styles**? : *[StyleOptions](styleoptions.md)*
+=======
+Set a style object to customize the input fields. See Styling Secured Fields for a list of supported properties.
+
+___
+>>>>>>> build
 
 Set a style object to customize the input fields. See Styling Secured Fields
 for a list of supported properties.

@@ -27,15 +27,23 @@
 This container is used to host the chasepay branding logo.
 It should be an HTML element.
 
+This container is used to host the chasepay branding logo. It should be an HTML element.
+
 ___
 
 ### `Optional` walletButton
 
 • **walletButton**? : *undefined | string*
 
+<<<<<<< HEAD
 This walletButton is used to set an event listener, provide an element ID if you want
 users to be able to launch the ChasePay wallet modal by clicking on a button.
 It should be an HTML element.
+=======
+This walletButton is used to set an event listener, provide an element ID if you want users to be able to launch the ChasePay wallet modal by clicking on a button. It should be an HTML element.
+
+___
+>>>>>>> build
 
 ## Methods
 
@@ -45,7 +53,13 @@ It should be an HTML element.
 
 A callback that gets called when the customer cancels their payment selection.
 
+<<<<<<< HEAD
 **Returns:** *void*
+=======
+A callback that gets called when the customer cancels their payment selection.
+
+**Returns:** `void`
+>>>>>>> build
 
 ___
 
@@ -54,5 +68,12 @@ ___
 ▸ **onPaymentSelect**(): *void*
 
 A callback that gets called when the customer selects a payment option.
+<<<<<<< HEAD
+=======
+
+**Returns:** `void`
+
+___
+>>>>>>> build
 
 **Returns:** *void*

@@ -27,11 +27,15 @@
 
 Whether or not to show a credit button.
 
+Whether or not to show a credit button.
+
 ___
 
 ###  clientId
 
 • **clientId**: *string*
+
+The Client ID of the Paypal App
 
 The Client ID of the Paypal App
 
@@ -42,12 +46,19 @@ ___
 • **style**? : *Pick‹[PaypalButtonStyleOptions](paypalbuttonstyleoptions.md), "layout" | "size" | "color" | "label" | "shape" | "tagline" | "fundingicons"›*
 
 A set of styling options for the checkout button.
+<<<<<<< HEAD
+=======
+
+___
+>>>>>>> build
 
 ## Methods
 
 ### `Optional` onAuthorizeError
 
 ▸ **onAuthorizeError**(`error`: [StandardError](../classes/standarderror.md)): *void*
+
+A callback that gets called if unable to authorize and tokenize payment.
 
 A callback that gets called if unable to authorize and tokenize payment.
 
@@ -66,6 +77,11 @@ ___
 ▸ **onPaymentError**(`error`: [StandardError](../classes/standarderror.md)): *void*
 
 A callback that gets called if unable to submit payment.
+<<<<<<< HEAD
+=======
+
+**Parameters:**
+>>>>>>> build
 
 **Parameters:**
 

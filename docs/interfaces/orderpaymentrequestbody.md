@@ -5,6 +5,8 @@
 An object that contains the payment information required for submitting an
 order.
 
+An object that contains the payment information required for submitting an order.
+
 ## Hierarchy
 
 * **OrderPaymentRequestBody**
@@ -25,6 +27,8 @@ order.
 
 The identifier of the payment provider that is chosen for the order.
 
+The identifier of the payment provider that is chosen for the order.
+
 ___
 
 ###  methodId
@@ -32,19 +36,27 @@ ___
 • **methodId**: *string*
 
 The identifier of the payment method that is chosen for the order.
+<<<<<<< HEAD
+=======
+
+___
+<a id="paymentdata"></a>
+>>>>>>> build
 
 ___
 
 ### `Optional` paymentData
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 • **paymentData**? : *[CreditCardInstrument](creditcardinstrument.md) | [HostedInstrument](hostedinstrument.md) | [HostedCreditCardInstrument](../README.md#hostedcreditcardinstrument) | [HostedVaultedInstrument](../README.md#hostedvaultedinstrument) | [NonceInstrument](nonceinstrument.md) | [VaultedInstrument](vaultedinstrument.md)*
 =======
 <<<<<<< HEAD
 =======
+=======
+>>>>>>> build
 An object that contains the details of a credit card, vaulted payment instrument or nonce instrument.
 
->>>>>>> build
 ___
 >>>>>>> build
 

@@ -49,6 +49,8 @@ ___
 The options that are required to facilitate Braintree PayPal. They can be
 omitted unless you need to support Braintree PayPal.
 
+The options that are required to facilitate Braintree PayPal. They can be omitted unless you need to support Braintree PayPal.
+
 ___
 
 ### `Optional` braintreepaypalcredit
@@ -57,6 +59,8 @@ ___
 
 The options that are required to facilitate Braintree Credit. They can be
 omitted unless you need to support Braintree Credit.
+
+The options that are required to facilitate Braintree Credit. They can be omitted unless you need to support Braintree Credit.
 
 ___
 
@@ -75,6 +79,8 @@ ___
 The options that are required to facilitate Authorize.Net GooglePay.
 They can be omitted unles you need to support Authorize.Net GooglePay.
 
+The ID of a container which the checkout button should be inserted.
+
 ___
 
 ### `Optional` googlepaybraintree
@@ -83,6 +89,8 @@ ___
 
 The options that are required to facilitate Braintree GooglePay. They can be
 omitted unles you need to support Braintree GooglePay.
+
+The options that are required to facilitate Authorize.Net GooglePay. They can be omitted unles you need to support Authorize.Net GooglePay.
 
 ___
 
@@ -93,6 +101,8 @@ ___
 The options that are required to facilitate Checkout.com GooglePay. They can be
 omitted unles you need to support Checkout.com GooglePay.
 
+The options that are required to facilitate Braintree GooglePay. They can be omitted unles you need to support Braintree GooglePay.
+
 ___
 
 ### `Optional` googlepaystripe
@@ -102,6 +112,8 @@ ___
 The options that are required to facilitate Stripe GooglePay. They can be
 omitted unles you need to support Stripe GooglePay.
 
+The options that are required to facilitate Stripe GooglePay. They can be omitted unles you need to support Stripe GooglePay.
+
 ___
 
 ###  methodId
@@ -109,6 +121,8 @@ ___
 • **methodId**: *[CheckoutButtonMethodType](../enums/checkoutbuttonmethodtype.md)*
 
 *Inherited from [CheckoutButtonInitializeOptions](checkoutbuttoninitializeoptions.md).[methodId](checkoutbuttoninitializeoptions.md#methodid)*
+
+The identifier of the payment method.
 
 The identifier of the payment method.
 
@@ -122,6 +136,8 @@ ___
 
 The parameters of the request, if required.
 
+The parameters of the request, if required.
+
 ___
 
 ### `Optional` paypal
@@ -131,13 +147,21 @@ ___
 The options that are required to facilitate PayPal. They can be omitted
 unless you need to support Paypal.
 
+The options that are required to facilitate PayPal. They can be omitted unless you need to support Paypal.
+
 ___
 
 ### `Optional` timeout
 
 • **timeout**? : *Timeout*
 
+<<<<<<< HEAD
 *Inherited from [CheckoutButtonInitializeOptions](checkoutbuttoninitializeoptions.md).[timeout](checkoutbuttoninitializeoptions.md#optional-timeout)*
+=======
+Provide this option if you want to cancel or time out the request. If the timeout object completes before the request, the request will be cancelled.
+
+___
+>>>>>>> build
 
 Provide this option if you want to cancel or time out the request. If the
 timeout object completes before the request, the request will be

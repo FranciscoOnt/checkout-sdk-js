@@ -5,6 +5,8 @@
 The set of options for configuring any requests related to the payment step of
 the current checkout flow.
 
+The set of options for configuring any requests related to the payment step of the current checkout flow.
+
 ## Type parameters
 
 ▪ **TParams**
@@ -36,11 +38,15 @@ The identifier of the payment provider providing the payment method. This
 option is only required if the provider offers multiple payment options.
 i.e.: Adyen and Klarna.
 
+The identifier of the payment provider providing the payment method. This option is only required if the provider offers multiple payment options. i.e.: Adyen and Klarna.
+
 ___
 
 ###  methodId
 
 • **methodId**: *string*
+
+The identifier of the payment method.
 
 The identifier of the payment method.
 
@@ -54,13 +60,21 @@ ___
 
 The parameters of the request, if required.
 
+The parameters of the request, if required.
+
 ___
 
 ### `Optional` timeout
 
 • **timeout**? : *Timeout*
 
+<<<<<<< HEAD
 *Inherited from [CheckoutButtonInitializeOptions](checkoutbuttoninitializeoptions.md).[timeout](checkoutbuttoninitializeoptions.md#optional-timeout)*
+=======
+Provide this option if you want to cancel or time out the request. If the timeout object completes before the request, the request will be cancelled.
+
+___
+>>>>>>> build
 
 Provide this option if you want to cancel or time out the request. If the
 timeout object completes before the request, the request will be

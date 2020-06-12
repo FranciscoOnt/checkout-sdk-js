@@ -506,13 +506,5 @@ export default function createPaymentStrategyRegistry(
         )
     );
 
-    registry.register(PaymentStrategyType.BOLT, () =>
-        new BoltPaymentStrategy(
-            store,
-            orderActionCreator,
-            paymentActionCreator
-        )
-);
-
     return registry;
 }
