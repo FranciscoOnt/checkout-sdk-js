@@ -25,30 +25,12 @@ options provide a location and styling for each of the form fields.
 
 • **containerId**: *string*
 
-<<<<<<< HEAD
 The location to insert the credit card number form field.
-<<<<<<< HEAD
-=======
-
-=======
->>>>>>> build
-___
-<a id="style"></a>
->>>>>>> build
 
 ___
 
 ### `Optional` style
 
-<<<<<<< HEAD
-<<<<<<< HEAD
 • **style**? : *[StripeStyleProps](stripestyleprops.md)*
-=======
-The set of CSS styles to apply to all form fields.
-
-=======
->>>>>>> build
-___
->>>>>>> build
 
 The set of CSS styles to apply to all form fields.

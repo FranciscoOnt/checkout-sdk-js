@@ -47,15 +47,7 @@ ___
 
 • **size**? : *"small" | "medium" | "large" | "x-large"*
 
-<<<<<<< HEAD
 The size of the sign-in button.
-<<<<<<< HEAD
-=======
-
-=======
->>>>>>> build
-___
->>>>>>> build
 
 ## Methods
 

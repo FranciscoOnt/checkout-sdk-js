@@ -412,7 +412,6 @@ is enabled but verification fails. You should call this method before
 `submitOrder` method is called (i.e.: when the shopper
 first gets to the payment step).
 
-<<<<<<< HEAD
 **Note**: You need to enable Google ReCAPTCHA bot protection in your Checkout Settings.
 
 ```js
@@ -421,22 +420,6 @@ await service.executeSpamCheck();
 
 **Returns:** *Promise‹[CheckoutSelectors](../interfaces/checkoutselectors.md)›*
 
-<<<<<<< HEAD
-=======
-Verifies whether the current checkout is created by a human.
-
-Note: this method will do the initialization, therefore you do not need to call `CheckoutService#initializeSpamProtection` before calling this method.
-
-With spam protection enabled, the customer has to be verified as a human. The order creation will fail if spam protection is enabled but verification fails.
-
-```js
-await service.executeSpamCheck();
-```
-
-=======
->>>>>>> build
-**Returns:** `Promise`<[CheckoutSelectors](../interfaces/checkoutselectors.md)>
->>>>>>> build
 A promise that resolves to the current state.
 
 ___
@@ -502,27 +485,8 @@ console.log(state.errors.getSubmitOrderError());
 console.log(state.statuses.isSubmittingOrder());
 ```
 
-<<<<<<< HEAD
 **Returns:** *[CheckoutSelectors](../interfaces/checkoutselectors.md)*
 
-<<<<<<< HEAD
-=======
-Returns a snapshot of the current checkout state.
-
-The method returns a new instance every time there is a change in the checkout state. You can query the state by calling any of its getter methods.
-
-```js
-const state = service.getState();
-
-console.log(state.data.getOrder());
-console.log(state.errors.getSubmitOrderError());
-console.log(state.statuses.isSubmittingOrder());
-```
-
-=======
->>>>>>> build
-**Returns:** [CheckoutSelectors](../interfaces/checkoutselectors.md)
->>>>>>> build
 The current customer's checkout state
 
 ___
@@ -742,7 +706,6 @@ ___
 
 ▸ **loadInstruments**(): *Promise‹[CheckoutSelectors](../interfaces/checkoutselectors.md)›*
 
-<<<<<<< HEAD
 Loads a list of payment instruments associated with a customer.
 
 Once the method has been called successfully, you can retrieve the list
@@ -757,25 +720,7 @@ console.log(state.data.getInstruments());
 ```
 
 **Returns:** *Promise‹[CheckoutSelectors](../interfaces/checkoutselectors.md)›*
-=======
-**Returns:** `Promise`<[CheckoutSelectors](../interfaces/checkoutselectors.md)>
-A promise that resolves to the current state.
->>>>>>> build
 
-<<<<<<< HEAD
-=======
-Loads a list of payment instruments associated with a customer.
-
-Once the method has been called successfully, you can retrieve the list of payment instruments by calling `CheckoutStoreSelector#getInstruments`. If the customer does not have any payment instruments on record, i.e.: credit card, you will get an empty list instead.
-
-```js
-const state = service.loadInstruments();
-
-console.log(state.data.getInstruments());
-```
-
-**Returns:** `Promise`<[CheckoutSelectors](../interfaces/checkoutselectors.md)>
->>>>>>> build
 A promise that resolves to the current state.
 
 ___
@@ -934,21 +879,12 @@ ___
 
 ▸ **notifyState**(): *void*
 
-<<<<<<< HEAD
 Notifies all subscribers with the current state.
 
-<<<<<<< HEAD
 When this method gets called, the subscribers get called regardless if
 they have any filters applied.
 
 **Returns:** *void*
-=======
-When this method gets called, the subscribers get called regardless if they have any filters applied.
-
-=======
->>>>>>> build
-**Returns:** `void`
->>>>>>> build
 
 ___
 
@@ -1421,13 +1357,7 @@ ___
 
 ▸ **updateSubscriptions**(`subscriptions`: [Subscriptions](../interfaces/subscriptions.md), `options?`: [RequestOptions](../interfaces/requestoptions.md)): *Promise‹[CheckoutSelectors](../interfaces/checkoutselectors.md)›*
 
-<<<<<<< HEAD
 Updates the subscriptions associated to an email.
-
-Updates the subscriptions associated to an email.
-=======
-**Parameters:**
->>>>>>> build
 
 **Parameters:**
 

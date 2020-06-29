@@ -83,15 +83,7 @@ ___
 
 • **postalCode**: *[SquareFormElement](squareformelement.md)*
 
-<<<<<<< HEAD
 The location to insert the postal code form field.
-<<<<<<< HEAD
-=======
-
-=======
->>>>>>> build
-___
->>>>>>> build
 
 ## Methods
 
@@ -113,16 +105,7 @@ ___
 
 ### `Optional` onPaymentSelect
 
-<<<<<<< HEAD
-<<<<<<< HEAD
 ▸ **onPaymentSelect**(): *void*
-=======
-A callback that gets called when the customer selects a payment option.
-
-=======
->>>>>>> build
-**Returns:** `void`
->>>>>>> build
 
 A callback that gets called when the customer selects a payment option.
 

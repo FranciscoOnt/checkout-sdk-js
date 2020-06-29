@@ -16,15 +16,6 @@
 
 ### `Optional` showImage
 
-<<<<<<< HEAD
-<<<<<<< HEAD
 • **showImage**? : *undefined | false | true*
-=======
-Optional. Set to **false** to remove the bank logos from the iDEAL form.
-
-=======
->>>>>>> build
-___
->>>>>>> build
 
 Optional. Set to **false** to remove the bank logos from the iDEAL form.

@@ -33,18 +33,9 @@ ___
 
 • **walletButton**? : *undefined | string*
 
-<<<<<<< HEAD
-<<<<<<< HEAD
 This walletButton is used to set an event listener, provide an element ID if you want
 users to be able to launch the ChasePay wallet modal by clicking on a button.
 It should be an HTML element.
-=======
-This walletButton is used to set an event listener, provide an element ID if you want users to be able to launch the ChasePay wallet modal by clicking on a button. It should be an HTML element.
-
-=======
->>>>>>> build
-___
->>>>>>> build
 
 ## Methods
 
@@ -54,16 +45,7 @@ ___
 
 A callback that gets called when the customer cancels their payment selection.
 
-<<<<<<< HEAD
-<<<<<<< HEAD
 **Returns:** *void*
-=======
-A callback that gets called when the customer cancels their payment selection.
-
-=======
->>>>>>> build
-**Returns:** `void`
->>>>>>> build
 
 ___
 
@@ -71,16 +53,6 @@ ___
 
 ▸ **onPaymentSelect**(): *void*
 
-<<<<<<< HEAD
 A callback that gets called when the customer selects a payment option.
-<<<<<<< HEAD
-=======
-
-=======
->>>>>>> build
-**Returns:** `void`
-
-___
->>>>>>> build
 
 **Returns:** *void*

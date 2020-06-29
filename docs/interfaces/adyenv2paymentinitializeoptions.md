@@ -77,13 +77,7 @@ ___
 
 ###  threeDS2Options
 
-<<<<<<< HEAD
 • **threeDS2Options**: *[AdyenThreeDS2Options](adyenthreeds2options.md)*
-=======
-**● threeDS2Options**: *[AdyenThreeDS2Options](adyenthreeds2options.md)*
-
-___
->>>>>>> build
 
 **`deprecated`** 
 Use additionalActionOptions instead as this property will be removed in the future

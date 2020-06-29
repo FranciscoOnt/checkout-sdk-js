@@ -26,15 +26,7 @@
 
 • **containerId**: *string*
 
-<<<<<<< HEAD
 The location to insert the additional action component.
-<<<<<<< HEAD
-=======
-
-=======
->>>>>>> build
-___
->>>>>>> build
 
 ## Methods
 
@@ -62,19 +54,10 @@ ___
 
 *Inherited from [AdyenAdditionalActionCallbacks](adyenadditionalactioncallbacks.md).[onComplete](adyenadditionalactioncallbacks.md#optional-oncomplete)*
 
-<<<<<<< HEAD
-<<<<<<< HEAD
 A callback that gets called when adyen component verification
 is completed
 
 **Returns:** *void*
-=======
-A callback that gets called when adyen component verification is completed
-
-=======
->>>>>>> build
-**Returns:** `void`
->>>>>>> build
 
 ___
 
@@ -82,16 +65,7 @@ ___
 
 ▸ **onLoad**(`cancel?`: undefined | function): *void*
 
-<<<<<<< HEAD
-<<<<<<< HEAD
 *Inherited from [AdyenAdditionalActionCallbacks](adyenadditionalactioncallbacks.md).[onLoad](adyenadditionalactioncallbacks.md#optional-onload)*
-=======
-A callback that gets called when adyen component is loaded
-
-=======
->>>>>>> build
-**Parameters:**
->>>>>>> build
 
 A callback that gets called when adyen component is loaded
 

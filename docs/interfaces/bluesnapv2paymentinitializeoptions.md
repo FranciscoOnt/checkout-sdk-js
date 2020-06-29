@@ -28,15 +28,7 @@ strategy.
 
 • **style**? : *[BlueSnapV2StyleProps](bluesnapv2styleprops.md)*
 
-<<<<<<< HEAD
 A set of CSS properties to apply to the iframe.
-<<<<<<< HEAD
-=======
-
-=======
->>>>>>> build
-___
->>>>>>> build
 
 ## Methods
 

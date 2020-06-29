@@ -42,15 +42,7 @@ ___
 
 • **style**? : *Pick‹[PaypalButtonStyleOptions](paypalbuttonstyleoptions.md), "layout" | "size" | "color" | "label" | "shape" | "tagline" | "fundingicons"›*
 
-<<<<<<< HEAD
 A set of styling options for the checkout button.
-<<<<<<< HEAD
-=======
-
-=======
->>>>>>> build
-___
->>>>>>> build
 
 ## Methods
 
@@ -74,15 +66,7 @@ ___
 
 ▸ **onPaymentError**(`error`: [BraintreeError](braintreeerror.md) | [StandardError](../classes/standarderror.md)): *void*
 
-<<<<<<< HEAD
 A callback that gets called if unable to submit payment.
-<<<<<<< HEAD
-=======
-
-=======
->>>>>>> build
-**Parameters:**
->>>>>>> build
 
 **Parameters:**
 

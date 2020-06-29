@@ -62,19 +62,10 @@ order and waiting for the request to complete.
 
 ▸ **isApplyingCoupon**(): *boolean*
 
-<<<<<<< HEAD
 Checks whether the current customer is applying a coupon code.
 
 **Returns:** *boolean*
 
-<<<<<<< HEAD
-=======
-Checks whether the current customer is applying a coupon code.
-
-=======
->>>>>>> build
-**Returns:** `boolean`
->>>>>>> build
 True if applying a coupon code, otherwise false.
 
 ___
@@ -87,15 +78,6 @@ Checks whether the current customer is applying a gift certificate.
 
 **Returns:** *boolean*
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-Checks whether the current customer is applying a gift certificate.
-
-=======
->>>>>>> build
-**Returns:** `boolean`
->>>>>>> build
 True if applying a gift certificate, otherwise false.
 
 ___
@@ -104,19 +86,10 @@ ___
 
 ▸ **isApplyingStoreCredit**(): *boolean*
 
-<<<<<<< HEAD
 Checks whether the current customer is applying store credit.
 
 **Returns:** *boolean*
 
-<<<<<<< HEAD
-=======
-Checks whether the current customer is applying store credit.
-
-=======
->>>>>>> build
-**Returns:** `boolean`
->>>>>>> build
 True if applying store credit, otherwise false.
 
 ___
@@ -125,19 +98,10 @@ ___
 
 ▸ **isContinuingAsGuest**(): *boolean*
 
-<<<<<<< HEAD
 Checks whether the shopper is continuing out as a guest.
 
 **Returns:** *boolean*
 
-<<<<<<< HEAD
-=======
-Checks whether the shopper is continuing out as a guest.
-
-=======
->>>>>>> build
-**Returns:** `boolean`
->>>>>>> build
 True if continuing as guest, otherwise false.
 
 ___
@@ -153,17 +117,6 @@ otherwise it will check for any consignment.
 
 **Returns:** *boolean*
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-Checks whether a given/any consignment is being updated.
-
-A consignment ID should be provided when checking for a specific consignment, otherwise it will check for any consignment.
-
-=======
->>>>>>> build
-**Returns:** `boolean`
->>>>>>> build
 True if creating consignments, otherwise false.
 
 ___
@@ -172,7 +125,6 @@ ___
 
 ▸ **isCustomerStepPending**(): *boolean*
 
-<<<<<<< HEAD
 Checks whether the customer step of a checkout is in a pending state.
 
 The customer step is considered to be pending if it is in the process of
@@ -181,16 +133,6 @@ widget.
 
 **Returns:** *boolean*
 
-<<<<<<< HEAD
-=======
-Checks whether the customer step of a checkout is in a pending state.
-
-The customer step is considered to be pending if it is in the process of initializing, signing in, signing out, and/or interacting with a customer widget.
-
-=======
->>>>>>> build
-**Returns:** `boolean`
->>>>>>> build
 True if the customer step is pending, otherwise false.
 
 ___
@@ -242,15 +184,6 @@ Checks whether spam check is executing.
 
 **Returns:** *boolean*
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-Checks whether spam check is executing.
-
-=======
->>>>>>> build
-**Returns:** `boolean`
->>>>>>> build
 True if the current checkout is being updated, otherwise false.
 
 ___
@@ -259,19 +192,10 @@ ___
 
 ▸ **isFinalizingOrder**(): *boolean*
 
-<<<<<<< HEAD
 Checks whether the current order is finalizing.
 
 **Returns:** *boolean*
 
-<<<<<<< HEAD
-=======
-Checks whether the current order is finalizing.
-
-=======
->>>>>>> build
-**Returns:** `boolean`
->>>>>>> build
 True if the current order is finalizing, otherwise false.
 
 ___
@@ -344,19 +268,10 @@ ___
 
 ▸ **isLoadingBillingCountries**(): *boolean*
 
-<<<<<<< HEAD
 Checks whether billing countries are loading.
 
 **Returns:** *boolean*
 
-<<<<<<< HEAD
-=======
-Checks whether billing countries are loading.
-
-=======
->>>>>>> build
-**Returns:** `boolean`
->>>>>>> build
 True if billing countries are loading, otherwise false.
 
 ___
@@ -365,19 +280,10 @@ ___
 
 ▸ **isLoadingCart**(): *boolean*
 
-<<<<<<< HEAD
 Checks whether the current cart is loading.
 
 **Returns:** *boolean*
 
-<<<<<<< HEAD
-=======
-Checks whether the current cart is loading.
-
-=======
->>>>>>> build
-**Returns:** `boolean`
->>>>>>> build
 True if the current cart is loading, otherwise false.
 
 ___
@@ -390,15 +296,6 @@ Checks whether the current checkout is loading.
 
 **Returns:** *boolean*
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-Checks whether the current checkout is loading.
-
-=======
->>>>>>> build
-**Returns:** `boolean`
->>>>>>> build
 True if the current checkout is loading, otherwise false.
 
 ___
@@ -407,19 +304,10 @@ ___
 
 ▸ **isLoadingConfig**(): *boolean*
 
-<<<<<<< HEAD
 Checks whether the checkout configuration of a store is loading.
 
 **Returns:** *boolean*
 
-<<<<<<< HEAD
-=======
-Checks whether the checkout configuration of a store is loading.
-
-=======
->>>>>>> build
-**Returns:** `boolean`
->>>>>>> build
 True if the configuration is loading, otherwise false.
 
 ___
@@ -428,19 +316,10 @@ ___
 
 ▸ **isLoadingInstruments**(): *boolean*
 
-<<<<<<< HEAD
 Checks whether the current customer's payment instruments are loading.
 
 **Returns:** *boolean*
 
-<<<<<<< HEAD
-=======
-Checks whether the current customer's payment instruments are loading.
-
-=======
->>>>>>> build
-**Returns:** `boolean`
->>>>>>> build
 True if payment instruments are loading, otherwise false.
 
 ___
@@ -453,15 +332,6 @@ Checks whether the current order is loading.
 
 **Returns:** *boolean*
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-Checks whether the current order is loading.
-
-=======
->>>>>>> build
-**Returns:** `boolean`
->>>>>>> build
 True if the current order is loading, otherwise false.
 
 ___
@@ -491,19 +361,10 @@ ___
 
 ▸ **isLoadingPaymentMethods**(): *boolean*
 
-<<<<<<< HEAD
 Checks whether payment methods are loading.
 
 **Returns:** *boolean*
 
-<<<<<<< HEAD
-=======
-Checks whether payment methods are loading.
-
-=======
->>>>>>> build
-**Returns:** `boolean`
->>>>>>> build
 True if payment methods are loading, otherwise false.
 
 ___
@@ -516,15 +377,6 @@ Checks whether shipping countries are loading.
 
 **Returns:** *boolean*
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-Checks whether shipping countries are loading.
-
-=======
->>>>>>> build
-**Returns:** `boolean`
->>>>>>> build
 True if shipping countries are loading, otherwise false.
 
 ___
@@ -537,15 +389,6 @@ Checks whether shipping options are loading.
 
 **Returns:** *boolean*
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-Checks whether shipping options are loading.
-
-=======
->>>>>>> build
-**Returns:** `boolean`
->>>>>>> build
 True if shipping options are loading, otherwise false.
 
 ___
@@ -562,17 +405,6 @@ interacting with a payment widget.
 
 **Returns:** *boolean*
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-Checks whether the payment step of a checkout is in a pending state.
-
-The payment step is considered to be pending if it is in the process of initializing, submitting an order, finalizing an order, and/or interacting with a payment widget.
-
-=======
->>>>>>> build
-**Returns:** `boolean`
->>>>>>> build
 True if the payment step is pending, otherwise false.
 
 ___
@@ -581,19 +413,10 @@ ___
 
 ▸ **isPending**(): *boolean*
 
-<<<<<<< HEAD
 Checks whether any checkout action is pending.
 
 **Returns:** *boolean*
 
-<<<<<<< HEAD
-=======
-Checks whether any checkout action is pending.
-
-=======
->>>>>>> build
-**Returns:** `boolean`
->>>>>>> build
 True if there is a pending action, otherwise false.
 
 ___
@@ -602,19 +425,10 @@ ___
 
 ▸ **isRemovingCoupon**(): *boolean*
 
-<<<<<<< HEAD
 Checks whether the current customer is removing a coupon code.
 
 **Returns:** *boolean*
 
-<<<<<<< HEAD
-=======
-Checks whether the current customer is removing a coupon code.
-
-=======
->>>>>>> build
-**Returns:** `boolean`
->>>>>>> build
 True if removing a coupon code, otherwise false.
 
 ___
@@ -627,15 +441,6 @@ Checks whether the current customer is removing a gift certificate.
 
 **Returns:** *boolean*
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-Checks whether the current customer is removing a gift certificate.
-
-=======
->>>>>>> build
-**Returns:** `boolean`
->>>>>>> build
 True if removing a gift certificate, otherwise false.
 
 ___
@@ -666,19 +471,10 @@ ___
 
 ▸ **isSendingSignInEmail**(): *boolean*
 
-<<<<<<< HEAD
 Checks whether a sign-in email is being sent.
 
 **Returns:** *boolean*
 
-<<<<<<< HEAD
-=======
-Checks whether a sign-in email is being sent.
-
-=======
->>>>>>> build
-**Returns:** `boolean`
->>>>>>> build
 True if sending a sign-in email, otherwise false
 
 ___
@@ -749,15 +545,6 @@ Checks whether the current order is submitting.
 
 **Returns:** *boolean*
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-Checks whether the current order is submitting.
-
-=======
->>>>>>> build
-**Returns:** `boolean`
->>>>>>> build
 True if the current order is submitting, otherwise false.
 
 ___
@@ -770,15 +557,6 @@ Checks whether the billing address is being updated.
 
 **Returns:** *boolean*
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-Checks whether the billing address is being updated.
-
-=======
->>>>>>> build
-**Returns:** `boolean`
->>>>>>> build
 True if updating their billing address, otherwise false.
 
 ___
@@ -787,19 +565,10 @@ ___
 
 ▸ **isUpdatingCheckout**(): *boolean*
 
-<<<<<<< HEAD
 Checks whether the current checkout is being updated.
 
 **Returns:** *boolean*
 
-<<<<<<< HEAD
-=======
-Checks whether the current checkout is being updated.
-
-=======
->>>>>>> build
-**Returns:** `boolean`
->>>>>>> build
 True if the current checkout is being updated, otherwise false.
 
 ___
@@ -829,19 +598,10 @@ ___
 
 ▸ **isUpdatingShippingAddress**(): *boolean*
 
-<<<<<<< HEAD
 Checks the shipping address is being updated.
 
 **Returns:** *boolean*
 
-<<<<<<< HEAD
-=======
-Checks the shipping address is being updated.
-
-=======
->>>>>>> build
-**Returns:** `boolean`
->>>>>>> build
 True if updating their shipping address, otherwise false.
 
 ___
@@ -850,16 +610,7 @@ ___
 
 ▸ **isUpdatingSubscriptions**(): *boolean*
 
-<<<<<<< HEAD
 Checks whether the subscriptions are being updated.
-<<<<<<< HEAD
-=======
-
-=======
->>>>>>> build
-**Returns:** `boolean`
-True if updating subscriptions, otherwise false.
->>>>>>> build
 
 **Returns:** *boolean*
 

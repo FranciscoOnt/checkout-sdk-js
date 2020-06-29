@@ -105,19 +105,10 @@ ___
 
 • **styles**? : *[StyleOptions](styleoptions.md)*
 
-<<<<<<< HEAD
-<<<<<<< HEAD
 *Inherited from [AdyenBaseCardComponentOptions](adyenbasecardcomponentoptions.md).[styles](adyenbasecardcomponentoptions.md#optional-styles)*
 
 Set a style object to customize the input fields. See Styling Secured Fields
 for a list of supported properties.
-=======
-Set a style object to customize the input fields. See Styling Secured Fields for a list of supported properties.
-
-=======
->>>>>>> build
-___
->>>>>>> build
 
 ## Methods
 
@@ -145,16 +136,7 @@ ___
 
 ▸ **onError**(`state`: [AdyenComponentState](../README.md#adyencomponentstate), `component`: [AdyenComponent](adyencomponent.md)): *void*
 
-<<<<<<< HEAD
-<<<<<<< HEAD
 *Inherited from [AdyenComponentEvents](adyencomponentevents.md).[onError](adyencomponentevents.md#optional-onerror)*
-=======
-Called in case of an invalid card number, invalid expiry date, or incomplete field. Called again when errors are cleared.
-
-=======
->>>>>>> build
-**Parameters:**
->>>>>>> build
 
 Called in case of an invalid card number, invalid expiry date, or
  incomplete field. Called again when errors are cleared.

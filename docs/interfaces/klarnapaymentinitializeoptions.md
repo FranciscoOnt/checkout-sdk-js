@@ -27,15 +27,7 @@ widget has a list of payment options for the customer to choose from.
 
 • **container**: *string*
 
-<<<<<<< HEAD
 The ID of a container which the payment widget should insert into.
-<<<<<<< HEAD
-=======
-
-=======
->>>>>>> build
-___
->>>>>>> build
 
 ## Methods
 

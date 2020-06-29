@@ -37,30 +37,12 @@ ___
 
 • **placeholder**? : *[CssProperties](cssproperties.md)*
 
-<<<<<<< HEAD
 Styling applied to the field's placeholder values.
-<<<<<<< HEAD
-=======
-
-=======
->>>>>>> build
-___
-<a id="validated"></a>
->>>>>>> build
 
 ___
 
 ### `Optional` validated
 
-<<<<<<< HEAD
-<<<<<<< HEAD
 • **validated**? : *[CssProperties](cssproperties.md)*
-=======
-Styling applied once a field passes validation.
-
-=======
->>>>>>> build
-___
->>>>>>> build
 
 Styling applied once a field passes validation.
