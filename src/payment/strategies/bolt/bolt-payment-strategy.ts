@@ -71,8 +71,10 @@ export default class BoltPaymentStrategy implements PaymentStrategy {
 
         const transaction: BoltTransacion = await new Promise((resolve, reject) => {
             const onSuccess = (transaction: BoltTransacion,  callback: () => void) => {
-                resolve(transaction);
-                callback();
+                setTimeout(() => {
+                    resolve(transaction);
+                    callback();
+                }, 2000);
             };
 
             const onClose = () => {
