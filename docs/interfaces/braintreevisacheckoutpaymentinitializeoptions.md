@@ -43,16 +43,6 @@ ___
 
 ▸ **onPaymentSelect**(): *void*
 
-<<<<<<< HEAD
 A callback that gets called when the customer selects a payment option.
-<<<<<<< HEAD
-=======
-
-=======
->>>>>>> build
-**Returns:** `void`
-
-___
->>>>>>> build
 
 **Returns:** *void*

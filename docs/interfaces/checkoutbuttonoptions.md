@@ -48,16 +48,7 @@ ___
 
 • **timeout**? : *Timeout*
 
-<<<<<<< HEAD
-<<<<<<< HEAD
 *Inherited from [CheckoutButtonInitializeOptions](checkoutbuttoninitializeoptions.md).[timeout](checkoutbuttoninitializeoptions.md#optional-timeout)*
-=======
-Provide this option if you want to cancel or time out the request. If the timeout object completes before the request, the request will be cancelled.
-
-=======
->>>>>>> build
-___
->>>>>>> build
 
 Provide this option if you want to cancel or time out the request. If the
 timeout object completes before the request, the request will be

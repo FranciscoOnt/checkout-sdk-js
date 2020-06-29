@@ -43,21 +43,12 @@ provided by the card issuer.
 
 ▪ **cancel**: *function*
 
-<<<<<<< HEAD
 A function, when called, will cancel the verification
 process and remove the iframe.
 
-<<<<<<< HEAD
 ▸ (): *Promise‹[BraintreeVerifyPayload](braintreeverifypayload.md)› | undefined*
 
 **Returns:** *void*
-=======
-A callback that gets called when the iframe is about to be removed from the current page.
-
-=======
->>>>>>> build
-**Returns:** `void`
->>>>>>> build
 
 ___
 

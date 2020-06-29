@@ -30,15 +30,7 @@ widget has a list of payment options for the customer to choose from.
 
 • **container**: *string*
 
-<<<<<<< HEAD
 The ID of a container which the payment widget should insert into.
-<<<<<<< HEAD
-=======
-
-=======
->>>>>>> build
-___
->>>>>>> build
 
 ## Methods
 
@@ -78,16 +70,7 @@ ___
 
 ### `Optional` onReady
 
-<<<<<<< HEAD
-<<<<<<< HEAD
 ▸ **onReady**(`reference`: [AmazonPayOrderReference](amazonpayorderreference.md)): *void*
-=======
-A callback that gets called when the widget is loaded and ready to be interacted with.
-
-=======
->>>>>>> build
-**Parameters:**
->>>>>>> build
 
 A callback that gets called when the widget is loaded and ready to be
 interacted with.

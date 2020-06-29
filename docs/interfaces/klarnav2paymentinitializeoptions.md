@@ -27,15 +27,7 @@ Each one with its own widget.
 
 • **container**: *string*
 
-<<<<<<< HEAD
 The ID of a container which the payment widget should insert into.
-<<<<<<< HEAD
-=======
-
-=======
->>>>>>> build
-___
->>>>>>> build
 
 ## Methods
 

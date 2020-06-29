@@ -32,15 +32,6 @@ Gets the preferred locale of the current customer.
 
 **Returns:** *string*
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-Gets the preferred locale of the current customer.
-
-=======
->>>>>>> build
-**Returns:** `string`
->>>>>>> build
 The preferred locale code.
 
 ___
@@ -73,25 +64,7 @@ ___
 
 ▸ **translate**(`key`: string, `data?`: [TranslationData](../interfaces/translationdata.md)): *string*
 
-<<<<<<< HEAD
 Gets a language string by a key.
-<<<<<<< HEAD
-=======
-
-```js
-service.translate('language_key');
-```
-
-If the language string contains a placeholder, you can replace it by providing a second argument.
-
-```js
-service.translate('language_key', { placeholder: 'Hello' });
-```
-
-=======
->>>>>>> build
-**Parameters:**
->>>>>>> build
 
 ```js
 service.translate('language_key');

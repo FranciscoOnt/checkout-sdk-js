@@ -16,13 +16,7 @@
 
 ###  container
 
-<<<<<<< HEAD
 • **container**: *string*
-=======
-**● container**: *`string`*
-
-___
->>>>>>> build
 
 This container is used to set an event listener, provide an element ID if you want
 users to be able to launch the GooglePay wallet modal by clicking on a button.

@@ -39,13 +39,7 @@ ___
 
 ### `Optional` timeout
 
-<<<<<<< HEAD
 • **timeout**? : *Timeout*
-=======
-**● timeout**: *`Timeout`*
-
-___
->>>>>>> build
 
 Provide this option if you want to cancel or time out the request. If the
 timeout object completes before the request, the request will be

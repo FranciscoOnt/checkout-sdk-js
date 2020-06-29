@@ -37,16 +37,7 @@ ___
 
 ### `Optional` onError
 
-<<<<<<< HEAD
-<<<<<<< HEAD
 ▸ **onError**(`state`: [AdyenComponentState](../README.md#adyencomponentstate), `component`: [AdyenComponent](adyencomponent.md)): *void*
-=======
-Called in case of an invalid card number, invalid expiry date, or incomplete field. Called again when errors are cleared.
-
-=======
->>>>>>> build
-**Parameters:**
->>>>>>> build
 
 Called in case of an invalid card number, invalid expiry date, or
  incomplete field. Called again when errors are cleared.

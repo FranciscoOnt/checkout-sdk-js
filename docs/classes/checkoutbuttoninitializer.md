@@ -59,24 +59,6 @@ console.log(state.statuses.isInitializingButton());
 
 **Returns:** *[CheckoutButtonSelectors](../interfaces/checkoutbuttonselectors.md)*
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-Returns a snapshot of the current state.
-
-The method returns a new instance every time there is a change in the state. You can query the state by calling any of its getter methods.
-
-```js
-const state = service.getState();
-
-console.log(state.errors.getInitializeButtonError());
-console.log(state.statuses.isInitializingButton());
-```
-
-=======
->>>>>>> build
-**Returns:** [CheckoutButtonSelectors](../interfaces/checkoutbuttonselectors.md)
->>>>>>> build
 The current customer's checkout state
 
 ___

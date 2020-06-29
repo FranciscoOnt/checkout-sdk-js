@@ -59,33 +59,14 @@ ___
 
 • **invalid**? : *[CardElementProps](cardelementprops.md)*
 
-<<<<<<< HEAD
-<<<<<<< HEAD
 The class name to apply when the Element is invalid.
 Defaults to StripeElement--invalid.
-=======
-The class name to apply when the Element is invalid. Defaults to StripeElement--invalid.
-
-=======
->>>>>>> build
-___
-<a id="webkitautofill"></a>
->>>>>>> build
 
 ___
 
 ### `Optional` webkitAutofill
 
-<<<<<<< HEAD
-<<<<<<< HEAD
 • **webkitAutofill**? : *[CardElementProps](cardelementprops.md)*
-=======
-The class name to apply when the Element has its value autofilled by the browser (only on Chrome and Safari). Defaults to StripeElement--webkit-autofill.
-
-=======
->>>>>>> build
-___
->>>>>>> build
 
 The class name to apply when the Element has its value
 autofilled by the browser (only on Chrome and Safari).

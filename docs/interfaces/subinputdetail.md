@@ -55,30 +55,12 @@ ___
 
 • **type**? : *undefined | string*
 
-<<<<<<< HEAD
 The type of the required input.
-<<<<<<< HEAD
-=======
-
-=======
->>>>>>> build
-___
-<a id="value"></a>
->>>>>>> build
 
 ___
 
 ### `Optional` value
 
-<<<<<<< HEAD
-<<<<<<< HEAD
 • **value**? : *undefined | string*
-=======
-The value can be pre-filled, if available.
-
-=======
->>>>>>> build
-___
->>>>>>> build
 
 The value can be pre-filled, if available.
