@@ -1,7 +1,8 @@
 import { createFormPoster, FormPoster } from '@bigcommerce/form-poster/';
 import { createRequestSender, RequestSender } from '@bigcommerce/request-sender';
 
-import { getCartState } from '../../../cart/carts.mock';
+import { Cart } from '../../../cart';
+import { getCart, getCartState } from '../../../cart/carts.mock';
 import { createCheckoutStore, CheckoutStore } from '../../../checkout';
 import { getCheckoutState } from '../../../checkout/checkouts.mock';
 import { InvalidArgumentError } from '../../../common/error/errors';
@@ -19,6 +20,7 @@ import { getAdyenV2CustomerInitializeOptions, Mode } from './googlepay-customer-
 import GooglePayCustomerStrategy from './googlepay-customer-strategy';
 
 describe('GooglePayCustomerStrategy', () => {
+    let cart: Cart;
     let container: HTMLDivElement;
     let formPoster: FormPoster;
     let customerInitializeOptions: CustomerInitializeOptions;
@@ -41,6 +43,7 @@ describe('GooglePayCustomerStrategy', () => {
             paymentMethods: getPaymentMethodsState(),
         });
 
+        cart = getCart();
         requestSender = createRequestSender();
 
         remoteCheckoutActionCreator = new RemoteCheckoutActionCreator(
@@ -67,13 +70,19 @@ describe('GooglePayCustomerStrategy', () => {
             .mockReturnValue(Promise.resolve(store.getState()));
         jest.spyOn(store.getState().paymentMethods, 'getPaymentMethod')
             .mockReturnValue(paymentMethod);
+        jest.spyOn(store.getState().cart, 'getCartOrThrow')
+            .mockReturnValue(cart);
         jest.spyOn(paymentProcessor, 'initialize')
             .mockReturnValue(Promise.resolve());
 
         walletButton = document.createElement('a');
         walletButton.setAttribute('id', 'mockButton');
         jest.spyOn(paymentProcessor, 'createButton')
-            .mockReturnValue(walletButton);
+            .mockImplementation((onClick: (event: Event) => Promise<void>) => {
+                walletButton.onclick = onClick;
+
+                return walletButton;
+            });
 
         container = document.createElement('div');
         container.setAttribute('id', 'googlePayCheckoutButton');
@@ -93,31 +102,22 @@ describe('GooglePayCustomerStrategy', () => {
             expect(paymentProcessor.createButton).toHaveBeenCalled();
         });
 
-        it('fails to initialize the strategy if no GooglePayCustomerInitializeOptions is provided ', async () => {
+        it('fails to initialize the strategy if no GooglePayCustomerInitializeOptions is provided ', () => {
             customerInitializeOptions = getAdyenV2CustomerInitializeOptions(Mode.Incomplete);
 
-            try {
-                await strategy.initialize(customerInitializeOptions);
-            } catch (error) {
-                expect(error).toBeInstanceOf(InvalidArgumentError);
-            }
+            expect(() => strategy.initialize(customerInitializeOptions)).toThrow(InvalidArgumentError);
         });
 
-        it('fails to initialize the strategy if no methodid is supplied', async () => {
+        it('fails to initialize the strategy if no methodid is supplied', () => {
             customerInitializeOptions = getAdyenV2CustomerInitializeOptions(Mode.UndefinedMethodId);
 
-            try {
-                await strategy.initialize(customerInitializeOptions);
-            } catch (error) {
-                expect(error).toBeInstanceOf(InvalidArgumentError);
-            }
+            expect(() => strategy.initialize(customerInitializeOptions)).toThrow(InvalidArgumentError);
         });
 
         it('fails to initialize the strategy if no valid container id is supplied', async () => {
             customerInitializeOptions = getAdyenV2CustomerInitializeOptions(Mode.InvalidContainer);
 
-            await expect(strategy.initialize(customerInitializeOptions))
-                .rejects.toThrow(InvalidArgumentError);
+            await expect(strategy.initialize(customerInitializeOptions)).rejects.toThrow(InvalidArgumentError);
         });
     });
 
@@ -206,23 +206,40 @@ describe('GooglePayCustomerStrategy', () => {
     });
 
     describe('#handleWalletButtonClick', () => {
-        it('handles wallet button event', async () => {
-            customerInitializeOptions = {
-                methodId: 'googlepayadyenv2',
-                googlepayadyenv2: {
-                    container: 'googlePayCheckoutButton',
-                },
-            };
+        const googlePaymentDataMock = getGooglePaymentDataMock();
 
-            jest.spyOn(paymentProcessor, 'displayWallet').mockReturnValue(Promise.resolve(getGooglePaymentDataMock()));
+        beforeEach(() => {
+            customerInitializeOptions = getAdyenV2CustomerInitializeOptions();
+
+            jest.spyOn(paymentProcessor, 'displayWallet').mockResolvedValue(googlePaymentDataMock);
             jest.spyOn(paymentProcessor, 'handleSuccess').mockReturnValue(Promise.resolve());
             jest.spyOn(paymentProcessor, 'updateShippingAddress').mockReturnValue(Promise.resolve());
+        });
 
-            expect(paymentProcessor.initialize).not.toHaveBeenCalled();
+        it('handles wallet button event and updates shipping address', async () => {
             await strategy.initialize(customerInitializeOptions);
 
             walletButton.click();
-            expect(paymentProcessor.initialize).toHaveBeenCalledWith('googlepayadyenv2');
+
+            await new Promise(resolve => process.nextTick(resolve));
+
+            expect(paymentProcessor.displayWallet).toHaveBeenCalled();
+            expect(paymentProcessor.handleSuccess).toHaveBeenCalledWith(googlePaymentDataMock);
+            expect(paymentProcessor.updateShippingAddress).toHaveBeenCalledWith(googlePaymentDataMock.shippingAddress);
+        });
+
+        it('handles wallet button event and does not update shipping address if cart has digital products only', async () => {
+            cart.lineItems.physicalItems = [];
+
+            await strategy.initialize(customerInitializeOptions);
+
+            walletButton.click();
+
+            await new Promise(resolve => process.nextTick(resolve));
+
+            expect(paymentProcessor.displayWallet).toHaveBeenCalled();
+            expect(paymentProcessor.handleSuccess).toHaveBeenCalledWith(googlePaymentDataMock);
+            expect(paymentProcessor.updateShippingAddress).not.toHaveBeenCalled();
         });
     });
 });

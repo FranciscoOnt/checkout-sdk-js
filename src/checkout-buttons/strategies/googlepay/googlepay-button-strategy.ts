@@ -18,7 +18,7 @@ export default class GooglePayButtonStrategy implements CheckoutButtonStrategy {
         private _googlePayPaymentProcessor: GooglePayPaymentProcessor
     ) {}
 
-    initialize(options: CheckoutButtonInitializeOptions): Promise<void> {
+    async initialize(options: CheckoutButtonInitializeOptions): Promise<void> {
         const { containerId, methodId } = options;
 
         if (!containerId || !methodId) {
@@ -27,11 +27,10 @@ export default class GooglePayButtonStrategy implements CheckoutButtonStrategy {
 
         this._methodId = methodId;
 
-        return this._store.dispatch(this._checkoutActionCreator.loadDefaultCheckout())
-            .then(() => this._googlePayPaymentProcessor.initialize(this._getMethodId()))
-            .then(() => {
-                this._walletButton = this._createSignInButton(containerId);
-            });
+        await this._store.dispatch(this._checkoutActionCreator.loadDefaultCheckout());
+        await this._googlePayPaymentProcessor.initialize(this._getMethodId());
+
+        this._walletButton = this._createSignInButton(containerId);
     }
 
     deinitialize(): Promise<void> {
@@ -68,11 +67,13 @@ export default class GooglePayButtonStrategy implements CheckoutButtonStrategy {
     @bind
     private async _handleWalletButtonClick(event: Event): Promise<void> {
         event.preventDefault();
+        const cart = this._store.getState().cart.getCartOrThrow();
+        const hasPhysicalItems = cart.lineItems.physicalItems.length !== 0;
 
         try {
             const paymentData = await this._googlePayPaymentProcessor.displayWallet();
             await this._googlePayPaymentProcessor.handleSuccess(paymentData);
-            if (paymentData.shippingAddress) {
+            if (hasPhysicalItems && paymentData.shippingAddress) {
                 await this._googlePayPaymentProcessor.updateShippingAddress(paymentData.shippingAddress);
             }
             await this._onPaymentSelectComplete();

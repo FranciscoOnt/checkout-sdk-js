@@ -106,11 +106,12 @@ export default class GooglePayCustomerStrategy implements CustomerStrategy {
     @bind
     private async _handleWalletButtonClick(event: Event): Promise<void> {
         event.preventDefault();
-
+        const cart = this._store.getState().cart.getCartOrThrow();
+        const hasPhysicalItems = cart.lineItems.physicalItems.length !== 0;
         try {
             const paymentData = await this._googlePayPaymentProcessor.displayWallet();
             await this._googlePayPaymentProcessor.handleSuccess(paymentData);
-            if (paymentData.shippingAddress) {
+            if (hasPhysicalItems && paymentData.shippingAddress) {
                 await this._googlePayPaymentProcessor.updateShippingAddress(paymentData.shippingAddress);
             }
             await this._onPaymentSelectComplete();
