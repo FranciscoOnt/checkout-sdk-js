@@ -2,7 +2,6 @@ import { CheckoutStore, InternalCheckoutSelectors } from '../../../checkout';
 import { InvalidArgumentError, MissingDataError, MissingDataErrorType, NotInitializedError, NotInitializedErrorType } from '../../../common/error/errors';
 import { OrderActionCreator, OrderRequestBody } from '../../../order';
 import { OrderFinalizationNotRequiredError } from '../../../order/errors';
-import { RemoteCheckoutActionCreator } from '../../../remote-checkout';
 import { StoreCreditActionCreator } from '../../../store-credit';
 import { PaymentMethodCancelledError } from '../../errors';
 import { NonceInstrument } from '../../payment';
@@ -24,7 +23,6 @@ export default class BoltAppPaymentStrategy implements PaymentStrategy {
         private _paymentActionCreator: PaymentActionCreator,
         private _paymentMethodActionCreator: PaymentMethodActionCreator,
         private _storeCreditActionCreator: StoreCreditActionCreator,
-        private _remoteCheckoutActionCreator: RemoteCheckoutActionCreator,
         private _boltScriptLoader: BoltScriptLoader
     ) { }
 
@@ -58,14 +56,13 @@ export default class BoltAppPaymentStrategy implements PaymentStrategy {
             throw new InvalidArgumentError('Unable to submit payment because "payload.payment" argument is not provided.');
         }
 
+        await this._store.dispatch(this._orderActionCreator.submitOrder(order, options));
+
         const { isStoreCreditApplied: useStoreCredit } = this._store.getState().checkout.getCheckoutOrThrow();
 
         if (useStoreCredit !== undefined) {
             await this._store.dispatch(this._storeCreditActionCreator.applyStoreCredit(useStoreCredit));
         }
-
-        await this._store.dispatch(this._orderActionCreator.submitOrder(order, options));
-        await this._store.dispatch(this._remoteCheckoutActionCreator.initializePayment(payment.methodId, { useStoreCredit }));
 
         const state = await this._store.dispatch(this._paymentMethodActionCreator.loadPaymentMethod(payment.methodId, options));
         const paymentMethod = state.paymentMethods.getPaymentMethod(payment.methodId);

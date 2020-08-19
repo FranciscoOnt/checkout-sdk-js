@@ -12,7 +12,6 @@ import { OrderFinalizationNotRequiredError } from '../../../order/errors';
 import { PaymentInitializeOptions, PaymentMethod, PaymentMethodRequestSender, PaymentRequestSender } from '../../../payment';
 import { getBolt } from '../../../payment/payment-methods.mock';
 import { getBoltScriptMock } from '../../../payment/strategies/bolt/bolt.mock';
-import { RemoteCheckoutActionCreator, RemoteCheckoutRequestSender } from '../../../remote-checkout';
 import { createSpamProtection, PaymentHumanVerificationHandler } from '../../../spam-protection';
 import { StoreCreditActionCreator, StoreCreditActionType, StoreCreditRequestSender } from '../../../store-credit';
 import { PaymentMethodCancelledError } from '../../errors';
@@ -46,7 +45,6 @@ describe('BoltAppPaymentStrategy', () => {
     let paymentMethodRequestSender: PaymentMethodRequestSender;
     let paymentRequestSender: PaymentRequestSender;
     let paymentRequestTransformer: PaymentRequestTransformer;
-    let remoteCheckoutActionCreator: RemoteCheckoutActionCreator;
     let storeCreditActionCreator: StoreCreditActionCreator;
 
     beforeEach(() => {
@@ -68,8 +66,6 @@ describe('BoltAppPaymentStrategy', () => {
             paymentRequestTransformer,
             paymentHumanVerificationHandler
         );
-        remoteCheckoutActionCreator = new RemoteCheckoutActionCreator(
-            new RemoteCheckoutRequestSender(requestSender));
         storeCreditActionCreator = new StoreCreditActionCreator(
             new StoreCreditRequestSender(requestSender)
         );
@@ -108,8 +104,6 @@ describe('BoltAppPaymentStrategy', () => {
             .mockResolvedValue(boltClient);
         jest.spyOn(storeCreditActionCreator, 'applyStoreCredit')
             .mockReturnValue(applyStoreCreditAction);
-        jest.spyOn(remoteCheckoutActionCreator, 'initializePayment')
-            .mockResolvedValue(store.getState());
 
         strategy = new BoltAppPaymentStrategy(
             store,
@@ -117,7 +111,6 @@ describe('BoltAppPaymentStrategy', () => {
             paymentActionCreator,
             paymentMethodActionCreator,
             storeCreditActionCreator,
-            remoteCheckoutActionCreator,
             boltScriptLoader
         );
     });
@@ -159,7 +152,6 @@ describe('BoltAppPaymentStrategy', () => {
             await strategy.initialize(options);
             await strategy.execute(payload);
             expect(storeCreditActionCreator.applyStoreCredit).toHaveBeenCalledWith(false);
-            expect(remoteCheckoutActionCreator.initializePayment).toHaveBeenCalledWith(expectedPayment.methodId, { useStoreCredit: false });
             expect(boltClient.configure).toHaveBeenCalledWith(expect.objectContaining(expectedCart), {}, expect.objectContaining(expectedCallbacks));
             expect(paymentActionCreator.submitPayment).toHaveBeenCalledWith(expectedPayment);
         });
@@ -178,7 +170,6 @@ describe('BoltAppPaymentStrategy', () => {
             await strategy.initialize(options);
             await strategy.execute(payload);
             expect(storeCreditActionCreator.applyStoreCredit).toHaveBeenCalledWith(true);
-            expect(remoteCheckoutActionCreator.initializePayment).toHaveBeenCalledWith(expectedPayment.methodId, { useStoreCredit: true });
             expect(boltClient.configure).toHaveBeenCalledWith(expect.objectContaining(expectedCart), {}, expect.objectContaining(expectedCallbacks));
             expect(paymentActionCreator.submitPayment).toHaveBeenCalledWith(expectedPayment);
         });
