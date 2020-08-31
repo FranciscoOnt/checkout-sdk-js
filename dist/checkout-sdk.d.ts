@@ -513,6 +513,14 @@ declare interface BodyStyles {
     backgroundColor?: string;
 }
 
+declare interface BoltInitializeOptions {
+    /**
+     * When true, Bigcommerce's checkout will be used
+     * otherwise Bolt's full checkout take over will be assumed
+     */
+    useClientScript?: boolean;
+}
+
 declare interface BraintreeError extends Error {
     type: 'CUSTOMER' | 'MERCHANT' | 'NETWORK' | 'INTERNAL' | 'UNKNOWN';
     code: string;
@@ -3834,6 +3842,11 @@ declare interface PaymentInitializeOptions extends PaymentRequestOptions {
      * They can be omitted unless you need to support BlueSnapV2.
      */
     bluesnapv2?: BlueSnapV2PaymentInitializeOptions;
+    /**
+     * The options that allow Bolt to load the client script and handle the checkout.
+     * They can be omitted if Bolt's full checkout take over is intended.
+     */
+    bolt?: BoltInitializeOptions;
     /**
      * The options that are required to initialize the Braintree payment method.
      * They can be omitted unless you need to support Braintree.
