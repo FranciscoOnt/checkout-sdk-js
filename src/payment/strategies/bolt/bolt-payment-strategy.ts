@@ -97,13 +97,18 @@ export default class BoltPaymentStrategy implements PaymentStrategy {
         const orderToken = paymentMethod.clientToken;
 
         const transaction: BoltTransaction = await new Promise((resolve, reject) => {
-            const onSuccess = (transaction: BoltTransaction,  callback: () => void) => {
-                resolve(transaction);
+            let boltTransaction: BoltTransaction;
+            const onSuccess = (transaction: BoltTransaction, callback: () => void) => {
+                boltTransaction = transaction;
                 callback();
             };
 
             const onClose = () => {
-                reject(new PaymentMethodCancelledError());
+                if (boltTransaction != null) {
+                    return resolve(boltTransaction);
+                }
+
+                return reject(new PaymentMethodCancelledError());
             };
 
             const callbacks = {

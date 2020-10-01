@@ -23,10 +23,18 @@ export function getConfiguredBoltMock(shouldSucced: boolean, callbacks: BoltCall
         },
     };
 
+    const successCallback = (() => {
+        if (callbacks.close) {
+            callbacks.close();
+        }
+
+        return Promise.resolve();
+    });
+
     return {
         open: jest.fn(() => {
             if (shouldSucced) {
-                callbacks.success(mockTransaction, jest.fn());
+                callbacks.success(mockTransaction, successCallback);
             } else {
                 if (callbacks.close) {
                     callbacks.close();

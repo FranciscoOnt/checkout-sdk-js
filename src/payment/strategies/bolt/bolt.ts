@@ -19,7 +19,7 @@ export interface BoltCallbacks {
     check?(): boolean;
     onCheckoutStart?(): void;
     onPaymentSubmit?(): void;
-    success(transaction: BoltTransaction, callback: () => void): void;
+    success(transaction: BoltTransaction, callback: () => Promise<void>): void;
     close?(): void;
 }
 
