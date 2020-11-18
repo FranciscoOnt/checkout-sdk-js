@@ -42,6 +42,15 @@ export default class PaymentStrategyRegistry extends Registry<PaymentStrategy, P
             return PaymentStrategyType.PAYPAL_COMMERCE;
         }
 
+        if (paymentMethod.gateway === PaymentStrategyType.CHECKOUTCOM) {
+            switch (paymentMethod.id) {
+                case 'credit_card':
+                    return PaymentStrategyType.CHECKOUTCOM;
+                default:
+                    return PaymentStrategyType.CHECKOUTCOM_APM;
+            }
+        }
+
         const methodId = paymentMethod.gateway || paymentMethod.id;
 
         if (this._hasFactoryForMethod(methodId)) {
