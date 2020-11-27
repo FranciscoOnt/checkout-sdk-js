@@ -1,5 +1,4 @@
 import { FormPoster } from '@bigcommerce/form-poster';
-import { some } from 'lodash';
 
 import { CheckoutStore, InternalCheckoutSelectors } from '../../../checkout';
 import { NotInitializedError, NotInitializedErrorType, RequestError } from '../../../common/error/errors';
@@ -9,7 +8,7 @@ import { OrderFinalizationNotRequiredError } from '../../../order/errors';
 import { PaymentArgumentInvalidError } from '../../errors';
 import PaymentActionCreator from '../../payment-action-creator';
 import { PaymentRequestOptions } from '../../payment-request-options';
-import { ThreeDsResult } from '../../payment-response-body';
+import { AdditionalActionRequired, AdditionalActionType } from '../../payment-response-body';
 import * as paymentStatusTypes from '../../payment-status-types';
 import { CreditCardPaymentStrategy } from '../credit-card';
 
@@ -50,8 +49,14 @@ export default class CheckoutcomAPMPaymentStrategy extends CreditCardPaymentStra
 
       await this._store.dispatch(this._orderActionCreator.submitOrder(order, options));
 
+      const paymentPayload = {
+          methodId: payment.methodId,
+          gatewayId: payment.gatewayId,
+          paymentData,
+      };
+
       try {
-          return await this._store.dispatch(this._paymentActionCreator.submitPayment({ ...payment, paymentData }));
+          return await this._store.dispatch(this._paymentActionCreator.submitPayment(paymentPayload));
       } catch (error) {
           return this._processResponse(error);
       }
@@ -85,19 +90,17 @@ export default class CheckoutcomAPMPaymentStrategy extends CreditCardPaymentStra
             return Promise.reject(error);
         }
 
+        const additionalActionRequired: AdditionalActionRequired = error.body.additional_action_required;
+
         // TODO validate all possible responses and perform respective additional actions
-        if (some(error.body.errors, { code: 'three_d_secure_required' })) {
-          this._performRedirect(error.body.three_ds_result);
+        if (additionalActionRequired && additionalActionRequired.type === AdditionalActionType.OffsiteRedirect) {
+            return this._performRedirect(additionalActionRequired);
         }
 
         return Promise.reject(error);
     }
 
-    private _performRedirect(threeDsResult: ThreeDsResult): Promise<InternalCheckoutSelectors> {
-        return new Promise(() => this._formPoster.postForm(threeDsResult.acs_url, {
-            PaReq: threeDsResult.payer_auth_request || null,
-            TermUrl: threeDsResult.callback_url || null,
-            MD: threeDsResult.merchant_data || null,
-        }));
+    private _performRedirect(additionalActionRequired: AdditionalActionRequired): Promise<InternalCheckoutSelectors> {
+        return new Promise(() => this._formPoster.postForm(additionalActionRequired.data.redirect_url, {}));
     }
 }

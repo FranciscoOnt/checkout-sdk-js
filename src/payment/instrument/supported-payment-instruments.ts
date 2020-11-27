@@ -49,7 +49,7 @@ const supportedInstruments: SupportedInstruments = {
         provider: 'elavon',
         method: 'credit_card',
     },
-    checkoutcom: {
+    'checkoutcom.credit_card': {
         provider: 'checkoutcom',
         method: 'credit_card',
     },

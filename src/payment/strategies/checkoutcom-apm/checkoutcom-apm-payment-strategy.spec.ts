@@ -112,18 +112,17 @@ describe('CheckoutcomAPMPaymentStrategy', () => {
         expect(output).toEqual(store.getState());
     });
 
-    it('posts 3ds data to the provided acs_url if 3ds is enabled', async () => {
+    it('redirects to target url when additoonal action required', async () => {
         const error = new RequestError(getResponse({
             ...getErrorPaymentResponseBody(),
-            errors: [
-                { code: 'three_d_secure_required' },
-            ],
-            three_ds_result: {
-                acs_url: 'https://acs/url',
-                callback_url: 'https://callback/url',
-                payer_auth_request: 'payer_auth_request',
-                merchant_data: 'merchant_data',
+            errors: [],
+            additional_action_required: {
+                data: {
+                    redirect_url: 'http://redirect-url.com',
+                },
+                type: 'offsite_redirect',
             },
+            three_ds_result: {},
             status: 'error',
         }));
 
@@ -134,11 +133,7 @@ describe('CheckoutcomAPMPaymentStrategy', () => {
 
         await new Promise(resolve => process.nextTick(resolve));
 
-        expect(formPoster.postForm).toHaveBeenCalledWith('https://acs/url', {
-            PaReq: 'payer_auth_request',
-            TermUrl: 'https://callback/url',
-            MD: 'merchant_data',
-        });
+        expect(formPoster.postForm).toHaveBeenCalledWith('http://redirect-url.com', {});
     });
 
     it('does not post 3ds data to the provided acs_url if 3ds is not enabled', async () => {
@@ -299,15 +294,14 @@ describe('CheckoutcomAPMPaymentStrategy', () => {
         it('posts 3ds data to the provided acs_url if 3ds is enabled', async () => {
             const error = new RequestError(getResponse({
                 ...getErrorPaymentResponseBody(),
-                errors: [
-                    { code: 'three_d_secure_required' },
-                ],
-                three_ds_result: {
-                    acs_url: 'https://acs/url',
-                    callback_url: 'https://callback/url',
-                    payer_auth_request: 'payer_auth_request',
-                    merchant_data: 'merchant_data',
+                errors: [],
+                additional_action_required: {
+                    data: {
+                        redirect_url: 'http://redirect-url.com',
+                    },
+                    type: 'offsite_redirect',
                 },
+                three_ds_result: {},
                 status: 'error',
             }));
 
@@ -319,12 +313,7 @@ describe('CheckoutcomAPMPaymentStrategy', () => {
 
             await new Promise(resolve => process.nextTick(resolve));
 
-            expect(formPoster.postForm).toHaveBeenCalledWith('https://acs/url',
-            {
-                PaReq: 'payer_auth_request',
-                TermUrl: 'https://callback/url',
-                MD: 'merchant_data',
-            });
+            expect(formPoster.postForm).toHaveBeenCalledWith('http://redirect-url.com', {});
             expect(orderActionCreator.loadCurrentOrder)
                 .not.toHaveBeenCalled();
         });
