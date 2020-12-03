@@ -111,7 +111,7 @@ describe('CheckoutcomAPMPaymentStrategy', () => {
         expect(output).toEqual(store.getState());
     });
 
-    it('redirects to target url when additoonal action required', async () => {
+    it('redirects to target url when additional action redirect is provided', async () => {
         const error = new RequestError(getResponse({
             ...getErrorPaymentResponseBody(),
             errors: [],
@@ -125,6 +125,8 @@ describe('CheckoutcomAPMPaymentStrategy', () => {
             status: 'error',
         }));
 
+        window.location.replace = jest.fn();
+
         jest.spyOn(paymentActionCreator, 'submitPayment')
             .mockReturnValue(of(createErrorAction(PaymentActionType.SubmitPaymentFailed, error)));
 
@@ -132,10 +134,10 @@ describe('CheckoutcomAPMPaymentStrategy', () => {
 
         await new Promise(resolve => process.nextTick(resolve));
 
-        expect(formPoster.postForm).toHaveBeenCalledWith('http://redirect-url.com', {});
+        expect(window.location.replace).toBeCalledWith('http://redirect-url.com');
     });
 
-    it('does not post 3ds data to the provided acs_url if 3ds is not enabled', async () => {
+    it('does not redirect to target url if additional action is not provided', async () => {
         const response = new RequestError(getResponse(getErrorPaymentResponseBody()));
 
         jest.spyOn(paymentActionCreator, 'submitPayment')
@@ -290,7 +292,7 @@ describe('CheckoutcomAPMPaymentStrategy', () => {
                 .toHaveBeenCalledWith(loadOrderAction);
         });
 
-        it('posts 3ds data to the provided acs_url if 3ds is enabled', async () => {
+        it('redirects to target url when additional action redirect is provided', async () => {
             const error = new RequestError(getResponse({
                 ...getErrorPaymentResponseBody(),
                 errors: [],
@@ -304,6 +306,8 @@ describe('CheckoutcomAPMPaymentStrategy', () => {
                 status: 'error',
             }));
 
+            window.location.replace = jest.fn();
+
             jest.spyOn(form, 'submit')
                 .mockRejectedValue(error);
 
@@ -312,7 +316,7 @@ describe('CheckoutcomAPMPaymentStrategy', () => {
 
             await new Promise(resolve => process.nextTick(resolve));
 
-            expect(formPoster.postForm).toHaveBeenCalledWith('http://redirect-url.com', {});
+            expect(window.location.replace).toBeCalledWith('http://redirect-url.com');
             expect(orderActionCreator.loadCurrentOrder)
                 .not.toHaveBeenCalled();
         });
