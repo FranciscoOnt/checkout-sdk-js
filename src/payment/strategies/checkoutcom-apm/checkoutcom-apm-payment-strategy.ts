@@ -1,5 +1,3 @@
-import { FormPoster } from '@bigcommerce/form-poster';
-
 import { CheckoutStore, InternalCheckoutSelectors } from '../../../checkout';
 import { NotInitializedError, NotInitializedErrorType, RequestError } from '../../../common/error/errors';
 import { HostedFormFactory } from '../../../hosted-form';
@@ -17,8 +15,7 @@ export default class CheckoutcomAPMPaymentStrategy extends CreditCardPaymentStra
       protected _store: CheckoutStore,
       protected _orderActionCreator: OrderActionCreator,
       protected _paymentActionCreator: PaymentActionCreator,
-      protected _hostedFormFactory: HostedFormFactory,
-      protected _formPoster: FormPoster
+      protected _hostedFormFactory: HostedFormFactory
     ) {
         super(
             _store,
@@ -101,6 +98,8 @@ export default class CheckoutcomAPMPaymentStrategy extends CreditCardPaymentStra
     }
 
     private _performRedirect(additionalActionRequired: AdditionalActionRequired): Promise<InternalCheckoutSelectors> {
-        return new Promise(() => this._formPoster.postForm(additionalActionRequired.data.redirect_url, {}));
+        return new Promise(() => {
+            window.location.replace(additionalActionRequired.data.redirect_url);
+        });
     }
 }

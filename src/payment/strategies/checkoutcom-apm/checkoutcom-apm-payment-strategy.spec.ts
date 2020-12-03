@@ -81,8 +81,7 @@ describe('CheckoutcomAPMPaymentStrategy', () => {
             store,
             orderActionCreator,
             paymentActionCreator,
-            formFactory,
-            formPoster
+            formFactory
         );
     });
 
