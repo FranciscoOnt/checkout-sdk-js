@@ -39,6 +39,7 @@ describe('CheckoutcomAPMPaymentStrategy', () => {
     let strategy: CheckoutcomAPMPaymentStrategy;
     let submitOrderAction: Observable<SubmitOrderAction>;
     let submitPaymentAction: Observable<SubmitPaymentAction>;
+    let state: InternalCheckoutSelectors;
 
     beforeEach(() => {
         formFactory = new HostedFormFactory(store);
@@ -64,6 +65,11 @@ describe('CheckoutcomAPMPaymentStrategy', () => {
         submitPaymentAction = of(createAction(PaymentActionType.SubmitPaymentRequested));
 
         jest.spyOn(store, 'dispatch');
+
+        state = store.getState();
+
+        jest.spyOn(state.paymentMethods, 'getPaymentMethodOrThrow')
+            .mockReturnValue(getPaymentMethod());
 
         jest.spyOn(formPoster, 'postForm')
             .mockImplementation((_url, _data, callback = () => {}) => callback());
@@ -95,13 +101,24 @@ describe('CheckoutcomAPMPaymentStrategy', () => {
         expect(store.dispatch).toHaveBeenCalledWith(submitOrderAction);
     });
 
-    it('submits payment separately', async () => {
-        const payload = getOrderRequestBody();
-        const options = { methodId: 'methodId' };
+    it('submits document field when methodId is oxxo', async () => {
+        const paymentWithDocument = {
+            payment: {
+                methodId: 'paypal',
+                gatewayId: 'checkoutcom',
+                paymentData: {
+                    ccDocument: 'card-document',
+                },
+            },
+        };
+        const payload = merge(getOrderRequestBody(), paymentWithDocument);
+        const options = { methodId: 'oxxo' };
+
+        const expectedPayment = merge(payload.payment, { paymentData: { formattedPayload: { document: 'card-document' }}});
 
         await strategy.execute(payload, options);
 
-        expect(paymentActionCreator.submitPayment).toHaveBeenCalledWith(payload.payment);
+        expect(paymentActionCreator.submitPayment).toHaveBeenCalledWith(expectedPayment);
         expect(store.dispatch).toHaveBeenCalledWith(submitPaymentAction);
     });
 
