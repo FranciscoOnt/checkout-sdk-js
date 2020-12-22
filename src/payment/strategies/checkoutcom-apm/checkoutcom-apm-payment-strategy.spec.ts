@@ -101,10 +101,10 @@ describe('CheckoutcomAPMPaymentStrategy', () => {
         expect(store.dispatch).toHaveBeenCalledWith(submitOrderAction);
     });
 
-    it('submits document field when methodId is oxxo', async () => {
+    it('submits document field when methodId is supported', async () => {
         const paymentWithDocument = {
             payment: {
-                methodId: 'paypal',
+                methodId: 'oxxo',
                 gatewayId: 'checkoutcom',
                 paymentData: {
                     ccDocument: 'card-document',

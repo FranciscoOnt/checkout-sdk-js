@@ -11,8 +11,6 @@ import { AdditionalActionRequired, AdditionalActionType } from '../../payment-re
 import * as paymentStatusTypes from '../../payment-status-types';
 import { CreditCardPaymentStrategy } from '../credit-card';
 
-import { CheckoutcomAPMs } from './checkoutcom-apm';
-
 export default class CheckoutcomAPMPaymentStrategy extends CreditCardPaymentStrategy {
     constructor(
         protected _store: CheckoutStore,
@@ -106,10 +104,11 @@ export default class CheckoutcomAPMPaymentStrategy extends CreditCardPaymentStra
     }
 
     private _createFormattedPayload(methodId: string, paymentData: PaymentInstrument): WithDocumentInstrument {
+        const documentSupportedAPMs = ['boleto', 'oxxo', 'qpay'];
         const formattedPayload = {};
         const { ccDocument: document } = paymentData as WithDocumentInstrument;
 
-        if (methodId === CheckoutcomAPMs.Paypal && document) {
+        if (documentSupportedAPMs.indexOf(methodId) !== -1 && document) {
             Object.assign(formattedPayload, { document });
         }
 
