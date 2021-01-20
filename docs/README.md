@@ -275,6 +275,7 @@
 * [VaultedInstrument](interfaces/vaultedinstrument.md)
 * [WechatDataPaymentMethodState](interfaces/wechatdatapaymentmethodstate.md)
 * [WechatState](interfaces/wechatstate.md)
+* [WithDocumentInstrument](interfaces/withdocumentinstrument.md)
 * [ZipCodeElementOptions](interfaces/zipcodeelementoptions.md)
 
 ### Type aliases
