@@ -47,6 +47,11 @@ export interface WithDocumentInstrument {
     ccDocument: string;
 }
 
+export interface CheckoutcomSEPAInstrument {
+    iban: string;
+    bic: string;
+}
+
 export interface WithHostedFormNonce {
     hostedFormNonce: string;
 }

@@ -10,6 +10,11 @@ import * as paymentMethodTypes from './payment-method-types';
 import PaymentStrategyType from './payment-strategy-type';
 import { PaymentStrategy } from './strategies';
 
+type checkoutcomMethods = 'credit_card' | 'sepa';
+const checkoutcomStrategies = {
+    credit_card: PaymentStrategyType.CHECKOUTCOM,
+    sepa: PaymentStrategyType.CHECKOUTCOM_SEPA,
+};
 export default class PaymentStrategyRegistry extends Registry<PaymentStrategy, PaymentStrategyType> {
     constructor(
         private _store: ReadableDataStore<InternalCheckoutSelectors>,
@@ -46,12 +51,9 @@ export default class PaymentStrategyRegistry extends Registry<PaymentStrategy, P
         }
 
         if (paymentMethod.gateway === PaymentStrategyType.CHECKOUTCOM) {
-            switch (paymentMethod.id) {
-                case 'credit_card':
-                    return PaymentStrategyType.CHECKOUTCOM;
-                default:
-                    return PaymentStrategyType.CHECKOUTCOM_APM;
-            }
+            return paymentMethod.id in checkoutcomStrategies
+                ? checkoutcomStrategies[paymentMethod.id as checkoutcomMethods]
+                : PaymentStrategyType.CHECKOUTCOM_APM;
         }
 
         const methodId = paymentMethod.gateway || paymentMethod.id;
