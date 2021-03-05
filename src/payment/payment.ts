@@ -52,6 +52,11 @@ export interface CheckoutcomSEPAInstrument {
     bic: string;
 }
 
+export interface CheckoutcomFawryInstrument {
+    customerMobile: string;
+    customerEmail: string;
+}
+
 export interface WithHostedFormNonce {
     hostedFormNonce: string;
 }

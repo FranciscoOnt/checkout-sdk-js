@@ -10,10 +10,11 @@ import * as paymentMethodTypes from './payment-method-types';
 import PaymentStrategyType from './payment-strategy-type';
 import { PaymentStrategy } from './strategies';
 
-type checkoutcomMethods = 'credit_card' | 'sepa';
+type checkoutcomMethods = 'credit_card' | 'sepa' | 'fawry';
 const checkoutcomStrategies = {
     credit_card: PaymentStrategyType.CHECKOUTCOM,
     sepa: PaymentStrategyType.CHECKOUTCOM_SEPA,
+    fawry: PaymentStrategyType.CHECKOUTCOM_FAWRY,
 };
 export default class PaymentStrategyRegistry extends Registry<PaymentStrategy, PaymentStrategyType> {
     constructor(
