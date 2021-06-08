@@ -191,6 +191,7 @@ describe('MonerisPaymentStrategy', () => {
                 methodId: 'moneris',
                 paymentData: {
                     nonce: 'ABC123',
+                    shouldSaveInstrument: null,
                 },
             };
             checkoutMock.isStoreCreditApplied = true;
@@ -205,6 +206,43 @@ describe('MonerisPaymentStrategy', () => {
             await promise;
 
             expect(storeCreditActionCreator.applyStoreCredit).toHaveBeenCalledWith(true);
+            expect(paymentActionCreator.submitPayment).toHaveBeenCalledWith(expectedPayment);
+        });
+
+        it('submits payment and sends shouldSaveInstrument if provided', async () => {
+            const expectedPayment = {
+                methodId: 'moneris',
+                paymentData: {
+                    nonce: 'ABC123',
+                    shouldSaveInstrument: true,
+                },
+            };
+            const vaultingPayload = merge(payload, { payment: { paymentData: { shouldSaveInstrument: true }}});
+
+            await strategy.initialize(initializeOptions);
+            const promise = strategy.execute(vaultingPayload, options);
+
+            await new Promise(resolve => process.nextTick(resolve));
+
+            eventEmitter.emit('message', { data: '{\"responseCode\":[\"001\"],\"errorMessage\":null,\"dataKey\":\"ABC123\",\"bin\":\"1234\"}'});
+
+            await promise;
+
+            expect(paymentActionCreator.submitPayment).toHaveBeenCalledWith(expectedPayment);
+        });
+
+        it('submits payment with intrument if provided', async () => {
+            const expectedPayment = {
+                methodId: 'moneris',
+                paymentData: {
+                    instrumentId: 'instrument_123',
+                },
+            };
+            const vaultingPayload = merge(payload, { payment: { paymentData: { instrumentId: 'instrument_123' }}});
+
+            await strategy.initialize(initializeOptions);
+            await strategy.execute(vaultingPayload, options);
+
             expect(paymentActionCreator.submitPayment).toHaveBeenCalledWith(expectedPayment);
         });
 

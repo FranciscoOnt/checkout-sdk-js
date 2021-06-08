@@ -4,6 +4,8 @@ import { OrderActionCreator, OrderRequestBody } from '../../../order';
 import { OrderFinalizationNotRequiredError } from '../../../order/errors';
 import { StoreCreditActionCreator } from '../../../store-credit';
 import { PaymentArgumentInvalidError } from '../../errors';
+import isVaultedInstrument from '../../is-vaulted-instrument';
+import { NonceInstrument } from '../../payment';
 import PaymentActionCreator from '../../payment-action-creator';
 import { PaymentInitializeOptions } from '../../payment-request-options';
 import PaymentStrategy from '../payment-strategy';
@@ -55,6 +57,7 @@ export default class MonerisPaymentStrategy implements PaymentStrategy {
 
         const paymentMethod = getPaymentMethodOrThrow(payment.methodId);
         const testMode = paymentMethod.config.testMode;
+        const shouldSaveInstrument = payment.paymentData && (payment.paymentData as NonceInstrument).shouldSaveInstrument;
 
         const { isStoreCreditApplied: useStoreCredit } = this._store.getState().checkout.getCheckoutOrThrow();
 
@@ -63,6 +66,10 @@ export default class MonerisPaymentStrategy implements PaymentStrategy {
         }
 
         await this._store.dispatch(this._orderActionCreator.submitOrder(order, options));
+
+        if (payment.paymentData && isVaultedInstrument(payment.paymentData)) {
+            return this._store.dispatch(this._paymentActionCreator.submitPayment(payment));
+        }
 
         const nonce = await new Promise<string | undefined>((resolve, reject) => {
             if (!this._iframe) {
@@ -87,7 +94,7 @@ export default class MonerisPaymentStrategy implements PaymentStrategy {
         if (nonce !== undefined) {
             return this._store.dispatch(this._paymentActionCreator.submitPayment({
                 methodId: payment.methodId,
-                paymentData: { nonce },
+                paymentData: { nonce, shouldSaveInstrument },
             }));
         }
 
