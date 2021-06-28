@@ -192,6 +192,7 @@ describe('MonerisPaymentStrategy', () => {
                 paymentData: {
                     nonce: 'ABC123',
                     shouldSaveInstrument: null,
+                    shouldSetAsDefaultInstrument: null,
                 },
             };
             checkoutMock.isStoreCreditApplied = true;
@@ -209,15 +210,16 @@ describe('MonerisPaymentStrategy', () => {
             expect(paymentActionCreator.submitPayment).toHaveBeenCalledWith(expectedPayment);
         });
 
-        it('submits payment and sends shouldSaveInstrument if provided', async () => {
+        it('submits payment and sends shouldSaveInstrument and shouldSetAsDefaultInstrument if provided', async () => {
             const expectedPayment = {
                 methodId: 'moneris',
                 paymentData: {
                     nonce: 'ABC123',
                     shouldSaveInstrument: true,
+                    shouldSetAsDefaultInstrument: true,
                 },
             };
-            const vaultingPayload = merge(payload, { payment: { paymentData: { shouldSaveInstrument: true }}});
+            const vaultingPayload = merge(payload, { payment: { paymentData: { shouldSaveInstrument: true, shouldSetAsDefaultInstrument: true }}});
 
             await strategy.initialize(initializeOptions);
             const promise = strategy.execute(vaultingPayload, options);

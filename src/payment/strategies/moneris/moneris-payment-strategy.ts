@@ -5,7 +5,7 @@ import { OrderFinalizationNotRequiredError } from '../../../order/errors';
 import { StoreCreditActionCreator } from '../../../store-credit';
 import { PaymentArgumentInvalidError } from '../../errors';
 import isVaultedInstrument from '../../is-vaulted-instrument';
-import { NonceInstrument } from '../../payment';
+import { HostedInstrument } from '../../payment';
 import PaymentActionCreator from '../../payment-action-creator';
 import { PaymentInitializeOptions } from '../../payment-request-options';
 import PaymentStrategy from '../payment-strategy';
@@ -57,7 +57,8 @@ export default class MonerisPaymentStrategy implements PaymentStrategy {
 
         const paymentMethod = getPaymentMethodOrThrow(payment.methodId);
         const testMode = paymentMethod.config.testMode;
-        const shouldSaveInstrument = payment.paymentData && (payment.paymentData as NonceInstrument).shouldSaveInstrument;
+        const shouldSaveInstrument = payment.paymentData && (payment.paymentData as HostedInstrument)?.shouldSaveInstrument;
+        const shouldSetAsDefaultInstrument = payment.paymentData && (payment.paymentData as HostedInstrument)?.shouldSetAsDefaultInstrument;
 
         const { isStoreCreditApplied: useStoreCredit } = this._store.getState().checkout.getCheckoutOrThrow();
 
@@ -94,7 +95,7 @@ export default class MonerisPaymentStrategy implements PaymentStrategy {
         if (nonce !== undefined) {
             return this._store.dispatch(this._paymentActionCreator.submitPayment({
                 methodId: payment.methodId,
-                paymentData: { nonce, shouldSaveInstrument },
+                paymentData: { nonce, shouldSaveInstrument, shouldSetAsDefaultInstrument },
             }));
         }
 
