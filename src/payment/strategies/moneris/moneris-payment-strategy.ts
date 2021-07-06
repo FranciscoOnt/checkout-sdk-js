@@ -222,7 +222,7 @@ export default class MonerisPaymentStrategy implements PaymentStrategy {
         const cssTextbox = style?.cssTextbox ?? 'border-width:2px;';
         const csstextboxPan = style?.cssTextboxPan ?? 'width:140px;';
         const cssTextboxExpiry = style?.cssTextboxExpiry ?? 'width:40px;';
-        const csstexboxCvd = style?.csstexboxCvd ?? 'width:40px';
+        const csstexboxCvd = style?.cssTexboxCvd ?? 'width:40px';
 
         iframe.name = IFRAME_NAME;
         iframe.id = IFRAME_NAME;
