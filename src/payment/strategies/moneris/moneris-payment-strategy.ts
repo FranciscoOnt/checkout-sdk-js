@@ -132,7 +132,7 @@ export default class MonerisPaymentStrategy implements PaymentStrategy {
             css_textbox: style?.cssTextbox || 'border-width:2px;',
             css_textbox_pan: style?.cssTextboxPan || 'width:140px;',
             css_textbox_exp: style?.cssTextboxExpiry || 'width:40px;',
-            css_textbox_cvd: style?.csstexboxCvd || 'width:40px',
+            css_textbox_cvd: style?.cssTexboxCvd || 'width:40px',
             pan_label: initializationData?.creditCardLabel || 'Credit Card Number',
             exp_label: initializationData?.expiryDateLabel || 'Expiration',
             cvd_label: initializationData?.cvdLabel || 'CVD',
